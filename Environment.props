@@ -9,5 +9,8 @@
     
     <!--NuGet-->
     <NuGet>$(RepositoryRoot)\Build\NuGet.props</NuGet>
+    
+    <!--.NET Framework Versions-->
+    <FrameworkVersions>$(RepositoryRoot)\Build\FrameworkVersions.props</FrameworkVersions>
   </PropertyGroup>   
 </Project> 

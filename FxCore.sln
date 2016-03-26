@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
@@ -6,9 +6,37 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|AnyCPU.NET30 = Debug|AnyCPU.NET30
+		Debug|AnyCPU.NET35 = Debug|AnyCPU.NET35
+		Debug|AnyCPU.NET40 = Debug|AnyCPU.NET40
+		Debug|AnyCPU.NET45 = Debug|AnyCPU.NET45
+		Debug|AnyCPU.NET46 = Debug|AnyCPU.NET46
+		Debug|x64.NET30 = Debug|x64.NET30
+		Debug|x64.NET35 = Debug|x64.NET35
+		Debug|x64.NET40 = Debug|x64.NET40
+		Debug|x64.NET45 = Debug|x64.NET45
+		Debug|x64.NET46 = Debug|x64.NET46
+		Debug|x86.NET30 = Debug|x86.NET30
+		Debug|x86.NET35 = Debug|x86.NET35
+		Debug|x86.NET40 = Debug|x86.NET40
+		Debug|x86.NET45 = Debug|x86.NET45
+		Debug|x86.NET46 = Debug|x86.NET46
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		Release|AnyCPU.NET30 = Release|AnyCPU.NET30
+		Release|AnyCPU.NET35 = Release|AnyCPU.NET35
+		Release|AnyCPU.NET40 = Release|AnyCPU.NET40
+		Release|AnyCPU.NET45 = Release|AnyCPU.NET45
+		Release|AnyCPU.NET46 = Release|AnyCPU.NET46
+		Release|x64.NET30 = Release|x64.NET30
+		Release|x64.NET35 = Release|x64.NET35
+		Release|x64.NET40 = Release|x64.NET40
+		Release|x64.NET45 = Release|x64.NET45
+		Release|x64.NET46 = Release|x64.NET46
+		Release|x86.NET30 = Release|x86.NET30
+		Release|x86.NET35 = Release|x86.NET35
+		Release|x86.NET40 = Release|x86.NET40
+		Release|x86.NET45 = Release|x86.NET45
+		Release|x86.NET46 = Release|x86.NET46
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
