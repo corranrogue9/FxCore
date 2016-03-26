@@ -7,6 +7,9 @@
     <!--Code Analysis-->
     <CodeAnalysis>$(RepositoryRoot)\Build\CodeAnalysis.props</CodeAnalysis>
     
+    <!--StyleCop-->
+    <StyleCop>$(RepositoryRoot)\Build\StyleCop.props</StyleCop>
+    
     <!--NuGet-->
     <NuGet>$(RepositoryRoot)\Build\NuGet.props</NuGet>
     
