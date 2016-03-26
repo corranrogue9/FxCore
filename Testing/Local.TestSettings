@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="Local" id="FD654CA2-F53A-4D1B-9162-9C21574240D9" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>Default local settings</Description>
+  <NamingScheme baseName="Test" appendTimeStamp="false" useDefault="false" />
+  <Execution hostProcessPlatform="MSIL">
+    <Timeouts runTimeout="86400000" testTimeout="86400000" />
+  </Execution>
+</TestSettings>
