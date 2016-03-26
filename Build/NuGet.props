@@ -4,5 +4,8 @@
     <RestorePackages>true</RestorePackages>
     <DownloadNuGetExe>true</DownloadNuGetExe>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageSource Include="https://www.nuget.org/api/v2/"/>
+  </ItemGroup>
   <Import Project="$(RepositoryRoot)\.nuget\NuGet.targets" Condition="Exists('$(RepositoryRoot)\.nuget\NuGet.targets')" />
 </Project>
