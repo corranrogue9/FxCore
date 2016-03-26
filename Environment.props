@@ -5,7 +5,7 @@
     <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
     
     <!--Code Analysis-->
-    <Analysis>$(RepositoryRoot)\Build\Analysis.props</Analysis>
+    <CodeAnalysis>$(RepositoryRoot)\Build\CodeAnalysis.props</CodeAnalysis>
     
     <!--NuGet-->
     <NuGet>$(RepositoryRoot)\Build\NuGet.props</NuGet>
