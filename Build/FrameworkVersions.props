@@ -4,12 +4,18 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET46' OR '$(Platform)' == 'x64.NET46' OR '$(Platform)' == 'x86.NET46' ">
     <DefineConstants>$(DefineConstants);NET30;NET35;NET40;NET45;NET46</DefineConstants>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Framework>NET46</Framework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET46' ">
+    <Architecture>AnyCPU</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64.NET46' ">
     <PlatformTarget>x64</PlatformTarget>
+    <Architecture>x64</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86.NET46' ">
     <PlatformTarget>x86</PlatformTarget>
+    <Architecture>x86</Architecture>
   </PropertyGroup>
   <!--ending .NET46 compilation-->
 
@@ -17,12 +23,18 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET45' OR '$(Platform)' == 'x64.NET45' OR '$(Platform)' == 'x86.NET45' ">
     <DefineConstants>$(DefineConstants);NET30;NET35;NET40;NET45</DefineConstants>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Framework>NET45</Framework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET45' ">
+    <Architecture>AnyCPU</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64.NET45' ">
     <PlatformTarget>x64</PlatformTarget>
+    <Architecture>x64</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86.NET45' ">
     <PlatformTarget>x86</PlatformTarget>
+    <Architecture>x86</Architecture>
   </PropertyGroup>
   <!--ending .NET45 compilation-->
 
@@ -30,12 +42,18 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET40' OR '$(Platform)' == 'x64.NET40' OR '$(Platform)' == 'x86.NET40' ">
     <DefineConstants>$(DefineConstants);NET30;NET35;NET40</DefineConstants>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Framework>NET40</Framework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET40' ">
+    <Architecture>AnyCPU</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64.NET40' ">
     <PlatformTarget>x64</PlatformTarget>
+    <Architecture>x64</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86.NET40' ">
     <PlatformTarget>x86</PlatformTarget>
+    <Architecture>x86</Architecture>
   </PropertyGroup>
   <!--ending .NET40 compilation-->
 
@@ -43,12 +61,18 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET35' OR '$(Platform)' == 'x64.NET35' OR '$(Platform)' == 'x86.NET35' ">
     <DefineConstants>$(DefineConstants);NET30;NET35</DefineConstants>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Framework>NET35</Framework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET35' ">
+    <Architecture>AnyCPU</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64.NET35' ">
     <PlatformTarget>x64</PlatformTarget>
+    <Architecture>x64</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86.NET35' ">
     <PlatformTarget>x86</PlatformTarget>
+    <Architecture>x86</Architecture>
   </PropertyGroup>
   <!--ending .NET35 compilation-->
 
@@ -56,14 +80,18 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET30' OR '$(Platform)' == 'x64.NET30' OR '$(Platform)' == 'x86.NET30' ">
     <DefineConstants>$(DefineConstants);NET30</DefineConstants>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <Framework>NET30</Framework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU.NET30' ">
+    <Architecture>AnyCPU</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64.NET30' ">
     <PlatformTarget>x64</PlatformTarget>
+    <Architecture>x64</Architecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86.NET30' ">
     <PlatformTarget>x86</PlatformTarget>
+    <Architecture>x86</Architecture>
   </PropertyGroup>
   <!--ending .NET30 compilation-->
 </Project>
-
-

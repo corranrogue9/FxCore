@@ -15,5 +15,9 @@
     
     <!--.NET Framework Versions-->
     <FrameworkVersions>$(RepositoryRoot)\Build\FrameworkVersions.props</FrameworkVersions>
+
+    <!--build output directory-->
+    <PackagePath Condition=" '$(PackagePath)' != '' ">$([System.IO.Path]::Combine($(RepositoryRoot), $(PackagePath)))\$(MSBuildProjectName)</PackagePath>
+    <PackagePath Condition=" '$(PackagePath)' == '' ">bin</PackagePath>
   </PropertyGroup>   
 </Project> 
