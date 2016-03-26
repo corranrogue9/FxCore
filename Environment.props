@@ -6,5 +6,8 @@
     
     <!--Code Analysis-->
     <Analysis>$(RepositoryRoot)\Build\Analysis.props</Analysis>
+    
+    <!--NuGet-->
+    <NuGet>$(RepositoryRoot)\Build\NuGet.props</NuGet>
   </PropertyGroup>   
 </Project> 
