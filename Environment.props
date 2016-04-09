@@ -16,7 +16,8 @@
     <!--.NET Framework Versions-->
     <FrameworkVersions>$(RepositoryRoot)\Build\FrameworkVersions.props</FrameworkVersions>
 
-    <!--build output directory-->
+    <!--NuGet release process-->
+    <Release>$(RepositoryRoot)\Build\Release.props</Release>
     <PackagePath Condition=" '$(PackagePath)' != '' ">$([System.IO.Path]::Combine($(RepositoryRoot), $(PackagePath)))\$(MSBuildProjectName)</PackagePath>
     <PackagePath Condition=" '$(PackagePath)' == '' ">bin</PackagePath>
   </PropertyGroup>   
