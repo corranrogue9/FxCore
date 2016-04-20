@@ -3,5 +3,5 @@
   <Target Name="CopyStlyeCopSettings" BeforeTargets="StyleCop">
     <Copy SourceFiles="$(RepositoryRoot)\StyleCop\Settings.StyleCop" DestinationFolder="$(RepositoryRoot)" ContinueOnError="false" SkipUnchangedFiles="true"/>
   </Target>
-  <Import Project="$(RepositoryRoot)\External\Packages\StyleCop.MSBuild.4.7.50.0\build\StyleCop.MSBuild.Targets"/>
+  <Import Project="$(RepositoryRoot)\External\Packages\StyleCop.MSBuild.4.7.50.0\build\StyleCop.MSBuild.Targets" Condition="Exists('$(RepositoryRoot)\External\Packages\StyleCop.MSBuild.4.7.50.0\build\StyleCop.MSBuild.Targets')"/>
 </Project>
