@@ -1,0 +1,9 @@
+*.suo
+[Oo]bj*/
+[Bb]in*/
+[Dd]ebug*/
+[Rr]elease*/
+
+/[Ee]xternal/[Pp]ackages
+
+[Ss]ettings\.[Ss]tyle[Cc]op
