@@ -7,3 +7,5 @@
 /[Ee]xternal/[Pp]ackages
 
 [Ss]ettings\.[Ss]tyle[Cc]op
+
+*.coverage
