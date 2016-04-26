@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FxCore.Tests$debug$$architecture$</id>
+    <version>$version$</version>
+    <authors>corranrogue9</authors>
+    <owners>corranrogue9</owners>
+    <licenseUrl>https://github.com/corranrogue9/FxCore/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/corranrogue9/FxCore</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package description</description>
+    <copyright>Copyright 2016</copyright>
+    <dependencies>
+      <dependency id="FxCore$debug$$architecture$" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="**\FxCore.FxCore.Tests.dll" target="lib\" />
+    <file src="**\FxCore.FxCore.Tests.xml" target="lib\" />
+    <file src="**\FxCore.FxCore.Tests.pdb" target="lib\" />
+  </files>
+</package>
