@@ -29,7 +29,7 @@ ForEach ($project in $projects)
             New-Item -ItemType Directory -Force -Path $outputPath | out-null
             $finalConfiguration = ""
             $finalArchitecture = ""
-	        if ($configuration.Name.CompareTo("Debug") -ne 0 -Or $architecture.Name.CompareTo("AnyCPU") -ne 0)
+	        if ($configuration.Name.CompareTo("Release") -ne 0 -Or $architecture.Name.CompareTo("AnyCPU") -ne 0)
 	        {
    	            $finalConfiguration = ".$configuration"
                 $finalArchitecture = ".$architecture"
