@@ -12,8 +12,8 @@
     <copyright>Copyright 2016</copyright>
   </metadata>
   <files>
-    <file src="**\FxCore.*.dll" target="lib\" />
-    <file src="**\FxCore.*.xml" target="lib\" />
-    <file src="**\FxCore.*.pdb" target="lib\" />
+    <file src="**\FxCore.$safeprojectname$.dll" target="lib\" />
+    <file src="**\FxCore.$safeprojectname$.xml" target="lib\" />
+    <file src="**\FxCore.$safeprojectname$.pdb" target="lib\" />
   </files>
 </package>
