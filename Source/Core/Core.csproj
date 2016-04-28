@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Environment.props))\Environment.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Environment.props))' != '' " />
   <Import Project="$(CodeAnalysis)" Condition="Exists('$(CodeAnalysis)')" />
   <Import Project="$(FrameworkVersions)" Condition="Exists('$(FrameworkVersions)')" />
   <PropertyGroup>
-    <ProjectGuid>28624cd2-babf-4f0e-a9af-7806591ab04f</ProjectGuid>
+    <ProjectGuid>{28624CD2-BABF-4F0E-A9AF-7806591AB04F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FxCore</RootNamespace>
-    <AssemblyName>FxCore.FxCore</AssemblyName>
+    <RootNamespace>Fx</RootNamespace>
+    <AssemblyName>Fx.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>$(PackagePath)\$(Configuration)\$(Architecture)\$(Framework)</OutputPath>
-    <DocumentationFile>$(OutputPath)\FxCore.FxCore.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Fx.Core.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="FxCore.nuspec" />
+    <None Include="Core.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings.resx">

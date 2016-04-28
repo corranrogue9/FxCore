@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FxCore.$safeprojectname$")]
+[assembly: AssemblyTitle("Fx.$safeprojectname$")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("$registeredorganization$")]
-[assembly: AssemblyProduct("FxCore.$safeprojectname$")]
+[assembly: AssemblyProduct("Fx.$safeprojectname$")]
 [assembly: AssemblyCopyright("Copyright © FxCore $year$")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

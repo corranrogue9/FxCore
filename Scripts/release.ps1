@@ -44,7 +44,7 @@ ForEach ($project in $projects)
             }
 
             $pushLogPath = Join-Path $outputPath -ChildPath "$prefix.push.txt"
-            $nupkgPath = Join-Path $outputPath -ChildPath "$prefix.nupkg"
+            $nupkgPath = Join-Path $outputPath -ChildPath "Fx.$prefix.nupkg"
 	        Invoke-Expression "$nugetPath push $nupkgPath -Source $nugetSource > $pushLogPath 2>&1"
             if ($LASTEXITCODE -ne 0)
             {

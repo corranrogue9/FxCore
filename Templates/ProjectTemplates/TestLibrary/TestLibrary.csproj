@@ -8,13 +8,13 @@
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>$guid1$</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FxCore</RootNamespace>
-    <AssemblyName>FxCore.$safeprojectname$</AssemblyName>
+    <RootNamespace>Fx</RootNamespace>
+    <AssemblyName>Fx.$safeprojectname$</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>$(PackagePath)\$(Configuration)\$(Architecture)\$(Framework)</OutputPath>
-    <DocumentationFile>$(OutputPath)\FxCore.$safeprojectname$.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Fx.$safeprojectname$.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

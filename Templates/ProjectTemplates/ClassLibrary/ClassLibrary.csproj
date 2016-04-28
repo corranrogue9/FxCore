@@ -8,13 +8,13 @@
     <ProjectGuid>$guid1$</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FxCore</RootNamespace>
-    <AssemblyName>FxCore.$safeprojectname$</AssemblyName>
+    <RootNamespace>Fx</RootNamespace>
+    <AssemblyName>Fx.$safeprojectname$</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>$(PackagePath)\$(Configuration)\$(Architecture)\$(Framework)</OutputPath>
-    <DocumentationFile>$(OutputPath)\FxCore.$safeprojectname$.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Fx.$safeprojectname$.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

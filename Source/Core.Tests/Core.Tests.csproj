@@ -8,13 +8,13 @@
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{7B2BE20F-3471-4FFC-9722-551BE117CD91}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FxCore</RootNamespace>
-    <AssemblyName>FxCore.FxCore.Tests</AssemblyName>
+    <RootNamespace>Fx</RootNamespace>
+    <AssemblyName>Fx.Core.Tests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>$(PackagePath)\$(Configuration)\$(Architecture)\$(Framework)</OutputPath>
-    <DocumentationFile>$(OutputPath)\FxCore.FxCore.Tests.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\Fx.Core.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="FxCore.Tests.nuspec" />
+    <None Include="Core.Tests.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings.resx">

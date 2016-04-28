@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxCore", "Source\FxCore\FxCore.csproj", "{28624CD2-BABF-4F0E-A9AF-7806591AB04F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Source\Core\Core.csproj", "{28624CD2-BABF-4F0E-A9AF-7806591AB04F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxCore.Tests", "Source\FxCore.Tests\FxCore.Tests.csproj", "{7B2BE20F-3471-4FFC-9722-551BE117CD91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Source\Core.Tests\Core.Tests.csproj", "{7B2BE20F-3471-4FFC-9722-551BE117CD91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

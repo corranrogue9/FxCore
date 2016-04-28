@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FxCore.Tests$debug$$architecture$</id>
+    <id>Fx.Core.Tests$debug$$architecture$</id>
     <version>$version$</version>
     <authors>corranrogue9</authors>
     <owners>corranrogue9</owners>
@@ -11,12 +11,12 @@
     <description>Package description</description>
     <copyright>Copyright 2016</copyright>
     <dependencies>
-      <dependency id="FxCore$debug$$architecture$" version="$version$" />
+      <dependency id="Fx.Core$debug$$architecture$" version="$version$" />
     </dependencies>
   </metadata>
   <files>
-    <file src="**\FxCore.FxCore.Tests.dll" target="lib\" />
-    <file src="**\FxCore.FxCore.Tests.xml" target="lib\" />
-    <file src="**\FxCore.FxCore.Tests.pdb" target="lib\" />
+    <file src="**\Fx.Core.Tests.dll" target="lib\" />
+    <file src="**\Fx.Core.Tests.xml" target="lib\" />
+    <file src="**\Fx.Core.Tests.pdb" target="lib\" />
   </files>
 </package>

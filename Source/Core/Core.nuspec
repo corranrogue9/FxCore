@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FxCore$debug$$architecture$</id>
+    <id>Fx.Core$debug$$architecture$</id>
     <version>$version$</version>
     <authors>corranrogue9</authors>
     <owners>corranrogue9</owners>
@@ -12,8 +12,8 @@
     <copyright>Copyright 2016</copyright>
   </metadata>
   <files>
-    <file src="**\FxCore.FxCore.dll" target="lib\" />
-    <file src="**\FxCore.FxCore.xml" target="lib\" />
-    <file src="**\FxCore.FxCore.pdb" target="lib\" />
+    <file src="**\Fx.Core.dll" target="lib\" />
+    <file src="**\Fx.Core.xml" target="lib\" />
+    <file src="**\Fx.Core.pdb" target="lib\" />
   </files>
 </package>
