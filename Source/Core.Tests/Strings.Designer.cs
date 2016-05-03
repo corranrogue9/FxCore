@@ -59,5 +59,14 @@ namespace Fx {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ExceptionAssert.Throws failed. Expected exception of type:&lt;{0}&gt;. Actual exception type:&lt;{1}&gt;. {2}.
+        /// </summary>
+        internal static string ExceptionAssertThrows {
+            get {
+                return ResourceManager.GetString("ExceptionAssertThrows", resourceCulture);
+            }
+        }
     }
 }

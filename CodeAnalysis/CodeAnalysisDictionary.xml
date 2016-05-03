@@ -1,10 +1,7 @@
 <Dictionary>
   <Words>
     <Recognized>
-      <!--
-      this is an example of how to add an additional word that is defaultly considered to be spelled incorrectly
-      <Word>example</Word>
-      -->
+      <Word>Sha</Word>
     </Recognized>
   </Words>
 </Dictionary>

@@ -59,5 +59,104 @@ namespace Fx {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; did not contain any elements.
+        /// </summary>
+        internal static string EnsureEnumerableNotEmpty {
+            get {
+                return ResourceManager.GetString("EnsureEnumerableNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; was not a valid value of the enumeration &apos;{1}&apos;.
+        /// </summary>
+        internal static string EnsureIsDefinedEnum {
+            get {
+                return ResourceManager.GetString("EnsureIsDefinedEnum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid enumeration type.
+        /// </summary>
+        internal static string EnsureIsEnum {
+            get {
+                return ResourceManager.GetString("EnsureIsEnum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is of type &apos;{1}&apos; which is not derived from &apos;{2}&apos;.
+        /// </summary>
+        internal static string EnsureIsInstance {
+            get {
+                return ResourceManager.GetString("EnsureIsInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; was not a positive value.
+        /// </summary>
+        internal static string EnsureIsPositive {
+            get {
+                return ResourceManager.GetString("EnsureIsPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid MAC address; provided value: &apos;{1}&apos;; expected format: &apos;{2}&apos;.
+        /// </summary>
+        internal static string EnsureIsValidMacAddress {
+            get {
+                return ResourceManager.GetString("EnsureIsValidMacAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid SHA1; provided value: &apos;{1}&apos;; expected format: &apos;{2}&apos;.
+        /// </summary>
+        internal static string EnsureIsValidSha1 {
+            get {
+                return ResourceManager.GetString("EnsureIsValidSha1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid SHA1 or SHA2; provided value: &apos;{1}&apos;; expected formats: &apos;{2}&apos; &apos;{3}&apos;.
+        /// </summary>
+        internal static string EnsureIsValidSha1OrSha2 {
+            get {
+                return ResourceManager.GetString("EnsureIsValidSha1OrSha2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid SHA2; provided value: &apos;{1}&apos;; expected format: &apos;{2}&apos;.
+        /// </summary>
+        internal static string EnsureIsValidSha2 {
+            get {
+                return ResourceManager.GetString("EnsureIsValidSha2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; was a negative value.
+        /// </summary>
+        internal static string EnsureNotNegative {
+            get {
+                return ResourceManager.GetString("EnsureNotNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; cannot be the empty string.
+        /// </summary>
+        internal static string EnsureNotNullOrEmptyString {
+            get {
+                return ResourceManager.GetString("EnsureNotNullOrEmptyString", resourceCulture);
+            }
+        }
     }
 }

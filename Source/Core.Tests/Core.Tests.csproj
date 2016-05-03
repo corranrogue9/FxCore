@@ -28,6 +28,12 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\EnsureFailureTests.cs" />
+    <Compile Include="Fx\EnsureUnitTests.cs" />
+    <Compile Include="Fx\MockDerivedClass.cs" />
+    <Compile Include="Fx\MockBaseClass.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Microsoft\VisualStudio\TestTools\UnitTesting\ExceptionAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -48,6 +54,13 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{28624cd2-babf-4f0e-a9af-7806591ab04f}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(NuGet)" Condition="Exists('$(NuGet)')" />
