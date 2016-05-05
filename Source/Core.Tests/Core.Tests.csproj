@@ -28,7 +28,9 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\EnsureInlineFailureTests.cs" />
     <Compile Include="Fx\EnsureFailureTests.cs" />
+    <Compile Include="Fx\EnsureInlineUnitTests.cs" />
     <Compile Include="Fx\EnsureUnitTests.cs" />
     <Compile Include="Fx\MockDerivedClass.cs" />
     <Compile Include="Fx\MockBaseClass.cs" />
