@@ -38,6 +38,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="System\ByteArrayComparer.cs" />
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
     <Compile Include="System\Linq\Enumerable.cs" />

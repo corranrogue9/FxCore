@@ -42,6 +42,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="System\ByteArrayComparerFailureTests.cs" />
+    <Compile Include="System\ByteArrayComparerUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
