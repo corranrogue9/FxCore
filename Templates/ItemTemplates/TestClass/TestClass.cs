@@ -5,6 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
+    /// <threadsafety static="true" instance="true"/>
     [TestClass]
     public sealed class $safeitemrootname$
     {
