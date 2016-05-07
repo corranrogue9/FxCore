@@ -37,10 +37,10 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Microsoft\VisualStudio\TestTools\UnitTesting\ExceptionAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strings.Designer.cs">
+    <Compile Include="TestStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
+      <DependentUpon>TestStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="System\ByteArrayComparerFailureTests.cs" />
     <Compile Include="System\ByteArrayComparerUnitTests.cs" />
@@ -50,9 +50,9 @@
     <None Include="Core.Tests.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Strings.resx">
+    <EmbeddedResource Include="TestStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>TestStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

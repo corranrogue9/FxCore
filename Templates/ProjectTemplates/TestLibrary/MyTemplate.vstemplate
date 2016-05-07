@@ -18,8 +18,8 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.nuspec">TestLibrary.nuspec</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="Strings.Designer.cs">Strings.Designer.cs</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="Strings.resx">Strings.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestStrings.Designer.cs">TestStrings.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestStrings.resx">TestStrings.resx</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

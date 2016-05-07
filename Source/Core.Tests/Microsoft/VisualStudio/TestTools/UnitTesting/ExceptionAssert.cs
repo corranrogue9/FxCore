@@ -52,13 +52,13 @@
             var expectedType = typeof(T);
             if (exception == null)
             {
-                throw new AssertFailedException(string.Format(Strings.ExceptionAssertThrows, expectedType.ToString(), "null", message));
+                throw new AssertFailedException(string.Format(TestStrings.ExceptionAssertThrows, expectedType.ToString(), "null", message));
             }
 
             var actualType = exception.GetType();
             if (expectedType != actualType)
             {
-                throw new AssertFailedException(string.Format(Strings.ExceptionAssertThrows, expectedType.ToString(), actualType.ToString(), message));
+                throw new AssertFailedException(string.Format(TestStrings.ExceptionAssertThrows, expectedType.ToString(), actualType.ToString(), message));
             }
 
             return exception as T;
