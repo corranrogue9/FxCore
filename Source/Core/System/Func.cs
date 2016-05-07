@@ -6,6 +6,6 @@ namespace System
     /// </summary>
     /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates</typeparam>
     /// <returns>The return value of the method that this delegate encapsulates</returns>
-    public delegate TResult Func<out TResult>();
+    internal delegate TResult Func<out TResult>();
 }
 #endif

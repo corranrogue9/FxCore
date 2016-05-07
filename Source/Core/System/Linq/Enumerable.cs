@@ -9,7 +9,7 @@ namespace System.Linq
     /// Extensions methods <see cref="IEnumerable{T}"/> that mimic the behavior of <see cref="System.Linq.Enumerable"/> introduced in .NET 3.5
     /// </summary>
     /// <threadsafety static="true"/>
-    public static class Enumerable
+    internal static class Enumerable
     {
         /// <summary>
         /// Returns an empty <see cref="IEnumerable{T}"/>
