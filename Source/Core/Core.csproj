@@ -42,6 +42,9 @@
     <Compile Include="System\Collections\Generic\ReadOnlyList.cs" />
     <Compile Include="System\Collections\Generic\IReadOnlyCollection.cs" />
     <Compile Include="System\Collections\Generic\IReadOnlyList.cs" />
+    <Compile Include="System\Diagnostics\MemoryTraceListener.cs" />
+    <Compile Include="System\Diagnostics\NegativeTraceFilter.cs" />
+    <Compile Include="System\Diagnostics\TraceEvent.cs" />
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
     <Compile Include="System\IO\ChunkedMemoryStream.cs" />
@@ -60,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

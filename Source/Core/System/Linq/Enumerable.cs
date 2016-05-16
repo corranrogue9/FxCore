@@ -44,6 +44,20 @@ namespace System.Linq
         }
 
         /// <summary>
+        /// Creates a <see cref="List{T}"/> from an <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <typeparam name="T">The type of elements of <paramref name="source"/></typeparam>
+        /// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="List{T}"/> from</param>
+        /// <returns>A <see cref="List{T}"/> that contains elements from the input sequence</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
+        internal static List<T> ToList<T>(IEnumerable<T> source)
+        {
+            Ensure.NotNull(source, nameof(source));
+
+            return new List<T>(source);
+        }
+
+        /// <summary>
         /// A helper class which uses a strongly-typed generic type on the class for caching purposes
         /// </summary>
         /// <typeparam name="T">The type of the elements in the <see cref="IEnumerable{T}"/>s that are cached in this helper</typeparam>

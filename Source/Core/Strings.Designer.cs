@@ -194,5 +194,14 @@ namespace Fx {
                 return ResourceManager.GetString("EnsureNotNullOrEmptyString", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
+        /// </summary>
+        internal static string MemoryTraceListenerTraceEvent {
+            get {
+                return ResourceManager.GetString("MemoryTraceListenerTraceEvent", resourceCulture);
+            }
+        }
     }
 }
