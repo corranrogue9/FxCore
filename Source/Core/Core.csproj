@@ -39,6 +39,9 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="System\ByteArrayComparer.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyList.cs" />
+    <Compile Include="System\Collections\Generic\IReadOnlyCollection.cs" />
+    <Compile Include="System\Collections\Generic\IReadOnlyList.cs" />
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
     <Compile Include="System\Linq\Enumerable.cs" />
@@ -57,6 +60,7 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(NuGet)" Condition="Exists('$(NuGet)')" />
   <Import Project="$(StyleCop)" Condition="Exists('$(StyleCop)')" />
