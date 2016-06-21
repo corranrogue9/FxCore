@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Fx.Collections
 {
@@ -76,12 +75,12 @@ namespace Fx.Collections
 
         public EnumeratorComparer(IComparer<T> comparer)
         {
-            _comparer = comparer;
+            this._comparer = comparer;
         }
 
         public int Compare(IEnumerator<T> x, IEnumerator<T> y)
         {
-            return _comparer.Compare(x.Current, y.Current);
+            return this._comparer.Compare(x.Current, y.Current);
         }
     }
 }
