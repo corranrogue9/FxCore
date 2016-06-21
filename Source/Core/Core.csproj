@@ -28,6 +28,7 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\Collections\SortedPartitionsMergeExtension.cs" />
     <Compile Include="Fx\EnsureInline.cs" />
     <Compile Include="Fx\Ensure.cs" />
     <Compile Include="Fx\ValidatedNotNullAttribute.cs" />
@@ -59,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
