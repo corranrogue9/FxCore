@@ -32,6 +32,15 @@
     <Compile Include="Fx\EnsureFailureTests.cs" />
     <Compile Include="Fx\EnsureInlineUnitTests.cs" />
     <Compile Include="Fx\EnsureUnitTests.cs" />
+    <Compile Include="Fx\Logging\EventIdentifierExtensionsFailureTests.cs" />
+    <Compile Include="Fx\Logging\EventIdentifierExtensionsUnitTests.cs" />
+    <Compile Include="Fx\Logging\EventIdentifierUnitTests.cs" />
+    <Compile Include="Fx\Logging\LoggerExtensionsFailureTests.cs" />
+    <Compile Include="Fx\Logging\LoggerExtensionsUnitTests.cs" />
+    <Compile Include="Fx\Logging\MemoryEventUnitTests.cs" />
+    <Compile Include="Fx\Logging\MemoryLoggerUnitTests.cs" />
+    <Compile Include="Fx\Logging\NullLoggerUnitTests.cs" />
+    <Compile Include="Fx\Logging\TraceSourceLoggerUnitTests.cs" />
     <Compile Include="Fx\MockDerivedClass.cs" />
     <Compile Include="Fx\MockBaseClass.cs" />
     <Compile Include="GlobalSuppressions.cs" />

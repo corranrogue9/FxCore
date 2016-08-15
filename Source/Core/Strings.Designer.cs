@@ -196,6 +196,24 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There were an unequal number of left and right curly braces in the provided format.
+        /// </summary>
+        internal static string EventIdentifierExtensionsFormat {
+            get {
+                return ResourceManager.GetString("EventIdentifierExtensionsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
+        /// </summary>
+        internal static string LoggerExtensionsFormat {
+            get {
+                return ResourceManager.GetString("LoggerExtensionsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
         /// </summary>
         internal static string MemoryTraceListenerTraceEvent {

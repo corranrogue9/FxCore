@@ -30,6 +30,14 @@
   <ItemGroup>
     <Compile Include="Fx\EnsureInline.cs" />
     <Compile Include="Fx\Ensure.cs" />
+    <Compile Include="Fx\Logging\EventIdentifier.cs" />
+    <Compile Include="Fx\Logging\EventIdentifierExtensions.cs" />
+    <Compile Include="Fx\Logging\ILogger.cs" />
+    <Compile Include="Fx\Logging\LoggerExtensions.cs" />
+    <Compile Include="Fx\Logging\MemoryEvent.cs" />
+    <Compile Include="Fx\Logging\MemoryLogger.cs" />
+    <Compile Include="Fx\Logging\NullLogger.cs" />
+    <Compile Include="Fx\Logging\TraceSourceLogger.cs" />
     <Compile Include="Fx\ValidatedNotNullAttribute.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

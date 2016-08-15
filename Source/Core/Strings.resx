@@ -162,6 +162,12 @@
   <data name="EnsureNotNullOrEmptyString" xml:space="preserve">
     <value>'{0}' cannot be the empty string</value>
   </data>
+  <data name="EventIdentifierExtensionsFormat" xml:space="preserve">
+    <value>There were an unequal number of left and right curly braces in the provided format</value>
+  </data>
+  <data name="LoggerExtensionsFormat" xml:space="preserve">
+    <value>An error occurred generating this event. The message format was: {0}. The data was: {1}</value>
+  </data>
   <data name="MemoryTraceListenerTraceEvent" xml:space="preserve">
     <value>An error occurred generating this event. The message format was: {0}. The data was: {1}</value>
   </data>
