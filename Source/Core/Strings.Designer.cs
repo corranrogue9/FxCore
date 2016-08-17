@@ -61,6 +61,42 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The buffer size must be large enough to hold &apos;count&apos; bytes at &apos;offset&apos;; count: &apos;{0}&apos;; offset: &apos;{1}&apos;; buffer length: &apos;{2}&apos;.
+        /// </summary>
+        internal static string ChunkedMemoryStreamRead {
+            get {
+                return ResourceManager.GetString("ChunkedMemoryStreamRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This stream does not support writing.
+        /// </summary>
+        internal static string ChunkedMemoryStreamSetLength {
+            get {
+                return ResourceManager.GetString("ChunkedMemoryStreamSetLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The buffer size must be large enough to hold &apos;count&apos; bytes at &apos;offset&apos;; count: &apos;{0}&apos;; offset: &apos;{1}&apos;; buffer length: &apos;{2}&apos;.
+        /// </summary>
+        internal static string ChunkedMemoryStreamWriteSize {
+            get {
+                return ResourceManager.GetString("ChunkedMemoryStreamWriteSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This stream does not support writing.
+        /// </summary>
+        internal static string ChunkedMemoryStreamWriteSupport {
+            get {
+                return ResourceManager.GetString("ChunkedMemoryStreamWriteSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; did not contain any elements.
         /// </summary>
         internal static string EnsureEnumerableNotEmpty {

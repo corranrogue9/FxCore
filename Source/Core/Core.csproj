@@ -44,6 +44,7 @@
     <Compile Include="System\Collections\Generic\IReadOnlyList.cs" />
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
+    <Compile Include="System\IO\ChunkedMemoryStream.cs" />
     <Compile Include="System\Linq\Enumerable.cs" />
   </ItemGroup>
   <ItemGroup>
