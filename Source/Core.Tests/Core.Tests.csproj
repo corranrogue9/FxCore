@@ -43,6 +43,10 @@
     <Compile Include="Fx\Logging\TraceSourceLoggerUnitTests.cs" />
     <Compile Include="Fx\MockDerivedClass.cs" />
     <Compile Include="Fx\MockBaseClass.cs" />
+    <Compile Include="Fx\Serialization\MalformedSerializableType.cs" />
+    <Compile Include="Fx\Serialization\SerializableType.cs" />
+    <Compile Include="Fx\Serialization\SerializerFailureTests.cs" />
+    <Compile Include="Fx\Serialization\SerializerUnitTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Microsoft\VisualStudio\TestTools\UnitTesting\ExceptionAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

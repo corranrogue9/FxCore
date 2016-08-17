@@ -38,6 +38,7 @@
     <Compile Include="Fx\Logging\MemoryLogger.cs" />
     <Compile Include="Fx\Logging\NullLogger.cs" />
     <Compile Include="Fx\Logging\TraceSourceLogger.cs" />
+    <Compile Include="Fx\Serialization\ISerializer.cs" />
     <Compile Include="Fx\ValidatedNotNullAttribute.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +73,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
