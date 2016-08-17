@@ -43,6 +43,8 @@
     <Compile Include="Fx\Logging\TraceSourceLoggerUnitTests.cs" />
     <Compile Include="Fx\MockDerivedClass.cs" />
     <Compile Include="Fx\MockBaseClass.cs" />
+    <Compile Include="Fx\Serialization\JsonSerializerFailureTests.cs" />
+    <Compile Include="Fx\Serialization\JsonSerializerUnitTests.cs" />
     <Compile Include="Fx\Serialization\MalformedSerializableType.cs" />
     <Compile Include="Fx\Serialization\SerializableType.cs" />
     <Compile Include="Fx\Serialization\SerializerFailureTests.cs" />
