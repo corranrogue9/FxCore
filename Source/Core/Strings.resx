@@ -171,4 +171,10 @@
   <data name="MemoryTraceListenerTraceEvent" xml:space="preserve">
     <value>An error occurred generating this event. The message format was: {0}. The data was: {1}</value>
   </data>
+  <data name="WcfSerializerDeserialization" xml:space="preserve">
+    <value>An error occurred during deserialization</value>
+  </data>
+  <data name="WcfSerializerSerialization" xml:space="preserve">
+    <value>An error occurred during serialization</value>
+  </data>
 </root>

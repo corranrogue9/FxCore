@@ -221,5 +221,23 @@ namespace Fx {
                 return ResourceManager.GetString("MemoryTraceListenerTraceEvent", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during deserialization.
+        /// </summary>
+        internal static string WcfSerializerDeserialization {
+            get {
+                return ResourceManager.GetString("WcfSerializerDeserialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during serialization.
+        /// </summary>
+        internal static string WcfSerializerSerialization {
+            get {
+                return ResourceManager.GetString("WcfSerializerSerialization", resourceCulture);
+            }
+        }
     }
 }
