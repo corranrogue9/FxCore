@@ -45,6 +45,8 @@
     <Compile Include="Fx\MockBaseClass.cs" />
     <Compile Include="Fx\Serialization\BinarySerializerFailureTests.cs" />
     <Compile Include="Fx\Serialization\BinarySerializerUnitTests.cs" />
+    <Compile Include="Fx\Serialization\XmlSerializerFailureTests.cs" />
+    <Compile Include="Fx\Serialization\XmlSerializerUnitTests.cs" />
     <Compile Include="Fx\Serialization\WcfSerializerFailureTests.cs" />
     <Compile Include="Fx\Serialization\JsonSerializerFailureTests.cs" />
     <Compile Include="Fx\Serialization\WcfSerializerUnitTests.cs" />

@@ -177,4 +177,10 @@
   <data name="WcfSerializerSerialization" xml:space="preserve">
     <value>An error occurred during serialization</value>
   </data>
+  <data name="XmlSerializerDeserialization" xml:space="preserve">
+    <value>An error occurred during deserialization</value>
+  </data>
+  <data name="XmlSerializerSerialization" xml:space="preserve">
+    <value>An error occurred during serialization</value>
+  </data>
 </root>

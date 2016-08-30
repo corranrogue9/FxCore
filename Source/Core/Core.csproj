@@ -40,6 +40,7 @@
     <Compile Include="Fx\Logging\TraceSourceLogger.cs" />
     <Compile Include="Fx\Serialization\ISerializer.cs" />
     <Compile Include="Fx\Serialization\BinarySerializer.cs" />
+    <Compile Include="Fx\Serialization\XmlSerializer.cs" />
     <Compile Include="Fx\Serialization\JsonSerializer.cs" />
     <Compile Include="Fx\Serialization\WcfSerializer.cs" />
     <Compile Include="Fx\ValidatedNotNullAttribute.cs" />
