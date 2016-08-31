@@ -28,6 +28,7 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\ContextProvision\IContextProvider.cs" />
     <Compile Include="Fx\EnsureInline.cs" />
     <Compile Include="Fx\Ensure.cs" />
     <Compile Include="Fx\Logging\EventIdentifier.cs" />
