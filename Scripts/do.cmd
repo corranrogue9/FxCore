@@ -1,3 +1,5 @@
+@echo off
+
 set version=%1
 IF "%2"=="" (
 	set resultDirectory=%~dp0..\

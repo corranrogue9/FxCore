@@ -1,3 +1,5 @@
+@echo off
+
 set reporoot=%1
 set PackagePath=%2
 

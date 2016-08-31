@@ -1,3 +1,5 @@
+@echo off
+
 set PackagePath=%~1
 set OutputPath=%~2
 set VersionNumber=%3
