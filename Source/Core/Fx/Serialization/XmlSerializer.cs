@@ -162,10 +162,16 @@
             private static readonly GenericXmlSerializer<T> Singleton = new GenericXmlSerializer<T>();
 
             /// <summary>
+            /// The <see cref="System.Xml.Serialization.XmlSerializer"/> that should be used when actually performing serializations for the <typeparamref name="T"/> type
+            /// </summary>
+            private readonly System.Xml.Serialization.XmlSerializer serializer;
+
+            /// <summary>
             /// Prevents a default instance of the <see cref="GenericXmlSerializer{T}"/> class from being created
             /// </summary>
             private GenericXmlSerializer()
             {
+                this.serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
             }
 
             /// <summary>
@@ -201,10 +207,9 @@
             /// <exception cref="System.Runtime.Serialization.SerializationException">Thrown if an error occurred during deserialization of <paramref name="toDeserialize"/></exception>
             public T FromStream(Stream toDeserialize)
             {
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
                 try
                 {
-                    return (T)serializer.Deserialize(toDeserialize);
+                    return (T)this.serializer.Deserialize(toDeserialize);
                 }
                 catch (InvalidOperationException e)
                 {
@@ -275,8 +280,7 @@
                     stream = new ChunkedMemoryStream();
                     try
                     { 
-                        var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
-                        serializer.Serialize(stream, toSerialize);
+                        this.serializer.Serialize(stream, toSerialize);
                     }
                     catch (InvalidOperationException e)
                     {
