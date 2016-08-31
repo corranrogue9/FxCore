@@ -1,9 +1,8 @@
 ﻿namespace System.Diagnostics
 {
-    using System.IO;
     using System.Linq;
-    using System.Runtime.Serialization;
-    using System.Text;
+
+    using Fx.Serialization;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,8 +24,8 @@
         {
             var @event = new TraceEvent.WriteEvent("this is a message");
 
-            var serialized = Serialize(@event);
-            var deserialized = Deserialize<TraceEvent.WriteEvent>(serialized);
+            var serialized = WcfSerializer.Default.ToString(@event);
+            var deserialized = WcfSerializer.Default.FromString<TraceEvent.WriteEvent>(serialized);
 
             Assert.AreEqual(@event.Message, deserialized.Message);
         }
@@ -42,8 +41,8 @@
         {
             var @event = new TraceEvent.MessageEvent(new TraceEventCache(), "the source", TraceEventType.Information, 100, "this is a message");
 
-            var serialized = Serialize(@event);
-            var deserialized = Deserialize<TraceEvent.MessageEvent>(serialized);
+            var serialized = WcfSerializer.Default.ToString(@event);
+            var deserialized = WcfSerializer.Default.FromString<TraceEvent.MessageEvent>(serialized);
 
             Assert.AreEqual(@event.CallStack, deserialized.CallStack);
             Assert.AreEqual(@event.DateTime, deserialized.DateTime);
@@ -68,8 +67,8 @@
         {
             var @event = new TraceEvent.DataEvent(new TraceEventCache(), "the source", TraceEventType.Information, 100, new[] { "asdf" });
 
-            var serialized = Serialize(@event);
-            var deserialized = Deserialize<TraceEvent.DataEvent>(serialized);
+            var serialized = WcfSerializer.Default.ToString(@event);
+            var deserialized = WcfSerializer.Default.FromString<TraceEvent.DataEvent>(serialized);
 
             Assert.AreEqual(@event.CallStack, deserialized.CallStack);
             CollectionAssert.AreEqual(Enumerable.ToList(@event.Data), Enumerable.ToList(deserialized.Data));
@@ -81,40 +80,6 @@
             Assert.AreEqual(@event.Source, deserialized.Source);
             Assert.AreEqual(@event.ThreadId, deserialized.ThreadId);
             Assert.AreEqual(@event.Timestamp, deserialized.Timestamp);
-        }
-
-        /// <summary>
-        /// Serializes <paramref name="toSerialize"/> into its WCF representation
-        /// </summary>
-        /// <param name="toSerialize">The <see cref="object"/> to serialize</param>
-        /// <returns>The WCF representation of <paramref name="toSerialize"/></returns>
-        private static string Serialize(object toSerialize)
-        {
-            using (var stream = new MemoryStream())
-            {
-                var serializer = new DataContractSerializer(toSerialize.GetType());
-                serializer.WriteObject(stream, toSerialize);
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes <paramref name="toDeserialize"/> into the <see cref="object"/> that it represents
-        /// </summary>
-        /// <typeparam name="T">The type of the <see cref="object"/> represented by <paramref name="toDeserialize"/></typeparam>
-        /// <param name="toDeserialize">The WCF representation of an object</param>
-        /// <returns>The object represented by <paramref name="toDeserialize"/></returns>
-        private static T Deserialize<T>(string toDeserialize)
-        {
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(toDeserialize)))
-            {
-                var serializer = new DataContractSerializer(typeof(T));
-                return (T)serializer.ReadObject(stream);
-            }
         }
     }
 }
