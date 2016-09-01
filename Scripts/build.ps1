@@ -12,7 +12,7 @@ ForEach ($configuration in $configurations)
         ForEach ($framework in $frameworks)
         {
             $output = Invoke-Expression "msbuild $repoRoot /t:Clean /t:Rebuild /property:Configuration=$configuration /property:Platform=$architecture.$framework 2>&1"
-            if ($LASTEXITCODE -ne 0)
+	    if (-not ([string]::Join("\n", $output) -like "*Build succeeded.\n    0 Warning(s)\n    0 Error(s)*"))
             {
                 $output
             }
