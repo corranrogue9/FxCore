@@ -62,7 +62,7 @@
         [TestMethod]
         public void NotNullAction()
         {
-            Action value = () => { };
+            var value = DefaultAction.Empty();
             Assert.AreEqual(value, EnsureInline.NotNull(value, "actionname"));
         }
 #endif

@@ -58,7 +58,7 @@
         [TestMethod]
         public void NotNullAction()
         {
-            Ensure.NotNull<Action>(() => { }, "actionname");
+            Ensure.NotNull<Action>(DefaultAction.Empty(), "actionname");
         }
 #endif
 
