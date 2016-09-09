@@ -67,6 +67,7 @@
     <Compile Include="System\Action.cs" />
     <Compile Include="System\IO\ChunkedMemoryStream.cs" />
     <Compile Include="System\Linq\Enumerable.cs" />
+    <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
   </ItemGroup>
   <ItemGroup>

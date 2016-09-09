@@ -68,6 +68,8 @@
     <Compile Include="System\Diagnostics\TraceEventUnitTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamFailureTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamUnitTests.cs" />
+    <Compile Include="System\MockRandomFailureTests.cs" />
+    <Compile Include="System\MockRandomUnitTests.cs" />
     <Compile Include="TestStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
