@@ -59,6 +59,7 @@
     <Compile Include="System\Collections\Generic\IReadOnlyCollection.cs" />
     <Compile Include="System\Collections\Generic\IReadOnlyList.cs" />
     <Compile Include="System\DefaultAction.cs" />
+    <Compile Include="System\DefaultPredicate.cs" />
     <Compile Include="System\Diagnostics\MemoryTraceListener.cs" />
     <Compile Include="System\Diagnostics\NegativeTraceFilter.cs" />
     <Compile Include="System\Diagnostics\TraceEvent.cs" />
