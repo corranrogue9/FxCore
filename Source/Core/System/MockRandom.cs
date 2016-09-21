@@ -33,7 +33,6 @@
         /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty</exception>
         public MockRandom(byte[] data)
         {
-            Ensure.NotNull(data, nameof(data));
             Ensure.EnumerableNotEmpty(data, nameof(data));
 
             this.data = data.Clone() as byte[];
