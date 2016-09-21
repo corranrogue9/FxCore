@@ -111,7 +111,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static string NotNullOrEmptyString(string value, string name)
+        public static string NotNullOrEmptyString([ValidatedNotNull] string value, string name)
         {
             Ensure.NotNullOrEmptyString(value, name);
 
@@ -131,7 +131,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TEnumerable EnumerableNotEmpty<TEnumerable, TElement>(TEnumerable value, string name) where TEnumerable : IEnumerable<TElement>
+        public static TEnumerable EnumerableNotEmpty<TEnumerable, TElement>([ValidatedNotNull] TEnumerable value, string name) where TEnumerable : IEnumerable<TElement>
         {
             Ensure.EnumerableNotEmpty(value, name);
 
@@ -475,7 +475,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Enum IsDefinedEnum(Enum value, string name)
+        public static Enum IsDefinedEnum([ValidatedNotNull] Enum value, string name)
         {
             Ensure.IsDefinedEnum(value, name);
 
@@ -497,7 +497,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T IsInstance<T>(Type parent, T value, string name)
+        public static T IsInstance<T>([ValidatedNotNull] Type parent, [ValidatedNotNull] T value, string name)
         {
             Ensure.IsInstance(parent, value, name);
 
@@ -515,7 +515,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static string IsValidMacAddress(string value, string name)
+        public static string IsValidMacAddress([ValidatedNotNull] string value, string name)
         {
             Ensure.IsValidMacAddress(value, name);
 
@@ -533,7 +533,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static string IsValidSha1(string value, string name)
+        public static string IsValidSha1([ValidatedNotNull] string value, string name)
         {
             Ensure.IsValidSha1(value, name);
 
@@ -551,7 +551,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static string IsValidSha2(string value, string name)
+        public static string IsValidSha2([ValidatedNotNull] string value, string name)
         {
             Ensure.IsValidSha2(value, name);
 
@@ -569,7 +569,7 @@
 #if NET45
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static string IsValidSha1OrSha2(string value, string name)
+        public static string IsValidSha1OrSha2([ValidatedNotNull] string value, string name)
         {
             Ensure.IsValidSha1OrSha2(value, name);
 
