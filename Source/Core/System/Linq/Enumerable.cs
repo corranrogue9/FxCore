@@ -58,6 +58,43 @@ namespace System.Linq
         }
 
         /// <summary>
+        /// Generates a sequence of integral numbers within a specified range
+        /// </summary>
+        /// <param name="start">The value of the first integer in the sequence</param>
+        /// <param name="count">The number of sequential integers to generate</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> that contains a range of sequential integral numbers</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if <paramref name="count"/> is less than 0, or <paramref name="start"/> + <paramref name="count"/> - 1 is larger than <see cref="int.MaxValue"/>
+        /// </exception>
+        internal static IEnumerable<int> Range(int start, int count)
+        {
+            Ensure.NotNegative(count, nameof(count));
+            if (start + count - 1 > int.MaxValue)
+            {
+                throw new ArgumentOutOfRangeException(nameof(start));
+            }
+
+            return RangeIterator(start, count);
+        }
+
+        /// <summary>
+        /// Generates a sequence of integral numbers within a specified range
+        /// </summary>
+        /// <param name="start">The value of the first integer in the sequence</param>
+        /// <param name="count">The number of sequential integers to generate</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> that contains a range of sequential integral numbers</returns>
+        /// <remarks>
+        /// <paramref name="count"/> is assumed to be non-negative. <paramref name="start"/> + <paramref name="count"/> - 1 is assumed to be less than or equal to <see cref="int.MaxValue"/>
+        /// </remarks>
+        private static IEnumerable<int> RangeIterator(int start, int count)
+        {
+            for (int i = start; i < start + count; ++i)
+            {
+                yield return i;
+            }
+        }
+
+        /// <summary>
         /// A helper class which uses a strongly-typed generic type on the class for caching purposes
         /// </summary>
         /// <typeparam name="T">The type of the elements in the <see cref="IEnumerable{T}"/>s that are cached in this helper</typeparam>
