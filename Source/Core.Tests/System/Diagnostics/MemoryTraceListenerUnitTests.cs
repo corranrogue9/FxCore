@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace System.Diagnostics
+﻿namespace System.Diagnostics
 {
     using System.Collections;
     using System.Linq;
@@ -491,4 +490,3 @@ namespace System.Diagnostics
         }
     }
 }
-#endif

@@ -1,9 +1,11 @@
-﻿#if NET40
-namespace System.Diagnostics
+﻿namespace System.Diagnostics
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Globalization;
+#if !DEBUG
+    using System.Linq;
+#endif
 
     using Fx;
 
@@ -149,7 +151,7 @@ namespace System.Diagnostics
 #if DEBUG
                     throw;
 #else
-                    formatted = string.Format(Strings.MemoryTraceListenerTraceEvent, format, string.Join(",", args));
+                    formatted = string.Format(Strings.MemoryTraceListenerTraceEvent, format, string.Join(",", args.Select(arg => arg.ToString()).ToArray()));
 #endif
                 }
             }
@@ -176,4 +178,3 @@ namespace System.Diagnostics
         }
     }
 }
-#endif
