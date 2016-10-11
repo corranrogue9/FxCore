@@ -71,7 +71,7 @@
             var deserialized = WcfSerializer.Default.FromString<TraceEvent.DataEvent>(serialized);
 
             Assert.AreEqual(@event.CallStack, deserialized.CallStack);
-            CollectionAssert.AreEqual(Enumerable.ToList(@event.Data), Enumerable.ToList(deserialized.Data));
+            CollectionAssert.AreEqual(@event.Data.ToList(), deserialized.Data.ToList());
             Assert.AreEqual(@event.DateTime, deserialized.DateTime);
             Assert.AreEqual(@event.EventType, deserialized.EventType);
             Assert.AreEqual(@event.Id, deserialized.Id);

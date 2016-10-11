@@ -28,7 +28,7 @@ namespace System.Linq
         /// <param name="source">The <see cref="IEnumerable{T}"/> to determine whether it has any elements</param>
         /// <returns>false if <paramref name="source"/> contains no elements, true otherwise</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        internal static bool Any<T>(IEnumerable<T> source)
+        internal static bool Any<T>(this IEnumerable<T> source)
         {
             Ensure.NotNull(source, nameof(source));
 
@@ -50,7 +50,7 @@ namespace System.Linq
         /// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="List{T}"/> from</param>
         /// <returns>A <see cref="List{T}"/> that contains elements from the input sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        internal static List<T> ToList<T>(IEnumerable<T> source)
+        internal static List<T> ToList<T>(this IEnumerable<T> source)
         {
             Ensure.NotNull(source, nameof(source));
 

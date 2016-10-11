@@ -83,7 +83,7 @@
         {
             NotNull(value, name);
 
-            if (!Enumerable.Any(value))
+            if (!value.Any())
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Strings.EnsureEnumerableNotEmpty, name));
             }
