@@ -72,6 +72,7 @@
     <Compile Include="System\Linq\Enumerable.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
+    <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
