@@ -7,7 +7,7 @@
     /// </summary>
     /// <typeparam name="T">The type of the elements store in this list</typeparam>
     /// <threadsafety static="true" instance="false"/>
-    /// <remarks>This type is not immutable</remarks>
+    /// <remarks>This type is not immutable.</remarks>
     public sealed class ReadOnlyList<T> : IReadOnlyList<T>
     {
         /// <summary>
