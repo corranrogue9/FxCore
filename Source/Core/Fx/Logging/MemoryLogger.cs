@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace Fx.Logging
+﻿namespace Fx.Logging
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -79,4 +78,3 @@ namespace Fx.Logging
         }
     }
 }
-#endif

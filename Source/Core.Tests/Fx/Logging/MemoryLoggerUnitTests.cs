@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace Fx.Logging
+﻿namespace Fx.Logging
 {
     using System.Linq;
 
@@ -217,4 +216,3 @@ namespace Fx.Logging
         }
     }
 }
-#endif
