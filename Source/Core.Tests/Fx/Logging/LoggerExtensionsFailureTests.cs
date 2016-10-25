@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace Fx.Logging
+﻿namespace Fx.Logging
 {
     using System;
 
@@ -185,4 +184,3 @@ namespace Fx.Logging
         #endregion EmitError
     }
 }
-#endif

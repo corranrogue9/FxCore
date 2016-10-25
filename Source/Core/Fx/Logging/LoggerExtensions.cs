@@ -1,7 +1,7 @@
-﻿#if NET40
-namespace Fx.Logging
+﻿namespace Fx.Logging
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Extension methods for <see cref="ILogger"/>s
@@ -156,11 +156,10 @@ namespace Fx.Logging
 #if DEBUG
                     throw;
 #else
-                    return string.Format(Strings.LoggerExtensionsFormat, format, string.Join(",", data));
+                    return string.Format(Strings.LoggerExtensionsFormat, format, string.Join(",", data.Select(datum => datum.ToString()).ToArray()));
 #endif
                 }
             }
         }
     }
 }
-#endif
