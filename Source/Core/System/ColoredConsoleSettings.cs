@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace System
+﻿namespace System
 {
     using Fx;
 
@@ -109,4 +108,3 @@ namespace System
         }
     }
 }
-#endif

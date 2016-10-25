@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace System
+﻿namespace System
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -313,6 +312,10 @@ namespace System
         /// </summary>
         private static class NativeMethods
         {
+#if !NET40
+            // this message is a bug in pre-.NET 4.0 versions
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
+#endif
             [DllImport("kernel32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool AllocConsole();
@@ -433,4 +436,3 @@ namespace System
         }
     }
 }
-#endif

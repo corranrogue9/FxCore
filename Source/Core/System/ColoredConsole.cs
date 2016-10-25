@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace System
+﻿namespace System
 {
     using System.IO;
 
@@ -230,4 +229,3 @@ namespace System
         }
     }
 }
-#endif
