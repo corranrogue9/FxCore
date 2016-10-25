@@ -1,5 +1,4 @@
-﻿#if NET40
-namespace Fx.Logging
+﻿namespace Fx.Logging
 {
     using System.Diagnostics;
 
@@ -67,4 +66,3 @@ namespace Fx.Logging
         }
     }
 }
-#endif
