@@ -142,7 +142,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitDetailNegativeEventId()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitDetail(-1, "this is a message");
         }
 
@@ -155,7 +157,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitInformationNegativeEventId()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitInformation(-1, "this is a message");
         }
 
@@ -168,7 +172,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitWarningNegativeEventId()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitWarning(-1, "this is a message");
         }
 
@@ -181,7 +187,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitErrorNegativeEventId()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitError(-1, "this is a message");
         }
 
@@ -194,7 +202,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitDetailNullMessage()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitDetail(50, null);
         }
 
@@ -207,7 +217,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitInformationNullMessage()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitInformation(50, null);
         }
 
@@ -220,7 +232,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitWarningNullMessage()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitWarning(50, null);
         }
 
@@ -233,7 +247,9 @@ namespace Fx.Logging
         [TestMethod]
         public void EmitErrorNullMessage()
         {
-            var logger = new MemoryLogger();
+            MemoryTraceListener listener;
+            var traceSource = MemoryTraceListener.Create(out listener);
+            var logger = new TraceSourceLogger(traceSource);
             logger.EmitError(50, null);
         }
     }
