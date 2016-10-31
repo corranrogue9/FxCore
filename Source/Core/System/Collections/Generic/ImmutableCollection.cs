@@ -1,69 +1,50 @@
 ﻿namespace System.Collections.Generic
 {
+    using System.Linq;
+
     using Fx;
 
     /// <summary>
-    /// A collection that can only be read from after instantiation
+    /// Factory methods for the <see cref="ImmutableCollection{T}"/>
     /// </summary>
-    /// <typeparam name="T">They type of the elements stored in this collection</typeparam>
-    /// <threadsafety static="true" instance="true"/>
-    public sealed class ImmutableCollection<T> : IReadOnlyCollection<T>
+    /// <threadsafety static="true"/>
+    public static class ImmutableCollection
     {
         /// <summary>
-        /// The collection whose data will be used when we delegate each of our calls to it
+        /// Returns an instance of a <see cref="ImmutableCollection{T}"/> that has no data in it
         /// </summary>
-        private readonly IReadOnlyCollection<T> collection;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ImmutableCollection{T}"/> class
-        /// </summary>
-        /// <param name="collection">The collection whose data will be used when we delegate each of our calls to it</param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="collection"/> is null</exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1002:SemicolonsMustBeSpacedCorrectly")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1009:ClosingParenthesisMustBeSpacedCorrectly")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1111:ClosingParenthesisMustBeOnLineOfLastParameter")]
-        public ImmutableCollection(IEnumerable<T> collection)
+        /// <typeparam name="T">The type of elements in the resulting <see cref="ImmutableCollection{T}"/></typeparam>
+        /// <returns>An instance of a <see cref="ImmutableCollection{T}"/> that has no data in it</returns>
+        public static ImmutableCollection<T> Empty<T>()
         {
-            Ensure.NotNull(collection, nameof(collection));
-
-            this.collection =
-#if !NET45
-                new ReadOnlyCollection<T>(
-#endif
-                    new List<T>(collection)
-#if !NET45
-                )
-#endif
-                ;
+            return Internal<T>.Empty;
         }
 
         /// <summary>
-        /// Gets the number of elements in the collection
+        /// Creates a new instance of <see cref="ImmutableCollection{T}"/> from <paramref name="source"/>
         /// </summary>
-        public int Count
+        /// <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+        /// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="ImmutableCollection{T}"/> of</param>
+        /// <returns>A new instance of <see cref="ImmutableCollection{T}"/> based on <paramref name="source"/></returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
+        public static ImmutableCollection<T> Create<T>(IEnumerable<T> source)
         {
-            get
-            {
-                return this.collection.Count;
-            }
+            Ensure.NotNull(source, nameof(source));
+
+            return new ImmutableCollection<T>(source);
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the collection
+        /// A generic-type internal class that contains singleton fields
         /// </summary>
-        /// <returns>A <see cref="IEnumerator{T}"/> that can be used to iterate through the collection</returns>
-        public IEnumerator<T> GetEnumerator()
+        /// <typeparam name="T">The generic type used by the constituent singletons</typeparam>
+        /// <threadsafety static="true"/>
+        private static class Internal<T>
         {
-            return this.collection.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator"/> object that can be used to iterate through the collection</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)this.collection).GetEnumerator();
+            /// <summary>
+            /// An instance of a <see cref="ImmutableCollection{T}"/> that has no data in it
+            /// </summary>
+            public static readonly ImmutableCollection<T> Empty = new ImmutableCollection<T>(Enumerable.Empty<T>());
         }
     }
 }

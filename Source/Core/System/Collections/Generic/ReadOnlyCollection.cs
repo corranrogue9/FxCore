@@ -3,59 +3,23 @@
     using Fx;
 
     /// <summary>
-    /// An adapter which leverages the data in a <see cref="ICollection{T}"/> to implement a <see cref="IReadOnlyCollection{T}"/>
+    /// Factory methods for the <see cref="ReadOnlyCollection{T}"/>
     /// </summary>
-    /// <typeparam name="T">They type of the elements stored in this collection</typeparam>
-    /// <threadsafety static="true" instance="false"/>
-    /// <remarks>This type is not immutable</remarks>
-    public sealed class ReadOnlyCollection<T> : IReadOnlyCollection<T>
+    /// <threadsafety static="true"/>
+    public static class ReadOnlyCollection
     {
         /// <summary>
-        /// The <see cref="ICollection{T}"/> whose data will be used when we delegate each of our <see cref="IReadOnlyCollection{T}"/> calls to it
+        /// Creates a new instance of <see cref="ReadOnlyCollection{T}"/> from <paramref name="source"/>
         /// </summary>
-        private readonly ICollection<T> collection;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ReadOnlyCollection{T}"/> class
-        /// </summary>
-        /// <param name="collection">
-        /// The <see cref="ICollection{T}"/> that we will delegate each of our <see cref="IReadOnlyCollection{T}"/> calls to and will serve as the data source for our implementation
-        /// </param>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="collection"/> is null</exception>
-        public ReadOnlyCollection(ICollection<T> collection)
+        /// <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+        /// <param name="source">The <see cref="ICollection{T}"/> to create a <see cref="ReadOnlyCollection{T}"/> of</param>
+        /// <returns>A new instance of <see cref="ReadOnlyCollection{T}"/> based on <paramref name="source"/></returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
+        public static ReadOnlyCollection<T> Create<T>(ICollection<T> source)
         {
-            Ensure.NotNull(collection, nameof(collection));
+            Ensure.NotNull(source, nameof(source));
 
-            this.collection = collection;
-        }
-
-        /// <summary>
-        /// Gets the number of elements in the collection
-        /// </summary>
-        public int Count
-        {
-            get
-            {
-                return this.collection.Count;
-            }
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection
-        /// </summary>
-        /// <returns>A <see cref="IEnumerator{T}"/> that can be used to iterate through the collection</returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return this.collection.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator"/> object that can be used to iterate through the collection</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)this.collection).GetEnumerator();
+            return new ReadOnlyCollection<T>(source);
         }
     }
 }
