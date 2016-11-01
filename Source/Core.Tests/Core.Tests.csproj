@@ -69,6 +69,8 @@
     <Compile Include="System\Collections\Generic\ImmutableListUnitTests.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollectionFailureTests.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollectionUnitTests.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyDictionaryFailureTests.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyDictionaryUnitTests.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyListFailureTests.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyListUnitTests.cs" />
     <Compile Include="System\ColoredConsoleFailureTests.cs" />

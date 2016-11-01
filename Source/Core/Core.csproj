@@ -64,6 +64,7 @@
     <Compile Include="System\Collections\Generic\ReadOnlyCollection.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollection{T}.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollectionExtensions.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyDictionary{T}.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyList.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyListExtensions.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyList{T}.cs" />
