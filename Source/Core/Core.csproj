@@ -58,6 +58,7 @@
     <Compile Include="System\Collections\Concurrent\ConcurrentQueue.cs" />
     <Compile Include="System\Collections\Generic\ImmutableCollection.cs" />
     <Compile Include="System\Collections\Generic\ImmutableCollection{T}.cs" />
+    <Compile Include="System\Collections\Generic\ImmutableDictionary.cs" />
     <Compile Include="System\Collections\Generic\ImmutableDictionary{T}.cs" />
     <Compile Include="System\Collections\Generic\ImmutableList.cs" />
     <Compile Include="System\Collections\Generic\ImmutableList{T}.cs" />
@@ -65,6 +66,8 @@
     <Compile Include="System\Collections\Generic\ReadOnlyCollection.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollection{T}.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollectionExtensions.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyDictionary.cs" />
+    <Compile Include="System\Collections\Generic\ReadOnlyDictionaryExtensions.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyDictionary{T}.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyList.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyListExtensions.cs" />
