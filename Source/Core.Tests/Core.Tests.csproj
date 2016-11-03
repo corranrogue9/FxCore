@@ -65,6 +65,8 @@
     <Compile Include="System\Collections\Concurrent\ConcurrentQueueUnitTests.cs" />
     <Compile Include="System\Collections\Generic\ImmutableCollectionFailureTests.cs" />
     <Compile Include="System\Collections\Generic\ImmutableCollectionUnitTests.cs" />
+    <Compile Include="System\Collections\Generic\ImmutableDictionaryFailureTests.cs" />
+    <Compile Include="System\Collections\Generic\ImmutableDictionaryUnitTests.cs" />
     <Compile Include="System\Collections\Generic\ImmutableListFailureTests.cs" />
     <Compile Include="System\Collections\Generic\ImmutableListUnitTests.cs" />
     <Compile Include="System\Collections\Generic\ReadOnlyCollectionFailureTests.cs" />
