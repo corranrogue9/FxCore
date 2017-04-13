@@ -7,17 +7,17 @@ namespace System.Linq
     using Fx;
 
     /// <summary>
-    /// Extensions methods <see cref="IEnumerable{T}"/> that mimic the behavior of <see cref="System.Linq.Enumerable"/> introduced in .NET 3.5
+    /// Extensions methods <see cref="IEnumerable{T}"/> that mimic the behavior of <see cref="System.Linq.Enumerable"/> introduced in .NET 3.5; provides a set of static methods for querying objects that implement <see cref="IEnumerable{T}"/>
     /// </summary>
     /// <threadsafety static="true"/>
-    internal static class Enumerable
+    public static partial class Enumerable
     {
         /// <summary>
         /// Returns an empty <see cref="IEnumerable{T}"/>
         /// </summary>
         /// <typeparam name="T">The type of the elements that would be contained in the <see cref="IEnumerable{T}"/> if it were not empty</typeparam>
         /// <returns>An empty <see cref="IEnumerable{T}"/> whose type argument is <typeparamref name="T"/></returns>
-        public static IEnumerable<T> Empty<T>()
+        internal static IEnumerable<T> Empty<T>()
         {
             return GenericEnumerable<T>.Empty;
         }
