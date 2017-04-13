@@ -87,6 +87,8 @@
     <Compile Include="System\IO\ChunkedMemoryStreamUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\AggregateFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\AggregateUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />
     <Compile Include="System\MockRandomUnitTests.cs" />
     <Compile Include="TestStrings.Designer.cs">
