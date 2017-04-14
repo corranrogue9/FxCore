@@ -13,20 +13,6 @@ namespace System.Linq
     public static partial class Enumerable
     {
         /// <summary>
-        /// Creates a <see cref="List{T}"/> from an <see cref="IEnumerable{T}"/>
-        /// </summary>
-        /// <typeparam name="T">The type of elements of <paramref name="source"/></typeparam>
-        /// <param name="source">The <see cref="IEnumerable{T}"/> to create a <see cref="List{T}"/> from</param>
-        /// <returns>A <see cref="List{T}"/> that contains elements from the input sequence</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        internal static List<T> ToList<T>(this IEnumerable<T> source)
-        {
-            Ensure.NotNull(source, nameof(source));
-
-            return new List<T>(source);
-        }
-
-        /// <summary>
         /// Filters the elements of an <see cref="IEnumerable"/> based on a specified type.
         /// </summary>
         /// <typeparam name="T">The type to filter the elements of the sequence on</typeparam>
