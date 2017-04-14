@@ -101,26 +101,7 @@ namespace System.Linq
                 return enumerator.Current;
             }
         }
-
-        /// <summary>
-        /// Projects each element of a sequence into a new form
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
-        /// <typeparam name="TResult">The type of the value returned by <paramref name="selector"/></typeparam>
-        /// <param name="source">A sequence of values to invoke a transform function on</param>
-        /// <param name="selector">A transform function to apply to each element</param>
-        /// <returns>
-        /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the transform function on each element of <paramref name="source"/>
-        /// </returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        internal static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
-        {
-            Ensure.NotNull(source, nameof(source));
-            Ensure.NotNull(selector, nameof(selector));
-
-            return SelectIterator(source, selector);
-        }
-
+        
         /// <summary>
         /// Creates an array from a <see cref="IEnumerable{T}"/>
         /// </summary>
@@ -150,25 +131,6 @@ namespace System.Linq
                 {
                     yield return (T)element;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Projects each element of a sequence into a new form
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
-        /// <typeparam name="TResult">The type of the value returned by <paramref name="selector"/></typeparam>
-        /// <param name="source">A sequence of values to invoke a transform function on</param>
-        /// <param name="selector">A transform function to apply to each element</param>
-        /// <returns>
-        /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the transform function on each element of <paramref name="source"/>
-        /// </returns>
-        /// <remarks><paramref name="source"/> is assumed to not be null. <paramref name="selector"/> is assumed to not be null</remarks>
-        private static IEnumerable<TResult> SelectIterator<TSource, TResult>(IEnumerable<TSource> source, Func<TSource, TResult> selector)
-        {
-            foreach (var element in source)
-            {
-                yield return selector(element);
             }
         }
     }
