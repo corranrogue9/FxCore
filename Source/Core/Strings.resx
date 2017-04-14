@@ -120,6 +120,9 @@
   <data name="AggregateEmpty" xml:space="preserve">
     <value>Sequence contains no elements</value>
   </data>
+  <data name="AverageEmpty" xml:space="preserve">
+    <value>Sequence contains no elements</value>
+  </data>
   <data name="ChunkedMemoryStreamRead" xml:space="preserve">
     <value>The buffer size must be large enough to hold 'count' bytes at 'offset'; count: '{0}'; offset: '{1}'; buffer length: '{2}'</value>
   </data>

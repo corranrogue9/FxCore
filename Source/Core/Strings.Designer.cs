@@ -70,6 +70,15 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence contains no elements.
+        /// </summary>
+        internal static string AverageEmpty {
+            get {
+                return ResourceManager.GetString("AverageEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The buffer size must be large enough to hold &apos;count&apos; bytes at &apos;offset&apos;; count: &apos;{0}&apos;; offset: &apos;{1}&apos;; buffer length: &apos;{2}&apos;.
         /// </summary>
         internal static string ChunkedMemoryStreamRead {

@@ -3,6 +3,7 @@
     <Recognized>
       <Word>Sha</Word>
       <Word>Ascii</Word>
+      <Word>Nullable</Word>
     </Recognized>
   </Words>
 </Dictionary>
