@@ -93,6 +93,7 @@
     <Compile Include="System\Linq\Enumerable\Aggregate.cs" />
     <Compile Include="System\Linq\Enumerable\All.cs" />
     <Compile Include="System\Linq\Enumerable\Any.cs" />
+    <Compile Include="System\Linq\Enumerable\AsEnumerable.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
