@@ -21,29 +21,7 @@ namespace System.Linq
         {
             return GenericEnumerable<T>.Empty;
         }
-
-        /// <summary>
-        /// Determines if <paramref name="source"/> has any elements in it
-        /// </summary>
-        /// <typeparam name="T">The type of the elements contained in <paramref name="source"/></typeparam>
-        /// <param name="source">The <see cref="IEnumerable{T}"/> to determine whether it has any elements</param>
-        /// <returns>false if <paramref name="source"/> contains no elements, true otherwise</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        internal static bool Any<T>(this IEnumerable<T> source)
-        {
-            Ensure.NotNull(source, nameof(source));
-
-            using (var enumerator = source.GetEnumerator())
-            {
-                if (enumerator.MoveNext())
-                {
-                    return true;
-                }
-
-                return false;
-            }
-        }
-
+        
         /// <summary>
         /// Creates a <see cref="List{T}"/> from an <see cref="IEnumerable{T}"/>
         /// </summary>
