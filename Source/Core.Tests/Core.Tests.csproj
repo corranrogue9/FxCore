@@ -95,6 +95,8 @@
     <Compile Include="System\Linq\Enumerable\AnyFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\AnyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\AsEnumerableUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\RangeFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\RangeUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />
     <Compile Include="System\MockRandomUnitTests.cs" />
     <Compile Include="TestStrings.Designer.cs">
