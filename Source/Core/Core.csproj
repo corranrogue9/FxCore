@@ -94,6 +94,7 @@
     <Compile Include="System\Linq\Enumerable\All.cs" />
     <Compile Include="System\Linq\Enumerable\Any.cs" />
     <Compile Include="System\Linq\Enumerable\AsEnumerable.cs" />
+    <Compile Include="System\Linq\Enumerable\Concat.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
     <Compile Include="System\Linq\Enumerable\Repeat.cs" />

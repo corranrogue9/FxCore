@@ -92,6 +92,8 @@
     <Compile Include="System\Linq\Enumerable\AnyFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\AnyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\AsEnumerableUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ConcatFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ConcatUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
