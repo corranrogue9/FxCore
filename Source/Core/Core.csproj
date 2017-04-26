@@ -96,6 +96,7 @@
     <Compile Include="System\Linq\Enumerable\AsEnumerable.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
+    <Compile Include="System\Linq\Enumerable\Repeat.cs" />
     <Compile Include="System\Linq\Enumerable\Select.cs" />
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
     <Compile Include="System\MockRandom.cs" />
