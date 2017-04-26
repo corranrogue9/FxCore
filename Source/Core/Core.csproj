@@ -96,6 +96,7 @@
     <Compile Include="System\Linq\Enumerable\AsEnumerable.cs" />
     <Compile Include="System\Linq\Enumerable\Concat.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
+    <Compile Include="System\Linq\Enumerable\LongCount.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
     <Compile Include="System\Linq\Enumerable\Repeat.cs" />
     <Compile Include="System\Linq\Enumerable\Select.cs" />

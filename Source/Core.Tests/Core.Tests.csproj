@@ -97,6 +97,8 @@
     <Compile Include="System\Linq\Enumerable\EmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\LongCountFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\LongCountUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatFailureTests.cs" />
