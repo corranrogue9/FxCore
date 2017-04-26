@@ -85,6 +85,7 @@
     <Compile Include="System\Diagnostics\TraceEventUnitTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamFailureTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\EmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\AggregateFailureTests.cs" />

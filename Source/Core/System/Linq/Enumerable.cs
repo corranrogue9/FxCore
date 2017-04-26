@@ -13,16 +13,6 @@ namespace System.Linq
     public static partial class Enumerable
     {
         /// <summary>
-        /// Returns an empty <see cref="IEnumerable{T}"/>
-        /// </summary>
-        /// <typeparam name="T">The type of the elements that would be contained in the <see cref="IEnumerable{T}"/> if it were not empty</typeparam>
-        /// <returns>An empty <see cref="IEnumerable{T}"/> whose type argument is <typeparamref name="T"/></returns>
-        internal static IEnumerable<T> Empty<T>()
-        {
-            return GenericEnumerable<T>.Empty;
-        }
-        
-        /// <summary>
         /// Creates a <see cref="List{T}"/> from an <see cref="IEnumerable{T}"/>
         /// </summary>
         /// <typeparam name="T">The type of elements of <paramref name="source"/></typeparam>
@@ -231,19 +221,6 @@ namespace System.Linq
             {
                 yield return selector(element);
             }
-        }
-
-        /// <summary>
-        /// A helper class which uses a strongly-typed generic type on the class for caching purposes
-        /// </summary>
-        /// <typeparam name="T">The type of the elements in the <see cref="IEnumerable{T}"/>s that are cached in this helper</typeparam>
-        /// <threadsafety static="true"/>
-        private static class GenericEnumerable<T>
-        {
-            /// <summary>
-            /// A <see cref="IEnumerable{T}"/> that contains no elements and is cached per type
-            /// </summary>
-            public static readonly IEnumerable<T> Empty = new T[0];
         }
     }
 }
