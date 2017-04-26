@@ -102,6 +102,8 @@
     <Compile Include="System\Linq\Enumerable\RepeatFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\SelectFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\SelectManyFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\SelectManyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\SelectUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListUnitTests.cs" />
