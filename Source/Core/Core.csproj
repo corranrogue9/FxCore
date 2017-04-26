@@ -102,6 +102,7 @@
     <Compile Include="System\Linq\Enumerable\Select.cs" />
     <Compile Include="System\Linq\Enumerable\SelectMany.cs" />
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
+    <Compile Include="System\Linq\Enumerable\Where.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
