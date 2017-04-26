@@ -43,6 +43,7 @@ namespace System.Linq
         /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the transform function on each element of <paramref name="source"/>
         /// </returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
+        /// <exception cref="OverflowException">Thrown if <paramref name="source"/> has more than <see cref="int.MaxValue"/> elements</exception>
         public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, int, TResult> selector)
         {
             Ensure.NotNull(source, nameof(source));
@@ -63,7 +64,10 @@ namespace System.Linq
         /// </returns>
         private static IEnumerable<TResult> SelectIterator<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            return SelectIterator(source, (value, index) => selector(value));
+            foreach (var element in source)
+            {
+                yield return selector(element);
+            }
         }
 
         /// <summary>
@@ -83,9 +87,14 @@ namespace System.Linq
         {
             using (var enumerator = source.GetEnumerator())
             {
-                for (int i = 0; enumerator.MoveNext(); ++i)
+                int i = 0;
+                while (enumerator.MoveNext())
                 {
                     yield return selector(enumerator.Current, i);
+                    checked
+                    {
+                        ++i;
+                    }
                 }
             }
         }

@@ -61,5 +61,18 @@
             Func<int, int, int> selector = null;
             ExceptionAssert.Throws<ArgumentNullException>(() => new[] { 1, 2, 3, 4 }.Select(selector));
         }
+        
+        /// <summary>
+        /// Selects elements in a sequence that is massive
+        /// </summary>
+        [TestCategory("Failure")]
+        [Description("Selects elements in a sequence that is massive")]
+        [Priority(1)]
+        [TestMethod]
+        public void SelectIndexOverflow()
+        {
+            ExceptionAssert.Throws<OverflowException>(
+                () => Enumerable.Repeat(0, int.MaxValue).Concat(Enumerable.Repeat(0, 2)).Select((value, index) => value).LongCount());
+        }
     }
 }
