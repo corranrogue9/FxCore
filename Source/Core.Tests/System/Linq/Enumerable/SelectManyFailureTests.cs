@@ -63,6 +63,19 @@
         }
 
         /// <summary>
+        /// Selects elements in a sequence that is massive
+        /// </summary>
+        [TestCategory("Failure")]
+        [Description("Selects elements in a sequence that is massive")]
+        [Priority(1)]
+        [TestMethod]
+        public void SelectManyIndexOverflow()
+        {
+            ExceptionAssert.Throws<OverflowException>(
+                () => Enumerable.Repeat("t", int.MaxValue).Concat(Enumerable.Repeat("t", 2)).SelectMany((value, index) => value).LongCount());
+        }
+
+        /// <summary>
         /// Selects a null sequence
         /// </summary>
         [TestCategory("Failure")]
@@ -138,6 +151,19 @@
         {
             Func<string, char, string> selector = null;
             ExceptionAssert.Throws<ArgumentNullException>(() => new[] { "test", "value" }.SelectMany((val1, index) => val1.AsEnumerable(), selector));
+        }
+
+        /// <summary>
+        /// Selects elements in a sequence that is massive
+        /// </summary>
+        [TestCategory("Failure")]
+        [Description("Selects elements in a sequence that is massive")]
+        [Priority(1)]
+        [TestMethod]
+        public void SelectManyResultIndexOverflow()
+        {
+            ExceptionAssert.Throws<OverflowException>(
+                () => Enumerable.Repeat("t", int.MaxValue).Concat(Enumerable.Repeat("t", 2)).SelectMany((value, index) => value, (val1, val2) => val2.ToString()).LongCount());
         }
     }
 }

@@ -27,7 +27,7 @@ namespace System.Linq
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return SelectManyIterator(source, (value, index) => selector(value), (val1, val2) => val2);
+            return SelectManyIterator(source, value => selector(value), (val1, val2) => val2);
         }
 
         /// <summary>
@@ -44,6 +44,7 @@ namespace System.Linq
         /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function on each element of an input sequence
         /// </returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
+        /// <exception cref="OverflowException">Thrown if <paramref name="source"/> has more than <see cref="int.MaxValue"/> elements</exception>
         public static IEnumerable<TResult> SelectMany<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, int, IEnumerable<TResult>> selector)
         {
             Ensure.NotNull(source, nameof(source));
@@ -78,7 +79,7 @@ namespace System.Linq
             Ensure.NotNull(collectionSelector, nameof(collectionSelector));
             Ensure.NotNull(resultSelector, nameof(resultSelector));
 
-            return SelectManyIterator(source, (value, index) => collectionSelector(value), resultSelector);
+            return SelectManyIterator(source, value => collectionSelector(value), resultSelector);
         }
 
         /// <summary>
@@ -100,6 +101,7 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">
         /// Thrown if <paramref name="source"/> or <paramref name="collectionSelector"/> or <paramref name="resultSelector"/> is null
         /// </exception>
+        /// <exception cref="OverflowException">Thrown if <paramref name="source"/> has more than <see cref="int.MaxValue"/> elements</exception>
         public static IEnumerable<TResult> SelectMany<TSource, TCollection, TResult>(
             this IEnumerable<TSource> source,
             Func<TSource, int, IEnumerable<TCollection>> collectionSelector,
@@ -110,6 +112,37 @@ namespace System.Linq
             Ensure.NotNull(resultSelector, nameof(resultSelector));
 
             return SelectManyIterator(source, collectionSelector, resultSelector);
+        }
+
+        /// <summary>
+        /// Projects each element of a sequence to an <see cref="IEnumerable{T}"/>, flattens the resulting sequences into one sequence, and invokes a result selector 
+        /// function on each element therein
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
+        /// <typeparam name="TCollection">The type of the intermediate elements collected by <paramref name="collectionSelector"/></typeparam>
+        /// <typeparam name="TResult">The type of the elements of the resulting sequence</typeparam>
+        /// <param name="source">A sequence of values to project; assumed to not be null</param>
+        /// <param name="collectionSelector">A transform function to apply to each element of the input sequence; assumed to not be null</param>
+        /// <param name="resultSelector">A transform function to apply to each element of the intermediate sequence; assumed to not be null</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each 
+        /// element of <paramref name="source"/> and then mapping each of those sequence elements and their corresponding source element to a result element
+        /// </returns>
+        private static IEnumerable<TResult> SelectManyIterator<TSource, TCollection, TResult>(
+            this IEnumerable<TSource> source,
+            Func<TSource, IEnumerable<TCollection>> collectionSelector,
+            Func<TSource, TCollection, TResult> resultSelector)
+        {
+            using (var enumerator = source.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    foreach (var element in collectionSelector(enumerator.Current).Select(value => resultSelector(enumerator.Current, value)))
+                    {
+                        yield return element;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -128,6 +161,7 @@ namespace System.Linq
         /// An <see cref="IEnumerable{T}"/> whose elements are the result of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each 
         /// element of <paramref name="source"/> and then mapping each of those sequence elements and their corresponding source element to a result element
         /// </returns>
+        /// <exception cref="OverflowException">Thrown if <paramref name="source"/> has more than <see cref="int.MaxValue"/> elements</exception>
         private static IEnumerable<TResult> SelectManyIterator<TSource, TCollection, TResult>(
             this IEnumerable<TSource> source,
             Func<TSource, int, IEnumerable<TCollection>> collectionSelector,
@@ -135,11 +169,17 @@ namespace System.Linq
         {
             using (var enumerator = source.GetEnumerator())
             {
-                for (int i = 0; enumerator.MoveNext(); ++i)
+                int i = 0;
+                while (enumerator.MoveNext())
                 {
                     foreach (var element in collectionSelector(enumerator.Current, i).Select(value => resultSelector(enumerator.Current, value)))
                     {
                         yield return element;
+                    }
+
+                    checked
+                    {
+                        ++i;
                     }
                 }
             }

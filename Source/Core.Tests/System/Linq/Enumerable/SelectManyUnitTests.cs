@@ -23,6 +23,18 @@
         }
 
         /// <summary>
+        /// Selects elements in a sequence that is massive
+        /// </summary>
+        [TestCategory("Unit")]
+        [Description("Selects elements in a sequence that is massive")]
+        [Priority(1)]
+        [TestMethod]
+        public void SelectManyOverflow()
+        {
+            Enumerable.Repeat("t", int.MaxValue).Concat(Enumerable.Repeat("t", 2)).SelectMany(value => value).LongCount();
+        }
+
+        /// <summary>
         /// Selects strings to their characters
         /// </summary>
         [TestCategory("Unit")]
@@ -66,6 +78,18 @@
             CollectionAssert.AreEqual(
                 new[] { "t", "e", "s", "t", "v", "a", "l", "u", "e" },
                 new[] { "test", "value" }.SelectMany(val1 => val1.AsEnumerable(), (val1, val2) => val2.ToString()).ToList());
+        }
+        
+        /// <summary>
+        /// Selects elements in a sequence that is massive
+        /// </summary>
+        [TestCategory("Unit")]
+        [Description("Selects elements in a sequence that is massive")]
+        [Priority(1)]
+        [TestMethod]
+        public void SelectManyResultOverflow()
+        {
+            Enumerable.Repeat("t", int.MaxValue).Concat(Enumerable.Repeat("t", 2)).SelectMany(value => value, (val1, val2) => val2.ToString()).LongCount();
         }
     }
 }
