@@ -59,7 +59,7 @@
         /// <summary>
         /// Gets the elements in a massive sequence that meet a condition
         /// </summary>
-        [TestCategory("Unit")]
+        [TestCategory("Unit"), TestCategory("LongRunning")]
         [Description("Gets the elements in a sequence that meet a null condition")]
         [Priority(1)]
         [TestMethod]

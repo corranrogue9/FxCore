@@ -100,7 +100,7 @@
         /// <summary>
         /// Averages the data in a sequence when the sum is too large
         /// </summary>
-        [TestCategory("Failure")]
+        [TestCategory("Failure"), TestCategory("LongRunning")]
         [Description("Averages the data in a sequence when the sum is too large")]
         [Priority(1)]
         [TestMethod]
@@ -230,7 +230,7 @@
         /// <summary>
         /// Averages the data in a sequence when the sum is too large
         /// </summary>
-        [TestCategory("Failure")]
+        [TestCategory("Failure"), TestCategory("LongRunning")]
         [Description("Averages the data in a sequence when the sum is too large")]
         [Priority(1)]
         [TestMethod]
@@ -412,7 +412,7 @@
         /// <summary>
         /// Averages the data in a sequence when the sum is too large
         /// </summary>
-        [TestCategory("Failure")]
+        [TestCategory("Failure"), TestCategory("LongRunning")]
         [Description("Averages the data in a sequence when the sum is too large")]
         [Priority(1)]
         [TestMethod]
@@ -609,7 +609,7 @@
         /// <summary>
         /// Averages the data in a sequence when the sum is too large
         /// </summary>
-        [TestCategory("Failure")]
+        [TestCategory("Failure"), TestCategory("LongRunning")]
         [Description("Averages the data in a sequence when the sum is too large")]
         [Priority(1)]
         [TestMethod]

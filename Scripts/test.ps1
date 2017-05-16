@@ -1,8 +1,13 @@
 $packagePath = [System.IO.Path]::GetFullPath($args[0])
 $outputPath = [System.IO.Path]::GetFullPath($args[1])
-if ($args[2] -ne $null)
+if ($args[2] -eq "short")
 {
-    $testSettings = [System.IO.Path]::GetFullPath($args[2])
+	$filter = "/category:!LongRunning"
+}
+
+if ($args[3] -ne $null)
+{
+    $testSettings = [System.IO.Path]::GetFullPath($args[3])
     $testSettings = "/testsettings:$testSettings"
 }
 
@@ -42,7 +47,7 @@ ForEach ($project in $projects)
 
                 $resultPath = Join-Path $resultDirectory -ChildPath "$resultName.trx"
                 $logPath = Join-Path $resultDirectory -ChildPath "$resultName.txt"
-                $output = Invoke-Expression "mstest $testContainers /resultsfile:$resultPath $testSettings 2>&1"
+                $output = Invoke-Expression "mstest $testContainers /resultsfile:$resultPath $testSettings $filter 2>&1"
                 if ($LASTEXITCODE -ne 0)
                 {
                     $output | Out-File -LiteralPath $logPath

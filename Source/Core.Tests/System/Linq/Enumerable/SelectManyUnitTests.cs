@@ -25,7 +25,7 @@
         /// <summary>
         /// Selects elements in a sequence that is massive
         /// </summary>
-        [TestCategory("Unit")]
+        [TestCategory("Unit"), TestCategory("LongRunning")]
         [Description("Selects elements in a sequence that is massive")]
         [Priority(1)]
         [TestMethod]
@@ -83,7 +83,7 @@
         /// <summary>
         /// Selects elements in a sequence that is massive
         /// </summary>
-        [TestCategory("Unit")]
+        [TestCategory("Unit"), TestCategory("LongRunning")]
         [Description("Selects elements in a sequence that is massive")]
         [Priority(1)]
         [TestMethod]

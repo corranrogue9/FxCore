@@ -65,7 +65,7 @@
         /// <summary>
         /// Selects elements in a sequence that is massive
         /// </summary>
-        [TestCategory("Failure")]
+        [TestCategory("Failure"), TestCategory("LongRunning")]
         [Description("Selects elements in a sequence that is massive")]
         [Priority(1)]
         [TestMethod]
