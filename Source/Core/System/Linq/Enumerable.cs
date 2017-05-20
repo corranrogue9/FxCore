@@ -25,31 +25,7 @@ namespace System.Linq
 
             return OfTypeIterator<T>(source);
         }
-
-        /// <summary>
-        /// Returns the number of elements in a sequence
-        /// </summary>
-        /// <typeparam name="T">The type of the elements of <paramref name="source"/></typeparam>
-        /// <param name="source">A sequence that contains elements to be counted</param>
-        /// <returns>The number of elements in the input sequence</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        /// <exception cref="OverflowException">Thrown if the number of elements in <paramref name="source"/> is larger than <see cref="int.MaxValue"/></exception>
-        internal static int Count<T>(this IEnumerable<T> source)
-        {
-            Ensure.NotNull(source, nameof(source));
-
-            var count = 0;
-            using (var enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    ++count;
-                }
-            }
-
-            return count;
-        }
-
+        
         /// <summary>
         /// Returns the first element of a sequence
         /// </summary>
