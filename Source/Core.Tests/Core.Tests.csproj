@@ -98,6 +98,8 @@
     <Compile Include="System\Linq\Enumerable\CastUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ConcatFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ConcatUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ContainsFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ContainsUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />

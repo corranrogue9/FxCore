@@ -97,6 +97,7 @@
     <Compile Include="System\Linq\Enumerable\Average.cs" />
     <Compile Include="System\Linq\Enumerable\Cast.cs" />
     <Compile Include="System\Linq\Enumerable\Concat.cs" />
+    <Compile Include="System\Linq\Enumerable\Contains.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
     <Compile Include="System\Linq\Enumerable\LongCount.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
