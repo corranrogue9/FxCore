@@ -102,6 +102,8 @@
     <Compile Include="System\Linq\Enumerable\ContainsUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\CountFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\CountUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\DefaultIfEmptyFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\DefaultIfEmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
