@@ -135,6 +135,8 @@
     <Compile Include="System\Linq\Enumerable\SelectUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\SequenceEqualFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\SequenceEqualUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\SkipFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\SkipUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereFailureTests.cs" />
