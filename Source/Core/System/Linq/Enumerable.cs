@@ -48,35 +48,6 @@ namespace System.Linq
                 return enumerator.Current;
             }
         }
-
-        /// <summary>
-        /// Returns the element at a specified index in a sequence
-        /// </summary>
-        /// <typeparam name="T">The type of the elements of <paramref name="source"/></typeparam>
-        /// <param name="source">An <see cref="IEnumerable{T}"/> to return an element from</param>
-        /// <param name="index">The zero-based index of the element to retrieve</param>
-        /// <returns>The element at the specified position in the source sequence</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="index"/> is less than 0 or greater than or equal to the number of elements in <paramref name="source"/></exception>
-        internal static T ElementAt<T>(this IEnumerable<T> source, int index)
-        {
-            Ensure.NotNull(source, nameof(source));
-            Ensure.NotNegative(index, nameof(index));
-
-            using (var enumerator = source.GetEnumerator())
-            {
-                for (int i = 0; i < index && enumerator.MoveNext(); ++i)
-                {
-                }
-
-                if (!enumerator.MoveNext())
-                {
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                }
-
-                return enumerator.Current;
-            }
-        }
         
         /// <summary>
         /// Creates an array from a <see cref="IEnumerable{T}"/>
