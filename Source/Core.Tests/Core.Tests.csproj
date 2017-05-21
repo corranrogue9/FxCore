@@ -127,6 +127,8 @@
     <Compile Include="System\Linq\Enumerable\RangeUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ReverseFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ReverseUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\SelectFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\SelectManyFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\SelectManyUnitTests.cs" />
