@@ -232,6 +232,15 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence contains no matching element.
+        /// </summary>
+        internal static string LastEmpty {
+            get {
+                return ResourceManager.GetString("LastEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
         /// </summary>
         internal static string LoggerExtensionsFormat {

@@ -117,6 +117,8 @@
     <Compile Include="System\Linq\Enumerable\FirstUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\IntersectFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\IntersectUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\LastFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\LastUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\LongCountFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\LongCountUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeFailureTests.cs" />
