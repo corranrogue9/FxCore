@@ -108,6 +108,7 @@
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
     <Compile Include="System\Linq\Enumerable\Last.cs" />
     <Compile Include="System\Linq\Enumerable\LongCount.cs" />
+    <Compile Include="System\Linq\Enumerable\OfType.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
     <Compile Include="System\Linq\Enumerable\Repeat.cs" />
     <Compile Include="System\Linq\Enumerable\Select.cs" />

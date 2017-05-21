@@ -121,6 +121,8 @@
     <Compile Include="System\Linq\Enumerable\LastUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\LongCountFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\LongCountUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\OfTypeFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\OfTypeUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatFailureTests.cs" />
