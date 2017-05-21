@@ -114,6 +114,7 @@
     <Compile Include="System\Linq\Enumerable\Reverse.cs" />
     <Compile Include="System\Linq\Enumerable\Select.cs" />
     <Compile Include="System\Linq\Enumerable\SelectMany.cs" />
+    <Compile Include="System\Linq\Enumerable\SequenceEqual.cs" />
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
     <Compile Include="System\Linq\Enumerable\Where.cs" />
     <Compile Include="System\MockRandom.cs" />
