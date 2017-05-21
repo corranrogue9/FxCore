@@ -27,29 +27,6 @@ namespace System.Linq
         }
         
         /// <summary>
-        /// Returns the first element of a sequence
-        /// </summary>
-        /// <typeparam name="T">The type of the elements of <paramref name="source"/></typeparam>
-        /// <param name="source">The <see cref="IEnumerable{T}"/> to return the first element of</param>
-        /// <returns>The first element in the specified sequence</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the source sequence is empty</exception>
-        internal static T First<T>(this IEnumerable<T> source)
-        {
-            Ensure.NotNull(source, nameof(source));
-
-            using (var enumerator = source.GetEnumerator())
-            {
-                if (!enumerator.MoveNext())
-                {
-                    throw new InvalidOperationException("TODO");
-                }
-
-                return enumerator.Current;
-            }
-        }
-        
-        /// <summary>
         /// Creates an array from a <see cref="IEnumerable{T}"/>
         /// </summary>
         /// <typeparam name="T">The type of the elements of <paramref name="source"/></typeparam>

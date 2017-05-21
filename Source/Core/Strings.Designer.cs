@@ -223,6 +223,15 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence contains no elements.
+        /// </summary>
+        internal static string FirstEmpty {
+            get {
+                return ResourceManager.GetString("FirstEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
         /// </summary>
         internal static string LoggerExtensionsFormat {

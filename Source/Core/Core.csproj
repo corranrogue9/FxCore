@@ -104,6 +104,7 @@
     <Compile Include="System\Linq\Enumerable\ElementAt.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
     <Compile Include="System\Linq\Enumerable\Except.cs" />
+    <Compile Include="System\Linq\Enumerable\First.cs" />
     <Compile Include="System\Linq\Enumerable\LongCount.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
     <Compile Include="System\Linq\Enumerable\Repeat.cs" />

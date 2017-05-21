@@ -171,6 +171,9 @@
   <data name="EventIdentifierExtensionsFormat" xml:space="preserve">
     <value>There were an unequal number of left and right curly braces in the provided format</value>
   </data>
+  <data name="FirstEmpty" xml:space="preserve">
+    <value>Sequence contains no elements</value>
+  </data>
   <data name="LoggerExtensionsFormat" xml:space="preserve">
     <value>An error occurred generating this event. The message format was: {0}. The data was: {1}</value>
   </data>
