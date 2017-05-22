@@ -149,6 +149,8 @@
     <Compile Include="System\Linq\Enumerable\UnionUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ZipFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ZipUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />
     <Compile Include="System\MockRandomUnitTests.cs" />
     <Compile Include="TestStrings.Designer.cs">

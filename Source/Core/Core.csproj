@@ -121,6 +121,7 @@
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
     <Compile Include="System\Linq\Enumerable\Union.cs" />
     <Compile Include="System\Linq\Enumerable\Where.cs" />
+    <Compile Include="System\Linq\Enumerable\Zip.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
