@@ -139,6 +139,8 @@
     <Compile Include="System\Linq\Enumerable\SkipUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\TakeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\TakeUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ToArrayFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ToArrayUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereFailureTests.cs" />

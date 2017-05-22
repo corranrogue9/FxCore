@@ -89,7 +89,6 @@
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
     <Compile Include="System\IO\ChunkedMemoryStream.cs" />
-    <Compile Include="System\Linq\Enumerable.cs" />
     <Compile Include="System\Linq\Enumerable\Aggregate.cs" />
     <Compile Include="System\Linq\Enumerable\All.cs" />
     <Compile Include="System\Linq\Enumerable\Any.cs" />
@@ -117,6 +116,7 @@
     <Compile Include="System\Linq\Enumerable\SequenceEqual.cs" />
     <Compile Include="System\Linq\Enumerable\Skip.cs" />
     <Compile Include="System\Linq\Enumerable\Take.cs" />
+    <Compile Include="System\Linq\Enumerable\ToArray.cs" />
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
     <Compile Include="System\Linq\Enumerable\Where.cs" />
     <Compile Include="System\MockRandom.cs" />
