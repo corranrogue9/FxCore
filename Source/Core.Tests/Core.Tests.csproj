@@ -145,6 +145,8 @@
     <Compile Include="System\Linq\Enumerable\ToDictionaryUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\UnionFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\UnionUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\WhereUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />

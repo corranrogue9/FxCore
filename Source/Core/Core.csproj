@@ -119,6 +119,7 @@
     <Compile Include="System\Linq\Enumerable\ToArray.cs" />
     <Compile Include="System\Linq\Enumerable\ToDictionary.cs" />
     <Compile Include="System\Linq\Enumerable\ToList.cs" />
+    <Compile Include="System\Linq\Enumerable\Union.cs" />
     <Compile Include="System\Linq\Enumerable\Where.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
