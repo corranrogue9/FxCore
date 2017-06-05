@@ -106,6 +106,9 @@
     <Compile Include="System\Linq\Enumerable\First.cs" />
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
     <Compile Include="System\Linq\Enumerable\ThenBy.cs" />
+    <Compile Include="System\Linq\Enumerable\ToLookup.cs" />
+    <Compile Include="System\Linq\ILookup.cs" />
+    <Compile Include="System\Linq\IGrouping.cs" />
     <Compile Include="System\Linq\IOrderedEnumerable.cs" />
     <Compile Include="System\Linq\Enumerable\Last.cs" />
     <Compile Include="System\Linq\Enumerable\LongCount.cs" />

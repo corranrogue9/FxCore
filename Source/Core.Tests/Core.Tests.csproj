@@ -147,7 +147,9 @@
     <Compile Include="System\Linq\Enumerable\ToArrayUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToDictionaryFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToDictionaryUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ToLookupFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ToLookupUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToListUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\UnionFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\UnionUnitTests.cs" />
