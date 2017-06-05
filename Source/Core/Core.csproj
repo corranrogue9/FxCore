@@ -105,9 +105,12 @@
     <Compile Include="System\Linq\Enumerable\Except.cs" />
     <Compile Include="System\Linq\Enumerable\First.cs" />
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
+    <Compile Include="System\Linq\Enumerable\ThenBy.cs" />
+    <Compile Include="System\Linq\IOrderedEnumerable.cs" />
     <Compile Include="System\Linq\Enumerable\Last.cs" />
     <Compile Include="System\Linq\Enumerable\LongCount.cs" />
     <Compile Include="System\Linq\Enumerable\OfType.cs" />
+    <Compile Include="System\Linq\Enumerable\OrderBy.cs" />
     <Compile Include="System\Linq\Enumerable\Range.cs" />
     <Compile Include="System\Linq\Enumerable\Repeat.cs" />
     <Compile Include="System\Linq\Enumerable\Reverse.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
     <Compile Include="System\Tuple.cs" />
+    <Compile Include="System\Tuple{T1, T2, T3}.cs" />
     <Compile Include="System\Tuple{T1, T2}.cs" />
   </ItemGroup>
   <ItemGroup>

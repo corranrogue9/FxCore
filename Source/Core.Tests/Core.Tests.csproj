@@ -123,6 +123,8 @@
     <Compile Include="System\Linq\Enumerable\LongCountUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\OfTypeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\OfTypeUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\OrderByFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\OrderByUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\RangeUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\RepeatFailureTests.cs" />
@@ -139,6 +141,8 @@
     <Compile Include="System\Linq\Enumerable\SkipUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\TakeFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\TakeUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ThenByFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\ThenByUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToArrayFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToArrayUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ToDictionaryFailureTests.cs" />
