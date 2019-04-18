@@ -105,6 +105,7 @@
     <Compile Include="System\Linq\Enumerable\Except.cs" />
     <Compile Include="System\Linq\Enumerable\First.cs" />
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
+    <Compile Include="System\Linq\Enumerable\Join.cs" />
     <Compile Include="System\Linq\Enumerable\ThenBy.cs" />
     <Compile Include="System\Linq\Enumerable\ToLookup.cs" />
     <Compile Include="System\Linq\ILookup.cs" />
