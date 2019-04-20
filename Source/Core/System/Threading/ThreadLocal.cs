@@ -1,4 +1,5 @@
-﻿namespace System.Threading
+﻿#if !NET40
+namespace System.Threading
 {
     using System.Collections.Generic;
 
@@ -108,3 +109,4 @@
         }
     }
 }
+#endif
