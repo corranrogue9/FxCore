@@ -93,6 +93,7 @@
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
+    <Compile Include="System\Threading\ThreadLocal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
