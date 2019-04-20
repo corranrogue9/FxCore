@@ -102,7 +102,14 @@ namespace System.Threading
             {
                 return;
             }
-            
+
+            //// TODO this doesn't work because only the value on the current thread will be disposed
+            var value = values[this.id] as IDisposable;
+            if (value != null)
+            {
+                value.Dispose();
+            }
+
             values[this.id] = null;
 
             this.disposed = true;
