@@ -143,9 +143,9 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Computes the average of a sequence of <see cref="Single"/> values
+        /// Computes the average of a sequence of <see cref="System.Single"/> values
         /// </summary>
-        /// <param name="source">A sequence of <see cref="Single"/> values to calculate the average of</param>
+        /// <param name="source">A sequence of <see cref="System.Single"/> values to calculate the average of</param>
         /// <returns>The average of the sequence of values</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
@@ -257,9 +257,9 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Computes the average of a sequence of nullable <see cref="Single"/> values
+        /// Computes the average of a sequence of nullable <see cref="System.Single"/> values
         /// </summary>
-        /// <param name="source">A sequence of nullable <see cref="Single"/> values to calculate the average of</param>
+        /// <param name="source">A sequence of nullable <see cref="System.Single"/> values to calculate the average of</param>
         /// <returns>The average of the sequence of values, or null if the source sequence is empty or contains only values that are null</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         public static float? Average(this IEnumerable<float?> source)
@@ -348,7 +348,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Computes the average of a sequence of <see cref="Single"/> values that are obtained by invoking a transform function on each element of the input sequence
+        /// Computes the average of a sequence of <see cref="System.Single"/> values that are obtained by invoking a transform function on each element of the input sequence
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
         /// <param name="source">A sequence of values that are used to calculate an average</param>
@@ -436,7 +436,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Computes the average of a sequence of nullable <see cref="Single"/> values that are obtained by invoking a transform function on each element of the input 
+        /// Computes the average of a sequence of nullable <see cref="System.Single"/> values that are obtained by invoking a transform function on each element of the input 
         /// sequence
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>

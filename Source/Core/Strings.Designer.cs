@@ -259,6 +259,24 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence contains no elements.
+        /// </summary>
+        internal static string SingleEmpty {
+            get {
+                return ResourceManager.GetString("SingleEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence contains more than one element.
+        /// </summary>
+        internal static string SingleMultiple {
+            get {
+                return ResourceManager.GetString("SingleMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred during deserialization.
         /// </summary>
         internal static string WcfSerializerDeserialization {
