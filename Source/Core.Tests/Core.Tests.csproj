@@ -112,9 +112,11 @@
     <Compile Include="System\Linq\Enumerable\EnumerableFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\EnumerableUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ExceptFailureTests.cs" />
+    <Compile Include="System\Linq\Enumerable\GroupByFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ExceptUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\FirstFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\FirstUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\GroupByUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\IntersectFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\IntersectUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\JoinFailureTests.cs" />

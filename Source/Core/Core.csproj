@@ -103,6 +103,7 @@
     <Compile Include="System\Linq\Enumerable\ElementAt.cs" />
     <Compile Include="System\Linq\Enumerable\Empty.cs" />
     <Compile Include="System\Linq\Enumerable\Except.cs" />
+    <Compile Include="System\Linq\Enumerable\GroupBy.cs" />
     <Compile Include="System\Linq\Enumerable\First.cs" />
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
     <Compile Include="System\Linq\Enumerable\Join.cs" />
