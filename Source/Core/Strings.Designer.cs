@@ -250,6 +250,15 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence contains no elements.
+        /// </summary>
+        internal static string MaxEmpty {
+            get {
+                return ResourceManager.GetString("MaxEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred generating this event. The message format was: {0}. The data was: {1}.
         /// </summary>
         internal static string MemoryTraceListenerTraceEvent {

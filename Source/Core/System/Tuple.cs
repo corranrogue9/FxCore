@@ -8,6 +8,17 @@ namespace System
     internal static class Tuple
     {
         /// <summary>
+        /// Creates a new instance of the <see cref="Tuple{T1}"/>
+        /// </summary>
+        /// <typeparam name="T1">The type of <paramref name="item1"/></typeparam>
+        /// <param name="item1">The first item</param>
+        /// <returns>The new <see cref="Tuple{T1}"/></returns>
+        public static Tuple<T1> Create<T1>(T1 item1)
+        {
+            return new Tuple<T1>(item1);
+        }
+
+        /// <summary>
         /// Creates a new instance of the <see cref="Tuple{T1, T2}"/>
         /// </summary>
         /// <typeparam name="T1">The type of <paramref name="item1"/></typeparam>
