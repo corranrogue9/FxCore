@@ -28,6 +28,13 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\Collections\ElementNotFoundException.cs" />
+    <Compile Include="Fx\Collections\IArray.cs" />
+    <Compile Include="Fx\Collections\ICollection.cs" />
+    <Compile Include="Fx\Collections\IList.cs" />
+    <Compile Include="Fx\Collections\IReadOnlyArray.cs" />
+    <Compile Include="Fx\Collections\IReadOnlyCollection.cs" />
+    <Compile Include="Fx\Collections\IReadOnlySet.cs" />
     <Compile Include="Fx\ContextProvision\IContextProvider.cs" />
     <Compile Include="Fx\ContextProvision\LogicalOperationStackContextProvider.cs" />
     <Compile Include="Fx\ContextProvision\NullContextProvider.cs" />
