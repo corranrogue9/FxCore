@@ -106,6 +106,8 @@
     <Compile Include="System\Linq\Enumerable\DefaultIfEmptyUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\DistinctFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\DistinctUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\MinUnitTests.cs" />
+    <Compile Include="System\Linq\Enumerable\MinFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\MaxUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\MaxFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ElementAtFailureTests.cs" />

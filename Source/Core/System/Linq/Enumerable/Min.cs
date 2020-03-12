@@ -12,17 +12,22 @@ namespace System.Linq
     /// <threadsafety static="true"/>
     public static partial class Enumerable
     {
+        //// TODO fix implementation documentation
+        //// TODO double check that documentation matches behavior
+        //// TODO refactor extremum method?
+        //// TODO singletons for inversecomparers?
+
         /// <summary>
         /// Returns the maximum value in a sequence of nullable <see cref="System.Single"/> values
         /// </summary>
         /// <param name="source">A sequence of nullable <see cref="System.Single"/> values to determine the maximum value of</param>
         /// <returns>A value of type <see cref="Nullable{Single}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        public static float? Max(this IEnumerable<float?> source)
+        public static float? Min(this IEnumerable<float?> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Extremum<float?>(source, FloatComparer.Instance);
+            return Extremum<float?>(source, new InverseComparer<float?>(FloatComparer.Instance));
         }
         
         /// <summary>
@@ -32,11 +37,11 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static int Max(this IEnumerable<int> source)
+        public static int Min(this IEnumerable<int> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<int>(source);
+            return Min<int>(source);
         }
 
         /// <summary>
@@ -45,11 +50,11 @@ namespace System.Linq
         /// <param name="source">A sequence of nullable <see cref="Int64"/> values to determine the maximum value of</param>
         /// <returns>A value of type <see cref="Nullable{Int64}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        public static long? Max(this IEnumerable<long?> source)
+        public static long? Min(this IEnumerable<long?> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<long?>(source);
+            return Min<long?>(source);
         }
 
         /// <summary>
@@ -60,11 +65,11 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="source"/> contains no elements</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static float Max(this IEnumerable<float> source)
+        public static float Min(this IEnumerable<float> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Extremum<float>(source, FloatComparer.Instance);
+            return Extremum<float>(source, new InverseComparer<float>(FloatComparer.Instance));
         }
 
         /// <summary>
@@ -73,11 +78,11 @@ namespace System.Linq
         /// <param name="source">A sequence of nullable <see cref="System.Int32"/> values to determine the maximum value of</param>
         /// <returns>A value of type <see cref="Nullable{Int32}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        public static int? Max(this IEnumerable<int?> source)
+        public static int? Min(this IEnumerable<int?> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<int?>(source);
+            return Min<int?>(source);
         }
 
         /// <summary>
@@ -87,11 +92,11 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static decimal Max(this IEnumerable<decimal> source)
+        public static decimal Min(this IEnumerable<decimal> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<decimal>(source);
+            return Min<decimal>(source);
         }
 
         /// <summary>
@@ -100,11 +105,11 @@ namespace System.Linq
         /// <param name="source">A sequence of nullable <see cref="System.Decimal"/> values to determine the maximum value of</param>
         /// <returns>A value of type <see cref="Nullable{Decimal}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        public static decimal? Max(this IEnumerable<decimal?> source)
+        public static decimal? Min(this IEnumerable<decimal?> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<decimal?>(source);
+            return Min<decimal?>(source);
         }
 
         /// <summary>
@@ -114,11 +119,11 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static long Max(this IEnumerable<long> source)
+        public static long Min(this IEnumerable<long> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<long>(source);
+            return Min<long>(source);
         }
 
         /// <summary>
@@ -128,11 +133,11 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static double Max(this IEnumerable<double> source)
+        public static double Min(this IEnumerable<double> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<double>(source);
+            return Min<double>(source);
         }
 
         /// <summary>
@@ -141,11 +146,11 @@ namespace System.Linq
         /// <param name="source">A sequence of nullable <see cref="System.Double"/> values to determine the maximum value of</param>
         /// <returns>A value of type <see cref="Nullable{Double}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
-        public static double? Max(this IEnumerable<double?> source)
+        public static double? Min(this IEnumerable<double?> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Max<double?>(source);
+            return Min<double?>(source);
         }
 
         /// <summary>
@@ -159,12 +164,12 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="ArgumentException">Thrown if no object in <paramref name="source"/> implements the <see cref="IComparable"/> or <see cref="IComparable{T}"/> interface when projected by <paramref name="selector"/> into <typeparamref name="TResult"/></exception>
         /// <exception cref="InvalidOperationException">Thrown if <typeparamref name="TResult"/> is a value type and there are no elements in <paramref name="source"/></exception>
-        public static TResult Max<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        public static TResult Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
         
         /// <summary>
@@ -176,12 +181,12 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static float Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
+        public static float Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -192,12 +197,12 @@ namespace System.Linq
         /// <param name="selector">A transform function to apply to each element</param>
         /// <returns>The value of type <see cref="Nullable{Single}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        public static float? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
+        public static float? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -208,12 +213,12 @@ namespace System.Linq
         /// <param name="selector">A transform function to apply to each element</param>
         /// <returns>The value of type <see cref="Nullable{Int64}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        public static long? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
+        public static long? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -224,12 +229,12 @@ namespace System.Linq
         /// <param name="selector">A transform function to apply to each element</param>
         /// <returns>The value of type <see cref="Nullable{Int32}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        public static int? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
+        public static int? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -240,12 +245,12 @@ namespace System.Linq
         /// <param name="selector">A transform function to apply to each element</param>
         /// <returns>The value of type <see cref="Nullable{Double}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        public static double? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
+        public static double? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -257,12 +262,12 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static long Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
+        public static long Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -274,12 +279,12 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static int Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
+        public static int Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -291,12 +296,12 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static double Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
+        public static double Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -308,12 +313,12 @@ namespace System.Linq
         /// <returns>The maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
         /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements</exception>
-        public static decimal Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
+        public static decimal Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -325,11 +330,11 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
         /// <exception cref="ArgumentException">Thrown if no object in <paramref name="source"/> implements the <see cref="IComparable"/> or <see cref="IComparable{T}"/> interface</exception>
         /// <exception cref="InvalidOperationException">Thrown if <typeparamref name="TSource"/> is a value type and there are no elements in <paramref name="source"/></exception>
-        public static TSource Max<TSource>(this IEnumerable<TSource> source)
+        public static TSource Min<TSource>(this IEnumerable<TSource> source)
         {
             Ensure.NotNull(source, nameof(source));
 
-            return Extremum(source, Comparer<TSource>.Default);
+            return Extremum(source, new InverseComparer<TSource>(Comparer<TSource>.Default));
         }
 
         /// <summary>
@@ -340,121 +345,12 @@ namespace System.Linq
         /// <param name="selector">A transform function to apply to each element</param>
         /// <returns>The value of type <see cref="Nullable{Decimal}"/> that corresponds to the maximum value in the sequence</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> or <paramref name="selector"/> is null</exception>
-        public static decimal? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
+        public static decimal? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
             Ensure.NotNull(source, nameof(source));
             Ensure.NotNull(selector, nameof(selector));
 
-            return Max(source.Select(selector));
-        }
-
-        /// <summary>
-        /// Finds the maximum value in <paramref name="source"/> by comparing its elements to each other using the ordering provided by <paramref name="comparer"/>
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in <paramref name="source"/></typeparam>
-        /// <param name="source">The sequence to find the maximum element of, assumed to not be null</param>
-        /// <param name="comparer">The <see cref="IComparer{T}"/> that will be used to compare the elements in <paramref name="source"/>, assumed to not be null</param>
-        /// <returns>The maximum value in <paramref name="source"/></returns>
-        /// <exception cref="InvalidOperationException">Thrown if <paramref name="source"/> contains no elements and <typeparamref name="TSource"/> is a value type</exception>
-        private static TSource Extremum<TSource>(IEnumerable<TSource> source, IComparer<TSource> comparer)
-        {
-            var @default = default(TSource);
-            using (var enumerator = source.Where(element => element != null).GetEnumerator())
-            {
-                if (!enumerator.MoveNext())
-                {
-                    if (@default == null)
-                    {
-                        return @default;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException(Strings.MaxEmpty);
-                    }
-                }
-
-                var extreme = enumerator.Current;
-                while (enumerator.MoveNext())
-                {
-                    if (comparer.Compare(enumerator.Current, extreme) > 0)
-                    {
-                        extreme = enumerator.Current;
-                    }
-                }
-
-                return extreme;
-            }
-        }
-
-        /// <summary>
-        /// A comparer which compares two <see cref="System.Single"/>s or two <see cref="Nullable{Single}"/>
-        /// </summary>
-        /// <threadsafety static="true" instance="true"/>
-        private sealed class FloatComparer : IComparer<float>, IComparer<float?>
-        {
-            /// <summary>
-            /// Prevents a default instance of the <see cref="FloatComparer"/> class from being created
-            /// </summary>
-            private FloatComparer()
-            {
-            }
-
-            /// <summary>
-            /// Gets the singleton instance of the <see cref="FloatComparer"/>
-            /// </summary>
-            public static FloatComparer Instance { get; } = new FloatComparer();
-
-            /// <summary>
-            /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other
-            /// </summary>
-            /// <param name="x">The first object to compare</param>
-            /// <param name="y">The second object to compare</param>
-            /// <returns>A signed integer that indicates the relative values of <paramref name="x"/> and <paramref name="y"/>, as shown in the following table</returns>
-            public int Compare(float x, float y)
-            {
-                if (float.IsNaN(x) && float.IsNaN(y))
-                {
-                    return 0;
-                }
-
-                if (float.IsNaN(x))
-                {
-                    return -1;
-                }
-
-                if (float.IsNaN(y))
-                {
-                    return 1;
-                }
-
-                return System.Collections.Generic.Comparer<float>.Default.Compare(x, y);
-            }
-
-            /// <summary>
-            /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other
-            /// </summary>
-            /// <param name="x">The first object to compare</param>
-            /// <param name="y">The second object to compare</param>
-            /// <returns>A signed integer that indicates the relative values of <paramref name="x"/> and <paramref name="y"/>, as shown in the following table</returns>
-            public int Compare(float? x, float? y)
-            {
-                if (x == null && y == null)
-                {
-                    return 0;
-                }
-
-                if (x == null)
-                {
-                    return -1;
-                }
-
-                if (y == null)
-                {
-                    return 1;
-                }
-
-                return this.Compare(x.Value, y.Value);
-            }
+            return Min(source.Select(selector));
         }
     }
 }

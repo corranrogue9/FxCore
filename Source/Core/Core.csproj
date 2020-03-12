@@ -108,6 +108,7 @@
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
     <Compile Include="System\Linq\Enumerable\Join.cs" />
     <Compile Include="System\Linq\Enumerable\Max.cs" />
+    <Compile Include="System\Linq\Enumerable\Min.cs" />
     <Compile Include="System\Linq\Enumerable\Single.cs" />
     <Compile Include="System\Linq\Enumerable\ThenBy.cs" />
     <Compile Include="System\Linq\Enumerable\ToLookup.cs" />
