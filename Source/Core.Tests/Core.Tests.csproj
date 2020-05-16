@@ -84,6 +84,7 @@
     <Compile Include="System\Diagnostics\NegativeTraceFilterUnitTests.cs" />
     <Compile Include="System\Diagnostics\TraceEventUnitTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamFailureTests.cs" />
+    <Compile Include="System\IO\CompositeStreamUnitTests.cs" />
     <Compile Include="System\IO\ChunkedMemoryStreamUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />
     <Compile Include="System\MockRandomUnitTests.cs" />

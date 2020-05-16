@@ -97,6 +97,15 @@ namespace Fx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All streams must be readable.
+        /// </summary>
+        internal static string CompositeStreamReadable {
+            get {
+                return ResourceManager.GetString("CompositeStreamReadable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; did not contain any elements.
         /// </summary>
         internal static string EnsureEnumerableNotEmpty {

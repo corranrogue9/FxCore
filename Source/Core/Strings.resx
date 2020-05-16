@@ -129,6 +129,9 @@
   <data name="ChunkedMemoryStreamWriteSupport" xml:space="preserve">
     <value>This stream does not support writing</value>
   </data>
+  <data name="CompositeStreamReadable" xml:space="preserve">
+    <value>All streams must be readable</value>
+  </data>
   <data name="EnsureEnumerableNotEmpty" xml:space="preserve">
     <value>'{0}' did not contain any elements</value>
   </data>
