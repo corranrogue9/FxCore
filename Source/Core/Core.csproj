@@ -105,6 +105,7 @@
     <Compile Include="System\Linq\Enumerable\Except.cs" />
     <Compile Include="System\Linq\Enumerable\GroupBy.cs" />
     <Compile Include="System\Linq\Enumerable\First.cs" />
+    <Compile Include="System\Linq\Enumerable\GroupJoin.cs" />
     <Compile Include="System\Linq\Enumerable\Intersect.cs" />
     <Compile Include="System\Linq\Enumerable\Join.cs" />
     <Compile Include="System\Linq\Enumerable\Max.cs" />
