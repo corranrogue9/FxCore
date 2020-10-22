@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Fx.Clock
+﻿namespace Fx.Clock
 {
+    using System;
+
     /// <summary>
     /// 
     /// </summary>
