@@ -28,7 +28,9 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\Clock\ClockExtensions.cs" />
     <Compile Include="Fx\Clock\DateTimeClock.cs" />
+    <Compile Include="Fx\Clock\DelegateClock.cs" />
     <Compile Include="Fx\Clock\IClock.cs" />
     <Compile Include="Fx\ContextProvision\IContextProvider.cs" />
     <Compile Include="Fx\ContextProvision\LogicalOperationStackContextProvider.cs" />
