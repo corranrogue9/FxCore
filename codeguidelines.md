@@ -1,0 +1,78 @@
+# Code Quality Fundamentals
+
+## 1. Remove dead code
+Dead code is code that has no callers. 
+
+1. Dead code is a maintenance cost; this is because changes to any code that the dead code references must accomodate the dead code.
+2. Dead code makes builds and tests take longer with no value, since the code being compiled and tested is not run anywhere
+3. Dead code also makes binaries larger, which makes deployments take longer unnecessarily
+
+Dead code can always be brought back into the repo using the history of source control if it is found that the code can be useful for a new scenario and will actually be called.
+
+## 2. Remove unused references in projects
+The more references that a project has, the more likely it is that the project will become part of a circular dependency. It is imperative to reduce the number of references each project has to only those required for the code in that project in order to faciliate code re-use. Projects that become part of circular dependencies become impossible to share code from. 
+
+## 3. Do not exclude files from stylecop
+Files should not be excluded from stylecop (or Roslyn). Stylecop and Roslyn errors should be addressed for consistency, quality, and maintainability purposes. 
+
+## 4. Use ```<inheritdoc />``` wherever possible
+Any derived implementation should use the ```<inheritdoc />``` XML documentation element. This lets the caller know that the behavior of the method is the same as the base type. This should always be the expectation. The implementation of an interface should adhere to the contract that the interface proposes, and so the documentation for the method that implements the interface should be the same as the documentation for the interface itself. The same is true for ```abstract``` and base classes. The behavior of the derived type should not deviate from the behavior expected from the base type. Doing so can cause unexpected issues for callers of the base type who instead receive an instance of the derived type. ```<remarks>``` sections can be included in addition to the ```<inheritdoc />``` element if there is pertinent non-functional documentation that is needed (such as information about time and space complexity of the implementation). This let's the caller know that a particular implementation better suites their needs without needing to read the code of the implementation. 
+
+## 5. Document all exceptions thrown by a method
+All exceptions thrown by a method should be documented with the ```<exception>``` element. Doing so let's callers know what exceptions can be expected from the method so that the caller can properly handle them. From [this article](https://ericlippert.com/2008/09/10/vexing-exceptions/) by Eric Lippert, there are 4 kinds of exceptions:
+
+1. Fatal
+2. Boneheaded
+3. Vexing
+4. Exogenous
+
+Ensuring that all exceptions are documented lets us write code that prevents boneheaded exceptions altogether, notice that we are introducing vexing exceptions, handle properly exogenous exceptions with correct control-flow logic, and catch, log, and move on from fatal exceptions. Without this documentation, the caller has to dig into the entire call chain for the method to derive this information if they wish to properly handle error cases. This is time consuming and often difficult for the caller, whereas the developer who wrote the code initially will have a better grasp on the code and the possible ways that it can fail; that developer will have an easier time properly documenting the exceptions than the caller will have trying to determine what exceptions to handle. 
+
+## 6. Document all uses of ```null``` being returned, as well as uses where ```null``` may be passed as an argument to mean something specific
+```NullReferenceException```s would be easily avoided if we did not use ```null```. However, there are many cases where ```null``` is useful, so it often creeps up. In order to prevent ```NullReferenceException```s, we need to properly handle the uses of ```null```. To do so, we need accurate documentation on when ```null``` is returned from a method, or when it is used to indicate something specific (like when a parameter is allowed to be ```null``` to indicate that a default value should be used, or when a field being ```null``` indicates that an object has not yet been initialized even though it has been created). This documentation, like exception documentation, is better created by the original developer rather than by the caller since the original developer is more familiar with the cases where ```null``` has some special meaning or indicates some failure case. 
+
+## 7. Validate all method preconditions for non-```private``` methods
+Method parameters should be validated for all preconditions necessary for the method to run. These validations should be the first thing that the method does during execution. There are two reasons for this:
+
+1. A parameter is being dereferenced. In this case, it is important to ensure that the paramter is not ```null``` or it will result in a ```NullReferenceException```. An ```ArgumentNullException``` is more appropriate, since it informs the caller which argument was invalid, and at exactly where in the callstack the issue first began.
+2. A parameter is being passed to another method that validates it. We should validate that parameter before calling the subsequent method even though the subsequent method will do validation later. This is because we want to fail as quickly as possible. Take, for example, this method:
+
+```
+public static string DoWork(IEnumerable<string> data, int startIndex)
+{
+    foreach (var element in data)
+    {
+        var result = element.Substring(startIndex);
+        if (result.Length < 10)
+        {
+            return result;
+        }
+    }
+}
+```
+
+It finds the first string in a sequence that has a length of less than 10 after removing the first several characters from each string in the sequence. However, ```Substring``` will throw if ```startIndex``` is less than 0. We know this before we even begin enumerating ```data```, so we should go ahead an validate it before enumerating so that we don't do any unnecessary enumerations when we are going to fail anyway. The code should instead look like this:
+
+```
+public static string DoWork(IEnumerable<string> data, int startIndex)
+{
+    if (data == null)
+    {
+        throw new ArgumentNullException(nameof(data));
+    }
+
+    if (startIndex < 0)
+    {
+        throw new ArgumentOutOfRangeException(nameof(startIndex));
+    }
+
+    foreach (var element in data)
+    {
+        var result = element.Substring(startIndex);
+        if (result.Length < 10)
+        {
+            return result;
+        }
+    }
+}
+``` 
