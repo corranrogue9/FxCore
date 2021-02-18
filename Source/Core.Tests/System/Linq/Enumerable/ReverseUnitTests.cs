@@ -17,6 +17,7 @@
         [TestMethod]
         public void Reverse()
         {
+            //// TODO fix that this calls the new methods in .net 4.6
             CollectionAssert.AreEqual(new[] { 5, 4, 3, 2, 1 }, new[] { 1, 2, 3, 4, 5 }.Reverse().ToList());
         }
 

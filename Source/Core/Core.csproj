@@ -33,6 +33,9 @@
     <Compile Include="Fx\ContextProvision\NullContextProvider.cs" />
     <Compile Include="Fx\EnsureInline.cs" />
     <Compile Include="Fx\Ensure.cs" />
+    <Compile Include="Fx\Linq\ReadOnlyCollection\LongCount.cs" />
+    <Compile Include="Fx\Linq\ReadOnlyCollection\Count.cs" />
+    <Compile Include="Fx\Linq\ReadOnlyCollection\Any.cs" />
     <Compile Include="Fx\Logging\EventIdentifier.cs" />
     <Compile Include="Fx\Logging\EventIdentifierExtensions.cs" />
     <Compile Include="Fx\Logging\ILogger.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="System\Func.cs" />
     <Compile Include="System\Action.cs" />
     <Compile Include="System\IO\ChunkedMemoryStream.cs" />
+    <Compile Include="System\Linq\DeferredExecutionReadOnlyCollection.cs" />
     <Compile Include="System\Linq\Enumerable\Aggregate.cs" />
     <Compile Include="System\Linq\Enumerable\All.cs" />
     <Compile Include="System\Linq\Enumerable\Any.cs" />
@@ -134,6 +138,15 @@
     <Compile Include="System\Linq\Enumerable\Union.cs" />
     <Compile Include="System\Linq\Enumerable\Where.cs" />
     <Compile Include="System\Linq\Enumerable\Zip.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\ReadOnlyCollection.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Range.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Repeat.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Reverse.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Select.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Skip.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Take.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\ThenBy.cs" />
+    <Compile Include="System\Linq\ReadOnlyCollection\Zip.cs" />
     <Compile Include="System\MockRandom.cs" />
     <Compile Include="System\OutFunc.cs" />
     <Compile Include="System\Runtime\CompilerServices\ExtensionAttribute.cs" />
