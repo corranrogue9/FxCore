@@ -76,3 +76,71 @@ public static string DoWork(IEnumerable<string> data, int startIndex)
     }
 }
 ``` 
+
+## 8. Use ```private``` iterator methods when leveraging ```yield return``` or ```yield break```
+Methods that leverage ```yield return``` or ```yield break``` use deferred execution. This applies to the entire method implementation, which means that precondition checks will also not be executed until the result is enumerated. For example:
+
+```
+public static IEnumerable<T> Where<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+{
+  if (source == null)
+  {
+    throw new ArgumentNullException(nameof(source));
+  }
+  
+  if (predicate == null)
+  {
+    throw new ArgumentNullException(nameof(predicate));
+  }
+  
+  foreach (var element in source)
+  {
+    if (predicate(element))
+    {
+      yield return element;
+    }
+  }
+}
+
+public static void DoWork()
+{
+  Where<string>(null, val => true);
+}
+```
+
+In the above code, ```DoWork``` will not throw an exception. This can be mitigated by using a ```private``` "iterator" method, like so:
+
+```
+public static IEnumerable<T> Where<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+{
+  if (source == null)
+  {
+    throw new ArgumentNullException(nameof(source));
+  }
+  
+  if (predicate == null)
+  {
+    throw new ArgumentNullException(nameof(predicate));
+  }
+  
+  return WhereIterator(source, predicate);
+}
+
+private static IEnumerable<T> WhereIterator<T>(IEnumerable<T> source, Func<T, bool> predicate)
+{
+  foreach (var element in source)
+  {
+    if (predicate(element))
+    {
+      yield return element;
+    }
+  }
+}
+
+public static void DoWork()
+{
+  Where<string>(null, val => true);
+}
+```
+
+In this case, ```DoWork``` will throw an ```ArgumentNullException``` because ```Where``` does not use deferred execution: it immediately executes, performing the precondition checks. Once those precondition checks pass, it then delegates to ```WhereIterator``` which *does* use deferred execution, and so returns without enumerating ```source``` until the return value itself is enumerated. 
