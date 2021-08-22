@@ -5,7 +5,7 @@ Dead code is code that has no callers.
 
 1. Dead code is a maintenance cost; this is because changes to any code that the dead code references must accomodate the dead code.
 2. Dead code makes builds and tests take longer with no value, since the code being compiled and tested is not run anywhere
-3. Dead code also makes binaries larger, which makes deployments take longer unnecessarily
+3. Dead code also makes binaries large, which makes deployments take longer unnecessarily
 
 Dead code can always be brought back into the repo using the history of source control if it is found that the code can be useful for a new scenario and will actually be called.
 
@@ -144,3 +144,118 @@ public static void DoWork()
 ```
 
 In this case, ```DoWork``` will throw an ```ArgumentNullException``` because ```Where``` does not use deferred execution: it immediately executes, performing the precondition checks. Once those precondition checks pass, it then delegates to ```WhereIterator``` which *does* use deferred execution, and so returns without enumerating ```source``` until the return value itself is enumerated. 
+
+## 9. Use the settings + builder pattern where appropriate
+
+The builder pattern is used as a solution to the telescoping constructor antipattern. This occurs when a type has several default parameters in its constructor. One or two such parameters is not a problem, but the number of needed constructor overloads grows exponentially with each new parameter. For example, with just one parameter, we have:
+
+```
+public class MyClass
+{
+  public MyClass()
+    : this(defaultFoo)
+  {
+  }
+
+  public MyClass(Foo foo)
+  {
+  }
+}
+```
+
+No problem, only two constructors. But once a second default parameter is added, we have:
+
+```
+public class MyClass
+{
+  public MyClass()
+    : this(defaultFoo, defaultBar)
+  {
+  }
+
+  public MyClass(Foo foo)
+   : this(foo, defaultBar)
+  {
+  }
+
+  public MyClass(Bar bar)
+    : this(defaultFoo, bar)
+  {
+  }
+
+  public MyClass(Foo foo, Bar bar)
+  {
+  }
+}
+```
+
+With each new default parameter we double the number of constructors. The builder pattern solves this by allowing the caller to provide only the defaults desired, while filling in the remaining defaults for the caller. It would look something like this:
+
+```
+public class MyClass
+{
+  public MyClass(Foo foo, Bar bar)
+  {
+  }
+}
+
+public class MyClassBuilder
+{
+  public Foo Foo { get; set; } = defaultFoo;
+
+  public Bar Bar { get; set; } = defaultBar;
+
+  public MyClass Build()
+  {
+    return new MyClass(Foo, Bar);
+  }
+}
+```
+
+Now, to get a default instance of `MyClass` you can say `new MyClassBuilder().Build()`. The other two constructors can also be mimiced with `new MyClassBuilder() { Foo = foo }.Build()` and `new MyClassBuilder() { Bar = bar }.Build()`. 
+
+The settings pattern comes into play when we want to try to configure a `MyClass` from some source like a configuration file or deserialing a JSON blob. A settings class can be used as an abstraction between the source of the configuration and the configured instance. A settings class for `MyClass` would look something like:
+
+```
+public class MyClassSettings
+{
+  public MyClassSettings(Foo foo, Bar bar)
+  {
+    this.Foo = foo;
+    this.Bar = bar;
+  }
+
+  public Foo Foo { get; }
+
+  public Bar Bar { get; }
+}
+```
+
+Then, `MyClass` can have a single constructor that takes in the settings:
+
+```
+public class MyClass
+{
+  public MyClass(MyClassSettings settings)
+  {
+  }
+}
+```
+
+and `MyClassSettings` can have a builder to again avoid the telescoping constructor antipattern:
+
+```
+public class MyClassSettingsBuilder
+{
+  public Foo Foo { get; set; } = defaultFoo;
+
+  public Bar Bar { get; set; } = defaultBar;
+
+  public MyClassSettings Build()
+  {
+    return new MyClassSettings(Foo, Bar);
+  }
+}
+```
+
+An example of this exists already with [ColoredConsole](Source/Core/System/ColoredConsole.cs) and [ColoredConsoleSettings](Source/Core/System/ColoredConsoleSettings.cs).
