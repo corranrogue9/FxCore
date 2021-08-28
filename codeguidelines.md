@@ -259,3 +259,30 @@ public class MyClassSettingsBuilder
 ```
 
 An example of this exists already with [ColoredConsole](Source/Core/System/ColoredConsole.cs) and [ColoredConsoleSettings](Source/Core/System/ColoredConsoleSettings.cs).
+
+## 10. Extension methods should follow a consistent pattern and should be placed in the same namespace as the type being extended
+
+Using a consistent pattern for extension methods allows for better separation of concerns as well as a familiar format for finding and modifying code. Placing the extension methods in the same namespace as the type being extended facilitates code discoverability, which promotes code re-use. The pattern for extensions methods is:
+
+```
+namespace MyNamespace
+{
+  public class MyClass
+  {
+  }
+}
+
+namespace MyNamespace
+{
+  /// <summary>
+  /// Extension methods for the <see cref="MyClass"/> class
+  /// </summary>
+  /// <threadsafety static="true"/>
+  public static class MyClassExtensions
+  {
+    public static void MyExtension(this MyClass myClass)
+    {
+    }
+  }
+}
+```
