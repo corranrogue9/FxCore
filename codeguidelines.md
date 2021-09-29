@@ -286,3 +286,7 @@ namespace MyNamespace
   }
 }
 ```
+
+## 11. Implement `IDisposable` according to [MSDN guidelines](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
+
+The MSDN guidelines are the best practice for implementing the disposition pattern to avoid memory leaks and performance hits, while maintaining proper inheritance heirarchies and single-concern standards.
