@@ -289,4 +289,8 @@ namespace MyNamespace
 
 ## 11. Implement `IDisposable` according to [MSDN guidelines](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
 
-The MSDN guidelines are the best practice for implementing the disposition pattern to avoid memory leaks and performance hits, while maintaining proper inheritance heirarchies and single-concern standards.
+The MSDN guidelines are the best practice for implementing the disposition pattern to avoid memory leaks and performance hits, while maintaining proper inheritance hierarchies and single-concern standards.
+
+## 12. Method signatures should take in parameters that use the least restrictive type
+
+All method signatures should take in the type that is least descendant in the inheritance hierarchy and that contains the fewest members as required by the method implementation. Doing so avoids unnecessary calls to conversion operations, for example requiring a `ToList()` call when only an `IEnumerable<T>` is required. It also allows for maximnum code re-use, since more objects will be able to be passed to each method. Finally, it avoids unexpected behavior changes caused by [explicit interface implementations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation#:~:text=Explicit%20Interface%20Implementation%20%28C%23%20Programming%20Guide%29%20If%20a,interfaces%20to%20use%20that%20member%20as%20their%20implementation) when a method signature is changed to a less restrictive type, for example `Dictionary<TKey, TValue>` having a different implementation for `IDictionary<TKey, TValue>.GetEnumerator()` than what it does for `IDictionary.GetEnumerat()`.
