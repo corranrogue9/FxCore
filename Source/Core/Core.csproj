@@ -28,6 +28,8 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\Concurrency\Extensions.cs" />
+    <Compile Include="Fx\Concurrency\IInstruction.cs" />
     <Compile Include="Fx\ContextProvision\IContextProvider.cs" />
     <Compile Include="Fx\ContextProvision\LogicalOperationStackContextProvider.cs" />
     <Compile Include="Fx\ContextProvision\NullContextProvider.cs" />

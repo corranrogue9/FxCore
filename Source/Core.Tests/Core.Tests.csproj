@@ -28,6 +28,7 @@
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fx\Concurrency\EnsureFailureTests.cs" />
     <Compile Include="Fx\ContextProvision\ContextProviderUnitTests.cs" />
     <Compile Include="Fx\ContextProvision\LogicalOperationStackContextProviderUnitTests.cs" />
     <Compile Include="Fx\ContextProvision\NullContextProviderUnitTests.cs" />
