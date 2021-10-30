@@ -17,6 +17,10 @@
         [TestMethod]
         public void ReverseDeferredExecution()
         {
+            //// TODO abstract enumerable tests
+            //// TODO abstract this test
+            //// TODO call abstractions for readonlycollections
+
             var sequence = new DeferredExecutionReadOnlyCollection<int>(new[] { 1, 2, 3, 4, 5 });
             var reversed = sequence.Reverse();
 
