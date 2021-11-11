@@ -4,6 +4,9 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    /// Unit tests for <see cref="Enumerable.Range(int, int)"/> implementations
+    /// </summary>
     public sealed class RangeUnitTests
     {
         public RangeUnitTests()
