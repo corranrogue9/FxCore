@@ -169,6 +169,8 @@
     <Compile Include="System\Linq\Enumerable\WhereUnitTests.cs" />
     <Compile Include="System\Linq\Enumerable\ZipFailureTests.cs" />
     <Compile Include="System\Linq\Enumerable\ZipUnitTests.cs" />
+    <Compile Include="System\Linq\Linq\RangeUnitTests.cs" />
+    <Compile Include="System\Linq\Linq\ReverseUnitTests.cs" />
     <Compile Include="System\Linq\ReadOnlyCollection\ReadOnlyCollectionExtensionsUnitTests.cs" />
     <Compile Include="System\Linq\ReadOnlyCollection\ReverseUnitTests.cs" />
     <Compile Include="System\MockRandomFailureTests.cs" />

@@ -17,7 +17,7 @@
         [TestMethod]
         public void Range()
         {
-            CollectionAssert.AreEqual(new[] { 10, 11, 12, 13, 14 }, Enumerable.Range(10, 5).ToList());
+            new RangeUnitTests().Range((start, count) => Enumerable.Range(start, count));
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         [TestMethod]
         public void RangeEmpty()
         {
-            CollectionAssert.AreEqual(Enumerable.Empty<int>().ToList(), Enumerable.Range(10, 0).ToList());
+            new RangeUnitTests().RangeEmpty((start, count) => Enumerable.Range(start, count));
         }
 
         /// <summary>
@@ -41,7 +41,7 @@
         [TestMethod]
         public void RangeSingle()
         {
-            CollectionAssert.AreEqual(new[] { 10 }, Enumerable.Range(10, 1).ToList());
+            new RangeUnitTests().RangeEmpty((start, count) => Enumerable.Range(start, count));
         }
     }
 }
