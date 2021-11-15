@@ -17,7 +17,7 @@
         [TestMethod]
         public void RangeNegative()
         {
-            ExceptionAssert.Throws<ArgumentOutOfRangeException>(() => Enumerable.Range(10, -1));
+            new RangeFailureTests().RangeNegative(Enumerable.Range);
         }
 
         /// <summary>
@@ -29,8 +29,7 @@
         [TestMethod]
         public void RangeMassive()
         {
-            Enumerable.Range(10, int.MaxValue - 9);
-            ExceptionAssert.Throws<ArgumentOutOfRangeException>(() => Enumerable.Range(10, int.MaxValue - 8));
+            new RangeFailureTests().RangeMassive(Enumerable.Range);
         }
     }
 }
