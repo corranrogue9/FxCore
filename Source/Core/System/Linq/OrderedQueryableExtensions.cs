@@ -1,6 +1,5 @@
 namespace System.Linq
 {
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     /// <summary>
