@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results
         /// </summary>
         /// <typeparam name="TFirst">The type of the elements of the first input sequence</typeparam>
@@ -35,6 +35,6 @@
             return new ReadOnlyCollection<TResult>(
                 first.Zip(second, resultSelector),
                 Math.Min(first.Count, second.Count));
-        }
+        }*/
     }
 }

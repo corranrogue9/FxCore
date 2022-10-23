@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Generates a sequence of integral numbers within a specified range
         /// </summary>
         /// <param name="start">The value of the first integer in the sequence</param>
@@ -28,6 +28,6 @@
             }
 
             return new ReadOnlyCollection<int>(Enumerable.Range(start, count), count);
-        }
+        }*/
     }
 }
