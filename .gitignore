@@ -11,3 +11,5 @@
 [Ss]ettings\.[Ss]tyle[Cc]op
 
 *.coverage
+/Source/ConsoleApp1/.vs/ConsoleApp1/v16/TestStore/0/000.testlog
+/Source/ConsoleApp1/.vs/ConsoleApp1/v16/TestStore/0/testlog.manifest
