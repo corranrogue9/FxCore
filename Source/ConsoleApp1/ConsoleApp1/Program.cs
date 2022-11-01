@@ -8,6 +8,24 @@
     {
         static void Main(string[] args)
         {
+            var reviewers = new (int Weight, string Name)[]
+            {
+                (100, "Vincenzo"),
+                (20, "Shantanu"),
+                (20, "Karthik"),
+                (60, "Mike"),
+                (20, "Eric"),
+                (20, "Dulci"),
+                (100, "Dan"),
+                (30, "Christof"),
+                (80, "Garrett"),
+            };
+
+            var distribution = WeightedDistribution.Create(reviewers, new Random());
+            while (/*newReview*/true)
+            {
+                var assignedReviewers = distribution.SampleWithoutReplacement(2);
+            }
         }
     }
 
@@ -116,6 +134,14 @@
         }
     }
 
+    public static class WeightedDistribution
+    {
+        public static WeightedDistribution<TValue> Create<TValue>(IReadOnlyList<(int Weight, TValue Value)> values, Random random)
+        {
+            return new WeightedDistribution<TValue>(values, random);
+        }
+    }
+
     public sealed class WeightedDistribution<TValue> : IDistribution<TValue, WeightedDistribution<TValue>>
     {
         private readonly int[] weights;
@@ -128,6 +154,7 @@
 
         public WeightedDistribution(IReadOnlyList<(int Weight, TValue Value)> values, Random random)
         {
+            //// TODO have overload which provides random
             //// TODO values can probably be less specific that readonlylist, but doing this way for now for convenience
             if (values == null)
             {
