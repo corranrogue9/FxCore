@@ -7,16 +7,22 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-        }
+            Integer.TryParse(args[0])
+                .Select(value => value * value, error => new List<string>(new[] { error }))
+                .Apply(value => Console.WriteLine($"The square of the input is {value}"), errors => Console.WriteLine($"The following errors occurred: {string.Join(Environment.NewLine, errors)}"));
 
-        void DoWork()
+            Class1.DoWork(Console.ReadLine());
+        }
+    }
+
+    public static class Integer
+    {
+        public static Either<int, string> TryParse(string input)
         {
-            Either<string, int, string> tryParse = TryParse;
-            tryParse.Map(value => value * value, error => new List<string>(new[] { error }));
+            return (out int left, out string right) => TryParse(input, out left, out right);
         }
 
-        public bool TryParse(string input, out int value, out string error)
+        public static bool TryParse(string input, out int value, out string error)
         {
             try
             {
@@ -33,15 +39,18 @@ namespace ConsoleApp2
         }
     }
 
-    public delegate bool Either<TIn, TLeft, TRight>(TIn @in, out TLeft left, out TRight right);
+    public delegate bool Either<TLeft, TRight>(out TLeft left, out TRight right);
 
     public static class Extensions
     {
-        public static Either<TIn, TLeftOut, TRightOut> Map<TIn, TLeftIn, TRightIn, TLeftOut, TRightOut>(this Either<TIn, TLeftIn, TRightIn> either, Func<TLeftIn, TLeftOut> leftSelector, Func<TRightIn, TRightOut> rightSelector)
+        public static Either<TLeftOut, TRightOut> Select<TLeftIn, TRightIn, TLeftOut, TRightOut>(
+            this Either<TLeftIn, TRightIn> either,
+            Func<TLeftIn, TLeftOut> leftSelector, 
+            Func<TRightIn, TRightOut> rightSelector)
         {
-            return (TIn @in, out TLeftOut leftOut, out TRightOut rightOut) =>
+            return (out TLeftOut leftOut, out TRightOut rightOut) =>
             {
-                if (either(@in, out var left, out var right))
+                if (either(out var left, out var right))
                 {
                     leftOut = leftSelector(left);
                     rightOut = default(TRightOut);
@@ -54,6 +63,21 @@ namespace ConsoleApp2
                     return false;
                 }
             };
+        }
+
+        public static void Apply<TLeft, TRight>(
+            this Either<TLeft, TRight> either, 
+            Action<TLeft> leftAction, 
+            Action<TRight> rightAction)
+        {
+            if (either(out var left, out var right))
+            {
+                leftAction(left);
+            }
+            else
+            {
+                rightAction(right);
+            }
         }
     }
 }
