@@ -146,6 +146,8 @@
     {
         private readonly int[] weights;
 
+        private readonly int totalWeight;
+
         private readonly int remainingValueCount;
 
         private readonly IReadOnlyList<(int Weight, TValue Value)> values;
@@ -180,25 +182,26 @@
             }
 
             this.weights[0] += values[0].Weight;
-
+            this.totalWeight = this.weights[0];
             this.remainingValueCount = values.Count;
 
             this.values = values;
             this.random = random;
         }
 
-        private WeightedDistribution(IReadOnlyList<(int Weight, TValue Value)> values, Random random, int[] weights, int remainder)
+        private WeightedDistribution(IReadOnlyList<(int Weight, TValue Value)> values, Random random, int[] weights, int remainder, int totalWeight)
         {
             this.values = values;
             this.random = random;
             this.weights = weights;
             this.remainingValueCount = remainder;
+            this.totalWeight = totalWeight;
         }
 
         public TValue Sample(out WeightedDistribution<TValue> remainder)
         {
             var newWeights = this.weights.Clone() as int[];
-            var sampleIndex = Visit(newWeights, this.random.Next(), 0);
+            var sampleIndex = Visit(newWeights, this.random.Next(this.totalWeight), 0); //// TODO off-by-one error on random.next?
 
             if (this.remainingValueCount == 1)
             {
@@ -206,7 +209,7 @@
             }
             else
             {
-                remainder = new WeightedDistribution<TValue>(this.values, this.random, newWeights, this.remainingValueCount - 1);
+                remainder = new WeightedDistribution<TValue>(this.values, this.random, newWeights, this.remainingValueCount - 1, this.totalWeight);
             }
 
             return this.values[sampleIndex].Value;
