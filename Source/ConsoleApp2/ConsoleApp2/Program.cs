@@ -7,6 +7,7 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
+            //// TODO console.readline
             Integer.TryParse(args[0])
                 .Select(value => value * value, error => new List<string>(new[] { error }))
                 .Apply(value => Console.WriteLine($"The square of the input is {value}"), errors => Console.WriteLine($"The following errors occurred: {string.Join(Environment.NewLine, errors)}"));
@@ -19,6 +20,8 @@ namespace ConsoleApp2
     {
         public static Either<int, string> TryParse(string input)
         {
+            //// TODO
+            //// factory from "try" variants to either
             return (out int left, out string right) => TryParse(input, out left, out right);
         }
 
@@ -43,6 +46,13 @@ namespace ConsoleApp2
 
     public static class Extensions
     {
+        public static Either<TLeftOut, TRightIn> LeftSelect<TLeftIn, TRightIn, TLeftOut>(
+            this Either<TLeftIn, TRightIn> either,
+            Func<TLeftIn, TLeftOut> leftSelector)
+        {
+            return either.Select(leftSelector, _ => _);
+        }
+
         public static Either<TLeftOut, TRightOut> Select<TLeftIn, TRightIn, TLeftOut, TRightOut>(
             this Either<TLeftIn, TRightIn> either,
             Func<TLeftIn, TLeftOut> leftSelector, 

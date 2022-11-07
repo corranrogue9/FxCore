@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ConsoleApp2
@@ -8,9 +9,17 @@ namespace ConsoleApp2
     {
         public static void DoWork(string input)
         {
-            Integer.TryParse(input)
-                .Select(value => value * value, error => new List<string>(new[] { error }))
-                .Select(value => value % 2 == 0 ? ReadFromDirectory() : ReadFromFusion(), errors => errors);
+            /*Integer.TryParse(input)
+                .Select(value => value * value, error => error)
+                .Select(value => value % 2 == 0 ? ReadFromDirectory() : ReadFromFusion(), error => error);*/
+
+
+            Either<IEnumerable<Application>, string> apps = Integer.TryParse(input)
+                .Select(value => value * value, error => error)
+                .LeftSelect(value => value % 2 == 0 ? ReadFromDirectory() : ReadFromFusion())
+                .RightFold(exception => exception.Message, _ => _);
+
+            apps.Apply(applications => Console.WriteLine($"The applications are: {string.Join(",", applications.Select(_ => _.Id))}"), error => Console.WriteLine($"An error occurred: {error}"));
         }
 
         private static Either<IEnumerable<Application>, Exception> ReadFromDirectory()
@@ -20,7 +29,10 @@ namespace ConsoleApp2
 
         private static IEnumerable<Application> ReadFromDirectoryImplementation()
         {
-            yield break;
+            yield return new Application()
+            {
+                Id = "From directory",
+            };
         }
 
         private static Either<IEnumerable<Application>, Exception> ReadFromFusion()
@@ -30,7 +42,10 @@ namespace ConsoleApp2
 
         private static IEnumerable<Application> ReadFromFusionImplementation()
         {
-            yield break;
+            yield return new Application()
+            {
+                Id = "From fusion",
+            };
         }
 
         private sealed class Application
@@ -60,7 +75,7 @@ namespace ConsoleApp2
             };
         }
 
-        public static Either<TLeft, TRightOut> Aggregate<TLeft, TRightFirst, TRightSecond, TRightOut>(
+        public static Either<TLeft, TRightOut> RightFold<TLeft, TRightFirst, TRightSecond, TRightOut>(
             this Either<Either<TLeft, TRightFirst>, TRightSecond> either, 
             Func<TRightFirst, TRightOut> firstAggregator,
             Func<TRightSecond, TRightOut> secondAggregator)
@@ -89,11 +104,6 @@ namespace ConsoleApp2
                     return false;
                 }
             };
-        }
-
-        public static Either<TLeft, TRight> Aggregate<TLeft, TRight>(this Either<Either<TLeft, TRight>, TRight> either)
-        {
-            return either.Aggregate(_ => _, _ => _);
         }
     }
 }
