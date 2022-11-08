@@ -8,6 +8,7 @@
     {
         static void Main(string[] args)
         {
+            //// TODO https://zliu.org/post/weighted-random/
             var reviewers = new (int Weight, string Name)[]
             {
                 (100, "Vincenzo"),
