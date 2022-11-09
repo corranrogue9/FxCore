@@ -9,6 +9,9 @@
         static void Main(string[] args)
         {
             //// TODO https://zliu.org/post/weighted-random/
+            //// TODO https://ndvanforeest.github.io/posts/weighted-random-shuffling/
+            //// TODO https://softwareengineering.stackexchange.com/questions/233541/how-to-implement-a-weighted-shuffle
+            //// TODO https://docs.scipy.org/doc/numpy-1.16.0/reference/generated/numpy.random.choice.html
             var reviewers = new (int Weight, string Name)[]
             {
                 (100, "Vincenzo"),
