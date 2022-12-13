@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Projects each element of a sequence into a new form
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
@@ -49,6 +49,6 @@
             Ensure.NotNull(selector, nameof(selector));
 
             return new ReadOnlyCollection<TResult>(source.Select(selector), source.Count);
-        }
+        }*/
     }
 }

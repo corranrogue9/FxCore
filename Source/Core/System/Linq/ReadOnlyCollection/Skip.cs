@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Bypasses a specified number of elements in a sequence and then returns the remaining elements
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
@@ -25,6 +25,6 @@
             return new ReadOnlyCollection<TSource>(
                 source.Skip(count),
                 Math.Max(source.Count - count, 0));
-        }
+        }*/
     }
 }

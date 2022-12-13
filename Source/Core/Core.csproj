@@ -33,9 +33,6 @@
     <Compile Include="Fx\ContextProvision\NullContextProvider.cs" />
     <Compile Include="Fx\EnsureInline.cs" />
     <Compile Include="Fx\Ensure.cs" />
-    <Compile Include="Fx\Linq\ReadOnlyCollection\LongCount.cs" />
-    <Compile Include="Fx\Linq\ReadOnlyCollection\Count.cs" />
-    <Compile Include="Fx\Linq\ReadOnlyCollection\Any.cs" />
     <Compile Include="Fx\Logging\EventIdentifier.cs" />
     <Compile Include="Fx\Logging\EventIdentifierExtensions.cs" />
     <Compile Include="Fx\Logging\ILogger.cs" />

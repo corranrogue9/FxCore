@@ -1,5 +1,6 @@
 ﻿namespace Fx.ContextProvision
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -14,6 +15,103 @@
     [TestClass]
     public sealed class LogicalOperationStackContextProviderUnitTests
     {
+        public static IEnumerable<T> Intersection<T>(IOrderedEnumerable<T> first, IOrderedEnumerable<T> second, IComparer<T> comparer)
+        {
+            using (var firstEnumerator = first.GetEnumerator())
+            using (var secondEnumerator = second.GetEnumerator())
+            {
+                if (!firstEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                if (!secondEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                while (firstEnumerator.MoveNext() && comparer.Compare(firstEnumerator.Current, secondEnumerator.Current) < 0)
+                {
+                }
+
+                do
+                {
+                    //// TODO test 1, 1, 2, 3, 4 with 0, 1, 1, 2, 4
+                    while (comparer.Compare(firstEnumerator.Current, secondEnumerator.Current) == 0)
+                    {
+                        yield return firstEnumerator.Current;
+                        firstEnumerator.MoveNext();
+                    }
+                }
+                while (secondEnumerator.MoveNext());
+            }
+        }
+
+        public static IEnumerable<T> Merge<T>(IOrderedEnumerable<T> first, IOrderedEnumerable<T> second, IComparer<T> comparer)
+        {
+            using (var firstEnumerator = first.GetEnumerator())
+            using (var secondEnumerator = second.GetEnumerator())
+            {
+                if (!firstEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                if (!secondEnumerator.MoveNext())
+                {
+                    yield break;
+                }
+
+                IEnumerator<T> other = null;
+                while (true)
+                {
+                    var firstElement = firstEnumerator.Current;
+                    var secondElement = secondEnumerator.Current;
+                    if (comparer.Compare(firstElement, secondElement) <= 0)
+                    {
+                        yield return firstElement;
+                        if (!firstEnumerator.MoveNext())
+                        {
+                            other = secondEnumerator;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        yield return secondElement;
+                        if (!secondEnumerator.MoveNext())
+                        {
+                            other = firstEnumerator;
+                            break;
+                        }
+                    }
+                }
+
+                while (other.MoveNext())
+                {
+                    yield return other.Current;
+                }
+            }
+        }
+        
+        private sealed class OrderedEnumerable<T> : IOrderedEnumerable<T>
+        {
+            public IOrderedEnumerable<T> CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey> comparer, bool descending)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         /// <summary>
         /// Provides a null collection to a context provider
         /// </summary>

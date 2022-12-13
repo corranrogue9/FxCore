@@ -4,6 +4,59 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    public interface IHttpClient
+    {
+        string SendRequest(string method, string url, string headers, string body);
+    }
+
+    public static class HttpClientExtensions
+    {
+        public static string SendRequest(this IHttpClient httpClient, string url, string payload)
+        {
+            var splitUrl = url.Split(' ');
+            var splitPayload = payload.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            return httpClient.SendRequest(splitUrl[0], splitUrl[1], splitPayload[0], splitPayload[1]);
+        }
+    }
+
+    public sealed class EpmService<T> : IHttpClient
+    {
+        private readonly IQueryable<T> queryable;
+
+        private readonly Uri rootUri;
+
+        public EpmService(IQueryable<T> queryable, Uri rootUri)
+        {
+            if (queryable == null)
+            {
+                throw new ArgumentNullException(nameof(queryable));
+            }
+
+            if (rootUri == null)
+            {
+                throw new ArgumentNullException(nameof(rootUri));
+            }
+
+            this.queryable = queryable;
+            this.rootUri = rootUri;
+        }
+
+        public string SendRequest(string method, string url, string headers, string body)
+        {
+            if (string.Equals(method, "get", StringComparison.OrdinalIgnoreCase))
+            {
+                throw new Exception("Only GET requests are supported");
+            }
+
+            if (!url.StartsWith(this.rootUri.ToString()))
+            {
+                throw new Exception($"Only requests to {this.rootUri.ToString()} are supported");
+            }
+
+            
+        }
+    }
+
     /// <summary>
     /// Failure tests for the <see cref="Enumerable"/>
     /// </summary>

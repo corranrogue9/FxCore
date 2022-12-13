@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Inverts the order of the elements in a sequence
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/></typeparam>
@@ -22,6 +22,6 @@
             Ensure.NotNull(source, nameof(source));
 
             return new ReadOnlyCollection<TSource>(source.Reverse(), source.Count);
-        }
+        }*/
     }
 }

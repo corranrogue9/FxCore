@@ -10,7 +10,7 @@
     /// <threadsafety static="true"/>
     public static partial class ReadOnlyCollectionExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// Generates a sequence that contains one repeated value
         /// </summary>
         /// <typeparam name="TResult">The type of the value to be repeated in the result sequence</typeparam>
@@ -22,6 +22,6 @@
             Ensure.NotNegative(count, nameof(count));
 
             return new ReadOnlyCollection<TResult>(Enumerable.Repeat(element, count), count);
-        }
+        }*/
     }
 }
