@@ -1,6 +1,5 @@
 ﻿namespace System.Linq.V2
 {
-    using Fx.Linq;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
