@@ -9,10 +9,9 @@
 
         static void Main(string[] args)
         {
-            var instanceEvents = GetInstanceEvents();
-            var seriesEvents = GetSeriesEvents();
+            var instanceEvents = GetInstanceEvents(); //// TODO apply the garrett extensions to see the difference in the network calls
+            var seriesEvents = GetSeriesEvents(); //// TODO then apply the garrett extensions to see that this is broken
 
-            //// TODO apply the garrett extensions to see the difference in the network calls
             var calendarEvents = instanceEvents
                 .Concat(seriesEvents)
                 .Where(calendarEvent => calendarEvent.Subject.Contains("another", StringComparison.OrdinalIgnoreCase))
