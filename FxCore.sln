@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core", "Fx.Core\Fx.Core.csproj", "{6F8B5129-57B1-41DE-9847-AE7339F34711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Core", "Fx.Core\Fx.Core.csproj", "{6F8B5129-57B1-41DE-9847-AE7339F34711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarService", "ConsoleApp1\CalendarService.csproj", "{05BFA589-215D-4461-9417-E0662E5F897B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarrettLibrary", "GarrettLibrary\GarrettLibrary.csproj", "{ABF34FD2-32A3-42BF-9C6E-2698342B64FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{6F8B5129-57B1-41DE-9847-AE7339F34711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F8B5129-57B1-41DE-9847-AE7339F34711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F8B5129-57B1-41DE-9847-AE7339F34711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05BFA589-215D-4461-9417-E0662E5F897B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05BFA589-215D-4461-9417-E0662E5F897B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05BFA589-215D-4461-9417-E0662E5F897B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05BFA589-215D-4461-9417-E0662E5F897B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF34FD2-32A3-42BF-9C6E-2698342B64FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF34FD2-32A3-42BF-9C6E-2698342B64FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF34FD2-32A3-42BF-9C6E-2698342B64FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF34FD2-32A3-42BF-9C6E-2698342B64FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
