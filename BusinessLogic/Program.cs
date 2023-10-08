@@ -73,6 +73,63 @@
                 var whered = garretted.Where(_ => true);
                 Print(whered);
             }
+            {
+                var data = GetDuplicatable();
+                Print(data);
+                var duplicated = data.Duplicate();
+                Print(duplicated);
+            }
+
+            {
+                var data = GetDuplicatable();
+                Print(data);
+                var garretted = data.AddGarrett();
+                Print(garretted);
+                var duplicated = garretted.Duplicate();
+                Print(duplicated);
+            }
+        }
+
+        public static IV2Enumerable<string> GetDuplicatable()
+        {
+            return new GetDuplicatableEnumerable();
+        }
+
+        private sealed class GetDuplicatableEnumerable : IDuplicateEnumerable<string>
+        {
+            private readonly bool isDuplicated;
+
+            public GetDuplicatableEnumerable()
+                : this(false)
+            {
+            }
+
+            private GetDuplicatableEnumerable(bool isDuplicated)
+            {
+                this.isDuplicated = isDuplicated;
+            }
+
+            public IV2Enumerable<string> Duplicate()
+            {
+                return new GetDuplicatableEnumerable(true);
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                if (this.isDuplicated)
+                {
+                    return new[] { "6789", "6789" }.AsEnumerable().GetEnumerator();
+                }
+                else
+                {
+                    return new[] { "hjkl" }.AsEnumerable().GetEnumerator();
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
         }
 
         public static IV2Enumerable<string> GetData2()
