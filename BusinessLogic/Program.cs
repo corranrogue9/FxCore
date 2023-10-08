@@ -112,6 +112,8 @@
                     .Duplicate();
                 Print(duplicated);
             }
+
+            //// TODO plus what happens if linq introduces a new extension "foo"?
         }
 
         public static IV2Enumerable<string> GetDuplicatable()
