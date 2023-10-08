@@ -1,5 +1,6 @@
 ﻿namespace BusinessLogic
 {
+    using Fx.Linq;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -44,65 +45,12 @@
             {
                 var data = GetData2();
                 Print(data);
-                var concatable = new ConcatableEnumerable<string>(data);
+                var concatable = data.Extend(_ => new GarrettAggregatedOverloadEnumerable<string>(_));
                 Print(concatable);
                 var concated = concatable
                     .Concat(new[] { "1234" }.ToV2Enumerable())
                     .Where(_ => true);
                 Print(concated);
-            }
-        }
-
-        private sealed class ConcatableEnumerable<T> : IConcatEnumerable<T>
-        {
-            private readonly IV2Enumerable<T> source;
-
-            public ConcatableEnumerable(IV2Enumerable<T> source)
-            {
-                this.source = source;
-            }
-
-            public IV2Enumerable<T> Concat(IV2Enumerable<T> second)
-            {
-                return new ConcatedEnumerable(this.source, second);
-            }
-
-            private sealed class ConcatedEnumerable : IWhereEnumerable<T>
-            {
-                private readonly IV2Enumerable<T> first;
-
-                private readonly IV2Enumerable<T> second;
-
-                public ConcatedEnumerable(IV2Enumerable<T> first, IV2Enumerable<T> second)
-                {
-                    this.first = first;
-                    this.second = second;
-                }
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    return this.first.Concat(this.second).GetEnumerator();
-                }
-
-                public IV2Enumerable<T> Where(Func<T, bool> predicate)
-                {
-                    return this.first.Where(predicate).Concat(this.second.Where(predicate));
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    return this.GetEnumerator();
-                }
-            }
-
-            public IEnumerator<T> GetEnumerator()
-            {
-                return this.source.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
             }
         }
 
