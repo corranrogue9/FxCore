@@ -45,7 +45,7 @@
             {
                 var data = GetData2();
                 Print(data);
-                var concatable = data.Extend(_ => new GarrettAggregatedOverloadEnumerable<string>(_));
+                var concatable = data.AddGarrett();
                 Print(concatable);
                 var concated = concatable
                     .Concat(new[] { "1234" }.ToV2Enumerable())
