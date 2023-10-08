@@ -89,6 +89,28 @@
                 var duplicated = garretted.Duplicate();
                 Print(duplicated);
             }
+
+            {
+                var data = GetDuplicatable();
+                Print(data);
+                var garretted = data.AddGarrett();
+                Print(garretted);
+                var duplicated = garretted
+                    .Duplicate()
+                    .Concat(new[] { "1234"}.ToV2Enumerable());
+                Print(duplicated);
+            }
+
+            {
+                var data = GetDuplicatable();
+                Print(data);
+                var garretted = data.AddGarrett();
+                Print(garretted);
+                var duplicated = garretted
+                    .Concat(new[] { "1234" }.ToV2Enumerable())
+                    .Duplicate();
+                Print(duplicated);
+            }
         }
 
         public static IV2Enumerable<string> GetDuplicatable()
