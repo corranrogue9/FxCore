@@ -155,6 +155,11 @@
                 return aggregate.Aggregate(func);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Aggregate(func);
+            }
+
             return self.AsEnumerable().Aggregate(func);
         }
 
@@ -163,6 +168,11 @@
             if (self is IAggregate2Enumerable<TSource> aggregate)
             {
                 return aggregate.Aggregate(seed, func);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Aggregate(seed, func);
             }
 
             return self.AsEnumerable().Aggregate(seed, func);
@@ -179,6 +189,11 @@
                 return aggregate.Aggregate(seed, func, resultSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Aggregate(seed, func, resultSelector);
+            }
+
             return self.AsEnumerable().Aggregate(seed, func, resultSelector);
         }
 
@@ -187,6 +202,11 @@
             if (self is IAllEnumerable<TSource> all)
             {
                 return all.All(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.All(predicate);
             }
 
             return self.AsEnumerable().All(predicate);
@@ -199,6 +219,11 @@
                 return any.Any();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Any();
+            }
+
             return self.AsEnumerable().Any();
         }
 
@@ -209,6 +234,11 @@
                 return any.Any(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Any(predicate);
+            }
+
             return self.AsEnumerable().Any(predicate);
         }
 
@@ -217,6 +247,11 @@
             if (self is IAppendEnumerable<TSource> append)
             {
                 return append.Append(element);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Append(element);
             }
 
             return self.AsEnumerable().Append(element).ToV2Enumerable();
@@ -235,6 +270,11 @@
                 return average.Average(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
+            }
+
             return self.AsEnumerable().Average(selector);
         }
 
@@ -243,6 +283,11 @@
             if (self is IAverage2Enumerable<TSource> average)
             {
                 return average.Average(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
             }
 
             return self.AsEnumerable().Average(selector);
@@ -255,6 +300,11 @@
                 return average.Average(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
+            }
+
             return self.AsEnumerable().Average(selector);
         }
 
@@ -263,6 +313,11 @@
             if (self is IAverage4Enumerable<TSource> average)
             {
                 return average.Average(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
             }
 
             return self.AsEnumerable().Average(selector);
@@ -275,6 +330,11 @@
                 return average.Average(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
+            }
+
             return self.AsEnumerable().Average(selector);
         }
 
@@ -283,6 +343,11 @@
             if (self is IAverage6Enumerable<TSource> average)
             {
                 return average.Average(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
             }
 
             return self.AsEnumerable().Average(selector);
@@ -295,6 +360,11 @@
                 return average.Average(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
+            }
+
             return self.AsEnumerable().Average(selector);
         }
 
@@ -303,6 +373,11 @@
             if (self is IAverage8Enumerable<TSource> average)
             {
                 return average.Average(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
             }
 
             return self.AsEnumerable().Average(selector);
@@ -315,6 +390,11 @@
                 return average.Average(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
+            }
+
             return self.AsEnumerable().Average(selector);
         }
 
@@ -323,6 +403,11 @@
             if (self is IAverage10Enumerable<TSource> average)
             {
                 return average.Average(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average(selector);
             }
 
             return self.AsEnumerable().Average(selector);
@@ -335,6 +420,11 @@
                 return average.Average();
             }
 
+            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
+            }
+
             return self.AsEnumerable().Average();
         }
 
@@ -343,6 +433,11 @@
             if (self is IAverage12Enumerable average)
             {
                 return average.Average();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
             }
 
             return self.AsEnumerable().Average();
@@ -355,6 +450,11 @@
                 return average.Average();
             }
 
+            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
+            }
+
             return self.AsEnumerable().Average();
         }
 
@@ -363,6 +463,11 @@
             if (self is IAverage14Enumerable average)
             {
                 return average.Average();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<double?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
             }
 
             return self.AsEnumerable().Average();
@@ -375,6 +480,11 @@
                 return average.Average();
             }
 
+            if (self is IAggregatedOverloadEnumerable<decimal?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
+            }
+
             return self.AsEnumerable().Average();
         }
 
@@ -383,6 +493,11 @@
             if (self is IAverage16Enumerable average)
             {
                 return average.Average();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<long> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
             }
 
             return self.AsEnumerable().Average();
@@ -395,6 +510,11 @@
                 return average.Average();
             }
 
+            if (self is IAggregatedOverloadEnumerable<int> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
+            }
+
             return self.AsEnumerable().Average();
         }
 
@@ -403,6 +523,11 @@
             if (self is IAverage18Enumerable average)
             {
                 return average.Average();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<double> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
             }
 
             return self.AsEnumerable().Average();
@@ -415,6 +540,11 @@
                 return average.Average();
             }
 
+            if (self is IAggregatedOverloadEnumerable<decimal> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
+            }
+
             return self.AsEnumerable().Average();
         }
 
@@ -423,6 +553,11 @@
             if (self is IAverage20Enumerable average)
             {
                 return average.Average();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Average();
             }
 
             return self.AsEnumerable().Average();
@@ -441,6 +576,11 @@
                 return chunk.Chunk(size);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Chunk(size);
+            }
+
             return self.AsEnumerable().Chunk(size).ToV2Enumerable();
         }
 
@@ -449,6 +589,11 @@
             if (first is IConcatEnumerable<TSource> concat)
             {
                 return concat.Concat(second);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Concat(second);
             }
 
             return first.AsEnumerable().Concat(second).ToV2Enumerable();
@@ -461,6 +606,11 @@
                 return contains.Contains(value, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Contains(value, comparer);
+            }
+
             return self.AsEnumerable().Contains(value, comparer);
         }
 
@@ -469,6 +619,11 @@
             if (self is IContains2Enumerable<TSource> contains)
             {
                 return contains.Contains(value);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Contains(value);
             }
 
             return self.AsEnumerable().Contains(value);
@@ -481,6 +636,11 @@
                 return count.Count();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Count();
+            }
+
             return self.AsEnumerable().Count();
         }
 
@@ -489,6 +649,11 @@
             if (self is ICount2Enumerable<TSource> count)
             {
                 return count.Count(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Count(predicate);
             }
 
             return self.AsEnumerable().Count(predicate);
@@ -501,6 +666,11 @@
                 return defaultIfEmpty.DefaultIfEmpty();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.DefaultIfEmpty();
+            }
+
             return self.AsEnumerable().DefaultIfEmpty().ToV2Enumerable();
         }
 
@@ -509,6 +679,11 @@
             if (self is IDefaultIfEmpty2Enumerable<TSource> defaultIfEmpty)
             {
                 return defaultIfEmpty.DefaultIfEmpty(defaultValue);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.DefaultIfEmpty(defaultValue);
             }
 
             return self.AsEnumerable().DefaultIfEmpty(defaultValue).ToV2Enumerable();
@@ -521,6 +696,11 @@
                 return distinct.Distinct();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Distinct();
+            }
+
             return self.AsEnumerable().Distinct().ToV2Enumerable();
         }
 
@@ -529,6 +709,11 @@
             if (self is IDistinct2Enumerable<TSource> distinct)
             {
                 return distinct.Distinct(comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Distinct(comparer);
             }
 
             return self.AsEnumerable().Distinct(comparer).ToV2Enumerable();
@@ -541,6 +726,11 @@
                 return distinctBy.DistinctBy(keySelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.DistinctBy(keySelector);
+            }
+
             return self.AsEnumerable().DistinctBy(keySelector).ToV2Enumerable();
         }
 
@@ -549,6 +739,11 @@
             if (self is IDistinctBy2Enumerable<TSource> distinctBy)
             {
                 return distinctBy.DistinctBy(keySelector, comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.DistinctBy(keySelector, comparer);
             }
 
             return self.AsEnumerable().DistinctBy(keySelector, comparer).ToV2Enumerable();
@@ -561,6 +756,11 @@
                 return elementAt.ElementAt(index);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ElementAt(index);
+            }
+
             return self.AsEnumerable().ElementAt(index);
         }
 
@@ -569,6 +769,11 @@
             if (self is IElementAt2Enumerable<TSource> elementAt)
             {
                 return elementAt.ElementAt(index);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ElementAt(index);
             }
 
             return self.AsEnumerable().ElementAt(index);
@@ -581,6 +786,11 @@
                 return elementAtOrDefault.ElementAtOrDefault(index);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ElementAtOrDefault(index);
+            }
+
             return self.AsEnumerable().ElementAtOrDefault(index);
         }
 
@@ -589,6 +799,11 @@
             if (self is IElementAtOrDefault2Enumerable<TSource> elementAtOrDefault)
             {
                 return elementAtOrDefault.ElementAtOrDefault(index);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ElementAtOrDefault(index);
             }
 
             return self.AsEnumerable().ElementAtOrDefault(index);
@@ -607,6 +822,11 @@
                 return except.Except(second);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Except(second);
+            }
+
             return first.AsEnumerable().Except(second).ToV2Enumerable();
         }
 
@@ -617,6 +837,11 @@
                 return except.Except(second, comparer);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Except(second, comparer);
+            }
+
             return first.AsEnumerable().Except(second, comparer).ToV2Enumerable();
         }
 
@@ -625,6 +850,11 @@
             if (first is IExceptByEnumerable<TSource> exceptBy)
             {
                 return exceptBy.ExceptBy(second, keySelector);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ExceptBy(second, keySelector);
             }
 
             return first.AsEnumerable().ExceptBy(second, keySelector).ToV2Enumerable();
@@ -641,6 +871,11 @@
                 return exceptBy.ExceptBy(second, keySelector, comparer);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ExceptBy(second, keySelector, comparer);
+            }
+
             return first.AsEnumerable().ExceptBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
@@ -649,6 +884,11 @@
             if (self is IFirstEnumerable<TSource> first)
             {
                 return first.First();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.First();
             }
 
             return self.AsEnumerable().First();
@@ -661,6 +901,11 @@
                 return first.First(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.First(predicate);
+            }
+
             return self.AsEnumerable().First(predicate);
         }
 
@@ -669,6 +914,11 @@
             if (self is IFirstOrDefaultEnumerable<TSource> firstOrDefault)
             {
                 return firstOrDefault.FirstOrDefault();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.FirstOrDefault();
             }
 
             return self.AsEnumerable().FirstOrDefault();
@@ -681,6 +931,11 @@
                 return firstOrDefault.FirstOrDefault(defaultValue);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.FirstOrDefault(defaultValue);
+            }
+
             return self.AsEnumerable().FirstOrDefault(defaultValue);
         }
 
@@ -691,6 +946,11 @@
                 return firstOrDefault.FirstOrDefault(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.FirstOrDefault(predicate);
+            }
+
             return self.AsEnumerable().FirstOrDefault(predicate);
         }
 
@@ -699,6 +959,11 @@
             if (self is IFirstOrDefault4Enumerable<TSource> firstOrDefault)
             {
                 return firstOrDefault.FirstOrDefault(predicate, defaultValue);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.FirstOrDefault(predicate, defaultValue);
             }
 
             return self.AsEnumerable().FirstOrDefault(predicate, defaultValue);
@@ -716,6 +981,11 @@
                 return groupBy.GroupBy(keySelector, elementSelector, resultSelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector, comparer);
+            }
+
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
@@ -728,6 +998,11 @@
             if (self is IGroupBy2Enumerable<TSource> groupBy)
             {
                 return groupBy.GroupBy(keySelector, elementSelector, resultSelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector);
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
@@ -744,6 +1019,11 @@
                 return groupBy.GroupBy(keySelector, resultSelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, resultSelector, comparer);
+            }
+
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
@@ -757,6 +1037,11 @@
                 return groupBy.GroupBy(keySelector, resultSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, resultSelector);
+            }
+
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
         }
 
@@ -765,6 +1050,11 @@
             if (self is IGroupBy5Enumerable<TSource> groupBy)
             {
                 return groupBy.GroupBy(keySelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector);
             }
 
             return self.AsEnumerable().GroupBy(keySelector).Select(ToV2Grouping).ToV2Enumerable();
@@ -780,6 +1070,11 @@
                 return groupBy.GroupBy(keySelector, elementSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector);
+            }
+
             return self.AsEnumerable().GroupBy(keySelector, elementSelector).Select(ToV2Grouping).ToV2Enumerable();
         }
 
@@ -791,6 +1086,11 @@
             if (self is IGroupBy7Enumerable<TSource> groupBy)
             {
                 return groupBy.GroupBy(keySelector, comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, comparer);
             }
 
             return self.AsEnumerable().GroupBy(keySelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
@@ -805,6 +1105,11 @@
             if (self is IGroupBy8Enumerable<TSource> groupBy)
             {
                 return groupBy.GroupBy(keySelector, elementSelector, comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, comparer);
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
@@ -823,6 +1128,11 @@
                 return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
             }
 
+            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+            }
+
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
@@ -838,6 +1148,11 @@
                 return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
             }
 
+            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
+            }
+
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable())).ToV2Enumerable();
         }
 
@@ -846,6 +1161,11 @@
             if (first is IIntersectEnumerable<TSource> intersect)
             {
                 return intersect.Intersect(second, comparer);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Intersect(second, comparer);
             }
 
             return first.AsEnumerable().Intersect(second, comparer).ToV2Enumerable();
@@ -858,6 +1178,11 @@
                 return intersect.Intersect(second);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Intersect(second);
+            }
+
             return first.AsEnumerable().Intersect(second).ToV2Enumerable();
         }
 
@@ -866,6 +1191,11 @@
             if (first is IIntersectByEnumerable<TSource> intersectBy)
             {
                 return intersectBy.IntersectBy(second, keySelector);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.IntersectBy(second, keySelector);
             }
 
             return first.AsEnumerable().IntersectBy(second, keySelector).ToV2Enumerable();
@@ -882,6 +1212,11 @@
                 return intersectBy.IntersectBy(second, keySelector, comparer);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.IntersectBy(second, keySelector, comparer);
+            }
+
             return first.AsEnumerable().IntersectBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
@@ -895,6 +1230,11 @@
             if (outer is IJoinEnumerable<TOuter> join)
             {
                 return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+            }
+
+            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
             }
 
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector).ToV2Enumerable();
@@ -913,6 +1253,11 @@
                 return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
             }
 
+            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+            }
+
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer).ToV2Enumerable();
         }
 
@@ -921,6 +1266,11 @@
             if (self is ILastEnumerable<TSource> last)
             {
                 return last.Last();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Last();
             }
 
             return self.AsEnumerable().Last();
@@ -933,6 +1283,11 @@
                 return last.Last(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Last(predicate);
+            }
+
             return self.AsEnumerable().Last(predicate);
         }
 
@@ -941,6 +1296,11 @@
             if (self is ILastOrDefaultEnumerable<TSource> lastOrDefault)
             {
                 return lastOrDefault.LastOrDefault();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LastOrDefault();
             }
 
             return self.AsEnumerable().LastOrDefault();
@@ -953,6 +1313,11 @@
                 return lastOrDefault.LastOrDefault(defaultValue);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LastOrDefault(defaultValue);
+            }
+
             return self.AsEnumerable().LastOrDefault(defaultValue);
         }
 
@@ -961,6 +1326,11 @@
             if (self is ILastOrDefault3Enumerable<TSource> lastOrDefault)
             {
                 return lastOrDefault.LastOrDefault(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LastOrDefault(predicate);
             }
 
             return self.AsEnumerable().LastOrDefault(predicate);
@@ -973,6 +1343,11 @@
                 return lastOrDefault.LastOrDefault(predicate, defaultValue);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LastOrDefault(predicate, defaultValue);
+            }
+
             return self.AsEnumerable().LastOrDefault(predicate, defaultValue);
         }
 
@@ -981,6 +1356,11 @@
             if (self is ILongCountEnumerable<TSource> longCount)
             {
                 return longCount.LongCount(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LongCount(predicate);
             }
 
             return self.AsEnumerable().LongCount(predicate);
@@ -993,6 +1373,11 @@
                 return longCount.LongCount();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.LongCount();
+            }
+
             return self.AsEnumerable().LongCount();
         }
 
@@ -1001,6 +1386,11 @@
             if (self is IMaxEnumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1013,6 +1403,11 @@
                 return max.Max(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
+            }
+
             return self.AsEnumerable().Max(selector);
         }
 
@@ -1021,6 +1416,11 @@
             if (self is IMax3Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1033,6 +1433,11 @@
                 return max.Max(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
+            }
+
             return self.AsEnumerable().Max(selector);
         }
 
@@ -1041,6 +1446,11 @@
             if (self is IMax5Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1053,6 +1463,11 @@
                 return max.Max(comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(comparer);
+            }
+
             return self.AsEnumerable().Max(comparer);
         }
 
@@ -1061,6 +1476,11 @@
             if (self is IMax7Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1073,6 +1493,11 @@
                 return max.Max(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
+            }
+
             return self.AsEnumerable().Max(selector);
         }
 
@@ -1081,6 +1506,11 @@
             if (self is IMax9Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1093,6 +1523,11 @@
                 return max.Max(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
+            }
+
             return self.AsEnumerable().Max(selector);
         }
 
@@ -1101,6 +1536,11 @@
             if (self is IMax11Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1113,6 +1553,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1121,6 +1566,11 @@
             if (self is IMax13Enumerable<TSource> max)
             {
                 return max.Max(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max(selector);
             }
 
             return self.AsEnumerable().Max(selector);
@@ -1133,6 +1583,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1141,6 +1596,11 @@
             if (self is IMax15Enumerable max)
             {
                 return max.Max();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
             }
 
             return self.AsEnumerable().Max();
@@ -1153,6 +1613,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1161,6 +1626,11 @@
             if (self is IMax17Enumerable max)
             {
                 return max.Max();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
             }
 
             return self.AsEnumerable().Max();
@@ -1173,6 +1643,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<double?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1181,6 +1656,11 @@
             if (self is IMax19Enumerable max)
             {
                 return max.Max();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<decimal?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
             }
 
             return self.AsEnumerable().Max();
@@ -1193,6 +1673,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<long> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1201,6 +1686,11 @@
             if (self is IMax21Enumerable max)
             {
                 return max.Max();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<int> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
             }
 
             return self.AsEnumerable().Max();
@@ -1213,6 +1703,11 @@
                 return max.Max();
             }
 
+            if (self is IAggregatedOverloadEnumerable<double> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
+            }
+
             return self.AsEnumerable().Max();
         }
 
@@ -1221,6 +1716,11 @@
             if (self is IMax23Enumerable max)
             {
                 return max.Max();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<decimal> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Max();
             }
 
             return self.AsEnumerable().Max();
@@ -1233,6 +1733,11 @@
                 return maxBy.MaxBy(keySelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.MaxBy(keySelector);
+            }
+
             return self.AsEnumerable().MaxBy(keySelector);
         }
 
@@ -1241,6 +1746,11 @@
             if (self is IMaxBy2Enumerable<TSource> maxBy)
             {
                 return maxBy.MaxBy(keySelector, comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.MaxBy(keySelector, comparer);
             }
 
             return self.AsEnumerable().MaxBy(keySelector, comparer);
@@ -1253,6 +1763,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<decimal> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1261,6 +1776,11 @@
             if (self is IMin2Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1273,6 +1793,11 @@
                 return min.Min(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
+            }
+
             return self.AsEnumerable().Min(selector);
         }
 
@@ -1281,6 +1806,11 @@
             if (self is IMin4Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1293,6 +1823,11 @@
                 return min.Min(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
+            }
+
             return self.AsEnumerable().Min(selector);
         }
 
@@ -1301,6 +1836,11 @@
             if (self is IMin6Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1313,6 +1853,11 @@
                 return min.Min(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
+            }
+
             return self.AsEnumerable().Min(selector);
         }
 
@@ -1321,6 +1866,11 @@
             if (self is IMin8Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1333,6 +1883,11 @@
                 return min.Min(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
+            }
+
             return self.AsEnumerable().Min(selector);
         }
 
@@ -1341,6 +1896,11 @@
             if (self is IMin10Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1353,6 +1913,11 @@
                 return min.Min(comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(comparer);
+            }
+
             return self.AsEnumerable().Min(comparer);
         }
 
@@ -1361,6 +1926,11 @@
             if (self is IMin12Enumerable<TSource> min)
             {
                 return min.Min();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
             }
 
             return self.AsEnumerable().Min();
@@ -1373,6 +1943,11 @@
                 return min.Min(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
+            }
+
             return self.AsEnumerable().Min(selector);
         }
 
@@ -1381,6 +1956,11 @@
             if (self is IMin14Enumerable<TSource> min)
             {
                 return min.Min(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min(selector);
             }
 
             return self.AsEnumerable().Min(selector);
@@ -1393,6 +1973,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1401,6 +1986,11 @@
             if (self is IMin16Enumerable min)
             {
                 return min.Min();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
             }
 
             return self.AsEnumerable().Min();
@@ -1413,6 +2003,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1421,6 +2016,11 @@
             if (self is IMin18Enumerable min)
             {
                 return min.Min();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
             }
 
             return self.AsEnumerable().Min();
@@ -1433,6 +2033,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<double?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1441,6 +2046,11 @@
             if (self is IMin20Enumerable min)
             {
                 return min.Min();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<decimal?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
             }
 
             return self.AsEnumerable().Min();
@@ -1453,6 +2063,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<double> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1461,6 +2076,11 @@
             if (self is IMin22Enumerable min)
             {
                 return min.Min();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<long> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
             }
 
             return self.AsEnumerable().Min();
@@ -1473,6 +2093,11 @@
                 return min.Min();
             }
 
+            if (self is IAggregatedOverloadEnumerable<int> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Min();
+            }
+
             return self.AsEnumerable().Min();
         }
 
@@ -1483,6 +2108,11 @@
                 return minBy.MinBy(keySelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.MinBy(keySelector, comparer);
+            }
+
             return self.AsEnumerable().MinBy(keySelector, comparer);
         }
 
@@ -1491,6 +2121,11 @@
             if (self is IMinBy2Enumerable<TSource> minBy)
             {
                 return minBy.MinBy(keySelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.MinBy(keySelector);
             }
 
             return self.AsEnumerable().MinBy(keySelector);
@@ -1509,6 +2144,11 @@
                 return orderBy.OrderBy(keySelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.OrderBy(keySelector, comparer);
+            }
+
             return self.AsEnumerable().OrderBy(keySelector, comparer).ToV2OrderedEnumerable();
         }
 
@@ -1519,6 +2159,11 @@
                 return orderBy.OrderBy(keySelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.OrderBy(keySelector);
+            }
+
             return self.AsEnumerable().OrderBy(keySelector).ToV2OrderedEnumerable();
         }
 
@@ -1527,6 +2172,11 @@
             if (self is IOrderByDescendingEnumerable<TSource> orderByDescending)
             {
                 return orderByDescending.OrderByDescending(keySelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.OrderByDescending(keySelector);
             }
 
             return self.AsEnumerable().OrderByDescending(keySelector).ToV2OrderedEnumerable();
@@ -1542,6 +2192,11 @@
                 return orderByDescending.OrderByDescending(keySelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.OrderByDescending(keySelector, comparer);
+            }
+
             return self.AsEnumerable().OrderByDescending(keySelector, comparer).ToV2OrderedEnumerable();
         }
 
@@ -1550,6 +2205,11 @@
             if (self is IPrependEnumerable<TSource> prepend)
             {
                 return prepend.Prepend(element);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Prepend(element);
             }
 
             return self.AsEnumerable().Prepend(element).ToV2Enumerable();
@@ -1574,6 +2234,11 @@
                 return reverse.Reverse();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Reverse();
+            }
+
             return self.AsEnumerable().Reverse().ToV2Enumerable();
         }
 
@@ -1581,7 +2246,11 @@
         {
             if (self is ISelectEnumerable<TSource> select)
             {
-                return select.Select(selector);
+                return select.Select(selector);            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Select(selector);
             }
 
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
@@ -1594,6 +2263,11 @@
                 return select.Select(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Select(selector);
+            }
+
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
         }
 
@@ -1602,6 +2276,11 @@
             if (self is ISelectManyEnumerable<TSource> selectMany)
             {
                 return selectMany.SelectMany(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SelectMany(selector);
             }
 
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
@@ -1617,6 +2296,11 @@
                 return selectMany.SelectMany(collectionSelector, resultSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector);
+            }
+
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
         }
 
@@ -1630,6 +2314,11 @@
                 return selectMany.SelectMany(collectionSelector, resultSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector);
+            }
+
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
         }
 
@@ -1638,6 +2327,11 @@
             if (self is ISelectMany4Enumerable<TSource> selectMany)
             {
                 return selectMany.SelectMany(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SelectMany(selector);
             }
 
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
@@ -1650,6 +2344,11 @@
                 return sequenceEqual.SequenceEqual(second);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SequenceEqual(second);
+            }
+
             return first.AsEnumerable().SequenceEqual(second);
         }
 
@@ -1658,6 +2357,11 @@
             if (first is ISequenceEqual2Enumerable<TSource> sequenceEqual)
             {
                 return sequenceEqual.SequenceEqual(second, comparer);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SequenceEqual(second, comparer);
             }
 
             return first.AsEnumerable().SequenceEqual(second, comparer);
@@ -1670,6 +2374,11 @@
                 return single.Single();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Single();
+            }
+
             return self.AsEnumerable().Single();
         }
 
@@ -1678,6 +2387,11 @@
             if (self is ISingle2Enumerable<TSource> single)
             {
                 return single.Single(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Single(predicate);
             }
 
             return self.AsEnumerable().Single(predicate);
@@ -1690,6 +2404,11 @@
                 return singleOrDefault.SingleOrDefault(predicate, defaultValue);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SingleOrDefault(predicate, defaultValue);
+            }
+
             return self.AsEnumerable().SingleOrDefault(predicate, defaultValue);
         }
 
@@ -1698,6 +2417,11 @@
             if (self is ISingleOrDefault2Enumerable<TSource> singleOrDefault)
             {
                 return singleOrDefault.SingleOrDefault(defaultValue);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SingleOrDefault(defaultValue);
             }
 
             return self.AsEnumerable().SingleOrDefault(defaultValue);
@@ -1710,6 +2434,11 @@
                 return singleOrDefault.SingleOrDefault();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SingleOrDefault();
+            }
+
             return self.AsEnumerable().SingleOrDefault();
         }
 
@@ -1718,6 +2447,11 @@
             if (self is ISingleOrDefault4Enumerable<TSource> singleOrDefault)
             {
                 return singleOrDefault.SingleOrDefault(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SingleOrDefault(predicate);
             }
 
             return self.AsEnumerable().SingleOrDefault(predicate);
@@ -1730,6 +2464,11 @@
                 return skip.Skip(count);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Skip(count);
+            }
+
             return self.AsEnumerable().Skip(count).ToV2Enumerable();
         }
 
@@ -1738,6 +2477,11 @@
             if (self is ISkipLastEnumerable<TSource> skipLast)
             {
                 return skipLast.SkipLast(count);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SkipLast(count);
             }
 
             return self.AsEnumerable().SkipLast(count).ToV2Enumerable();
@@ -1750,6 +2494,11 @@
                 return skipWhile.SkipWhile(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SkipWhile(predicate);
+            }
+
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
         }
 
@@ -1758,6 +2507,11 @@
             if (self is ISkipWhile2Enumerable<TSource> skipWhile)
             {
                 return skipWhile.SkipWhile(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.SkipWhile(predicate);
             }
 
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
@@ -1770,6 +2524,11 @@
                 return sum.Sum(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
+            }
+
             return self.AsEnumerable().Sum(selector);
         }
 
@@ -1778,6 +2537,11 @@
             if (self is ISum2Enumerable<TSource> sum)
             {
                 return sum.Sum(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
             }
 
             return self.AsEnumerable().Sum(selector);
@@ -1790,6 +2554,11 @@
                 return sum.Sum(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
+            }
+
             return self.AsEnumerable().Sum(selector);
         }
 
@@ -1798,6 +2567,11 @@
             if (self is ISum4Enumerable<TSource> sum)
             {
                 return sum.Sum(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
             }
 
             return self.AsEnumerable().Sum(selector);
@@ -1810,6 +2584,11 @@
                 return sum.Sum(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
+            }
+
             return self.AsEnumerable().Sum(selector);
         }
 
@@ -1818,6 +2597,11 @@
             if (self is ISum6Enumerable<TSource> sum)
             {
                 return sum.Sum(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
             }
 
             return self.AsEnumerable().Sum(selector);
@@ -1830,6 +2614,11 @@
                 return sum.Sum(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
+            }
+
             return self.AsEnumerable().Sum(selector);
         }
 
@@ -1838,6 +2627,11 @@
             if (self is ISum8Enumerable<TSource> sum)
             {
                 return sum.Sum(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
             }
 
             return self.AsEnumerable().Sum(selector);
@@ -1850,6 +2644,11 @@
                 return sum.Sum(selector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
+            }
+
             return self.AsEnumerable().Sum(selector);
         }
 
@@ -1858,6 +2657,11 @@
             if (self is ISum10Enumerable<TSource> sum)
             {
                 return sum.Sum(selector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum(selector);
             }
 
             return self.AsEnumerable().Sum(selector);
@@ -1870,6 +2674,11 @@
                 return sum.Sum();
             }
 
+            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
+            }
+
             return self.AsEnumerable().Sum();
         }
 
@@ -1878,6 +2687,11 @@
             if (self is ISum12Enumerable sum)
             {
                 return sum.Sum();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
             }
 
             return self.AsEnumerable().Sum();
@@ -1890,6 +2704,11 @@
                 return sum.Sum();
             }
 
+            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
+            }
+
             return self.AsEnumerable().Sum();
         }
 
@@ -1898,6 +2717,11 @@
             if (self is ISum14Enumerable sum)
             {
                 return sum.Sum();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<double?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
             }
 
             return self.AsEnumerable().Sum();
@@ -1910,6 +2734,11 @@
                 return sum.Sum();
             }
 
+            if (self is IAggregatedOverloadEnumerable<decimal?> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
+            }
+
             return self.AsEnumerable().Sum();
         }
 
@@ -1918,6 +2747,11 @@
             if (self is ISum16Enumerable sum)
             {
                 return sum.Sum();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<long> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
             }
 
             return self.AsEnumerable().Sum();
@@ -1930,6 +2764,11 @@
                 return sum.Sum();
             }
 
+            if (self is IAggregatedOverloadEnumerable<int> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
+            }
+
             return self.AsEnumerable().Sum();
         }
 
@@ -1938,6 +2777,11 @@
             if (self is ISum18Enumerable sum)
             {
                 return sum.Sum();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<double> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
             }
 
             return self.AsEnumerable().Sum();
@@ -1950,6 +2794,11 @@
                 return sum.Sum();
             }
 
+            if (self is IAggregatedOverloadEnumerable<decimal> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
+            }
+
             return self.AsEnumerable().Sum();
         }
 
@@ -1958,6 +2807,11 @@
             if (self is ISum20Enumerable sum)
             {
                 return sum.Sum();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Sum();
             }
 
             return self.AsEnumerable().Sum();
@@ -1970,6 +2824,11 @@
                 return take.Take(range);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Take(range);
+            }
+
             return self.AsEnumerable().Take(range).ToV2Enumerable();
         }
 
@@ -1978,6 +2837,11 @@
             if (self is ITake2Enumerable<TSource> take)
             {
                 return take.Take(count);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Take(count);
             }
 
             return self.AsEnumerable().Take(count).ToV2Enumerable();
@@ -1990,6 +2854,11 @@
                 return takeLast.TakeLast(count);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.TakeLast(count);
+            }
+
             return self.AsEnumerable().TakeLast(count).ToV2Enumerable();
         }
 
@@ -2000,6 +2869,11 @@
                 return takeWhile.TakeWhile(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.TakeWhile(predicate);
+            }
+
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
         }
 
@@ -2008,6 +2882,11 @@
             if (self is ITakeWhile2Enumerable<TSource> takeWhile)
             {
                 return takeWhile.TakeWhile(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.TakeWhile(predicate);
             }
 
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
@@ -2047,6 +2926,11 @@
                 return toArray.ToArray();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToArray();
+            }
+
             return self.AsEnumerable().ToArray();
         }
 
@@ -2056,6 +2940,11 @@
             if (self is IToDictionaryEnumerable<TSource> toDictionary)
             {
                 return toDictionary.ToDictionary(keySelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToDictionary(keySelector);
             }
 
             return self.AsEnumerable().ToDictionary(keySelector);
@@ -2072,6 +2961,11 @@
                 return toDictionary.ToDictionary(keySelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToDictionary(keySelector, comparer);
+            }
+
             return self.AsEnumerable().ToDictionary(keySelector, comparer);
         }
 
@@ -2084,6 +2978,11 @@
             if (self is IToDictionary3Enumerable<TSource> toDictionary)
             {
                 return toDictionary.ToDictionary(keySelector, elementSelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToDictionary(keySelector, elementSelector);
             }
 
             return self.AsEnumerable().ToDictionary(keySelector, elementSelector);
@@ -2101,6 +3000,11 @@
                 return toDictionary.ToDictionary(keySelector, elementSelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToDictionary(keySelector, elementSelector, comparer);
+            }
+
             return self.AsEnumerable().ToDictionary(keySelector, elementSelector, comparer);
         }
 
@@ -2109,6 +3013,11 @@
             if (self is IToHashSetEnumerable<TSource> toHashSet)
             {
                 return toHashSet.ToHashSet(comparer);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToHashSet(comparer);
             }
 
             return self.AsEnumerable().ToHashSet(comparer);
@@ -2121,6 +3030,11 @@
                 return toHashSet.ToHashSet();
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToHashSet();
+            }
+
             return self.AsEnumerable().ToHashSet();
         }
 
@@ -2129,6 +3043,11 @@
             if (self is IToListEnumerable<TSource> toList)
             {
                 return toList.ToList();
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToList();
             }
 
             return self.AsEnumerable().ToList();
@@ -2145,6 +3064,11 @@
                 return toLookup.ToLookup(keySelector, elementSelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToLookup(keySelector, elementSelector, comparer);
+            }
+
             return self.AsEnumerable().ToLookup(keySelector, elementSelector, comparer).ToV2Lookup();
         }
 
@@ -2158,6 +3082,11 @@
                 return toLookup.ToLookup(keySelector, elementSelector);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToLookup(keySelector, elementSelector);
+            }
+
             return self.AsEnumerable().ToLookup(keySelector, elementSelector).ToV2Lookup();
         }
 
@@ -2166,6 +3095,11 @@
             if (self is IToLookup3Enumerable<TSource> toLookup)
             {
                 return toLookup.ToLookup(keySelector);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToLookup(keySelector);
             }
 
             return self.AsEnumerable().ToLookup(keySelector).ToV2Lookup();
@@ -2178,6 +3112,11 @@
                 return toLookup.ToLookup(keySelector, comparer);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.ToLookup(keySelector, comparer);
+            }
+
             return self.AsEnumerable().ToLookup(keySelector, comparer).ToV2Lookup();
         }
 
@@ -2186,6 +3125,11 @@
             if (self is ITryGetNonEnumeratedCountEnumerable<TSource> tryGetNonEnumeratedCount)
             {
                 return tryGetNonEnumeratedCount.TryGetNonEnumeratedCount(out count);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.TryGetNonEnumeratedCount(out count);
             }
 
             return self.AsEnumerable().TryGetNonEnumeratedCount(out count);
@@ -2198,6 +3142,11 @@
                 return union.Union(second);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Union(second);
+            }
+
             return first.AsEnumerable().Union(second).ToV2Enumerable();
         }
 
@@ -2208,6 +3157,11 @@
                 return union.Union(second, comparer);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Union(second, comparer);
+            }
+
             return first.AsEnumerable().Union(second, comparer).ToV2Enumerable();
         }
 
@@ -2216,6 +3170,11 @@
             if (first is IUnionByEnumerable<TSource> unionBy)
             {
                 return unionBy.UnionBy(second, keySelector);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.UnionBy(second, keySelector);
             }
 
             return first.AsEnumerable().UnionBy(second, keySelector).ToV2Enumerable();
@@ -2232,6 +3191,11 @@
                 return unionBy.UnionBy(second, keySelector, comparer);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.UnionBy(second, keySelector, comparer);
+            }
+
             return first.AsEnumerable().UnionBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
@@ -2242,6 +3206,11 @@
                 return where.Where(predicate);
             }
 
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Where(predicate);
+            }
+
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
         }
 
@@ -2250,6 +3219,11 @@
             if (self is IWhere2Enumerable<TSource> where)
             {
                 return where.Where(predicate);
+            }
+
+            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Where(predicate);
             }
 
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
@@ -2265,6 +3239,11 @@
                 return zip.Zip(second, third);
             }
 
+            if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Zip(second, third);
+            }
+
             return first.AsEnumerable().Zip(second, third).ToV2Enumerable();
         }
 
@@ -2273,6 +3252,11 @@
             if (first is IZip2Enumerable<TFirst> zip)
             {
                 return zip.Zip(second);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Zip(second);
             }
 
             return first.AsEnumerable().Zip(second).ToV2Enumerable();
@@ -2286,6 +3270,11 @@
             if (first is IZip3Enumerable<TFirst> zip)
             {
                 return zip.Zip(second, resultSelector);
+            }
+
+            if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
+            {
+                return aggregatedOverload.Source.Zip(second, resultSelector);
             }
 
             return first.AsEnumerable().Zip(second, resultSelector).ToV2Enumerable();
