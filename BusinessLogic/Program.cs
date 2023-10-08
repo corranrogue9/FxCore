@@ -73,6 +73,7 @@
                 var whered = garretted.Where(_ => true);
                 Print(whered);
             }
+
             {
                 var data = GetDuplicatable();
                 Print(data);
