@@ -64,6 +64,15 @@
                     .Concat(new[] { "ASDF" }.ToV2Enumerable());
                 Print(concated);
             }
+
+            {
+                var data = GetData2();
+                Print(data);
+                var garretted = data.AddGarrett();
+                Print(garretted);
+                var whered = garretted.Where(_ => true);
+                Print(whered);
+            }
         }
 
         public static IV2Enumerable<string> GetData2()
