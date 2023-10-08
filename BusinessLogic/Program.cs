@@ -52,6 +52,19 @@
                     .Where(_ => true);
                 Print(concated);
             }
+
+            {
+                var data = GetData2();
+                Print(data);
+                var concatable = data.AddGarrett();
+                Print(concatable);
+                var concated = concatable
+                    .Concat(new[] { "1234" }.ToV2Enumerable())
+                    .Concat(new[] { "!@#$" }.ToV2Enumerable())
+                    .Where(_ => true)
+                    .Concat(new[] { "ASDF" }.ToV2Enumerable());
+                Print(concated);
+            }
         }
 
         public static IV2Enumerable<string> GetData2()
@@ -64,7 +77,7 @@
             private bool isWhered;
 
             public GetDataEnumerable()
-                : this (false)
+                : this(false)
             {
             }
 
