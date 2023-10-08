@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <ProjectReference Include="..\Fx.Garrett\Fx.Garrett.csproj" />
   </ItemGroup>
 
 </Project>
