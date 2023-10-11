@@ -5,6 +5,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.V2;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 
     internal class Program
     {
@@ -16,6 +18,17 @@
             }
 
             Console.WriteLine();
+        }
+
+        public static async Task DoWork()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var httpResponse = await httpClient.GetAsync("https://www.google.com"))
+                {
+                    httpResponse.
+                }
+            }
         }
 
         static void Main(string[] args)
