@@ -13,13 +13,13 @@
         TEnumerable2 Second { get; }
     }
 
-    public sealed class ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> : IConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> 
+    public struct ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> : IEnumerable<TElement>
         where TEnumerable1 : IEnumerable<TElement> 
         where TEnumerable2 : IEnumerable<TElement>
     {
-        private readonly Func<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, IEnumerator<TElement>> getEnumerator;
+        private readonly Func<TEnumerable1, TEnumerable2, IEnumerator<TElement>> getEnumerator;
 
-        public ConcatedEnumerable(TEnumerable1 first, TEnumerable2 second, Func<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, IEnumerator<TElement>> getEnumerator)
+        public ConcatedEnumerable(TEnumerable1 first, TEnumerable2 second, Func<TEnumerable1, TEnumerable2, IEnumerator<TElement>> getEnumerator)
         {
             this.First = first;
             this.Second = second;
@@ -32,7 +32,7 @@
 
         public IEnumerator<TElement> GetEnumerator()
         {
-            return this.getEnumerator(this);
+            return this.getEnumerator(this.First, this.Second);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -121,7 +121,14 @@
             return new ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>(
                 first,
                 second,
-                enumerable => ConcatIterator(enumerable.First, enumerable.Second).GetEnumerator());
+                ConcatIteratorEnumerator<TEnumerable1, TEnumerable2, TElement>);
+        }
+
+        private static IEnumerator<TElement> ConcatIteratorEnumerator<TEnumerable1, TEnumerable2, TElement>(TEnumerable1 first, TEnumerable2 second)
+            where TEnumerable1 : IEnumerable<TElement>
+            where TEnumerable2 : IEnumerable<TElement>
+        {
+            return ConcatIterator(first, second).GetEnumerator();
         }
 
         private static IEnumerable<T> ConcatIterator<T>(IEnumerable<T> first, IEnumerable<T> second)
@@ -156,8 +163,8 @@
 
     public static class Program
     {
-        public static WheredEnumerable<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, TElement> Where<TEnumerable1, TEnumerable2, TElement>(
-            this ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> concatedEnumerable,
+        public static ref WheredEnumerable<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, TElement> Where<TEnumerable1, TEnumerable2, TElement>(
+            this in ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> concatedEnumerable,
             Func<TElement, bool> predicate)
             where TEnumerable1 : IEnumerable<TElement>
             where TEnumerable2 : IEnumerable<TElement>
@@ -174,9 +181,9 @@
                     .GetEnumerator());
         }
 
-        public static int Count<TElement>(this IConcatedEnumerable<IReadOnlyCollection<TElement>, IReadOnlyCollection<TElement>, TElement> self)
+        public static int Count<TElement>(this ConcatedEnumerable<TElement[], TElement[], TElement> self)
         {
-            return self.First.Count + self.Second.Count;
+            return self.First.Length + self.Second.Length;
         }
 
         public static void DoWork()
@@ -188,7 +195,7 @@
             var result = data
                 .Concat<string[], string[], string>(data)
                 .Concat<ConcatedEnumerable<string[], string[], string>, string[], string>(data)
-                .Where(element => element.Length > 4)
+                .Where<ConcatedEnumerable<ConcatedEnumerable<string[], string[], string>, string[], string>, string>(element => element.Length > 4)
                 .Select<WheredEnumerable<ConcatedEnumerable<ConcatedEnumerable<string[], string[], string>, string[], string>, string>, string, int>(element => element.Length);
         }
     }
