@@ -20,6 +20,15 @@
 
         static void Main(string[] args)
         {
+            //// Personas:
+            //// person who is writing optimized "business logic" (series calendar events e.g.)
+            //// person who is writing an optimized linq call (overloading groupby)
+            //// person who is writing an optmization for linq where context of previous linq calls is imperative (e.g. where'ing after concat'ing)
+            //// person who is adding a new linq query (e.g. duplicate)
+            //// person who is writing an optmization for linq where context of previous linq calls is imperative (e.g. where'ing after duplating'ing)
+
+
+
             {
                 var data = GetData();
                 Print(data);
