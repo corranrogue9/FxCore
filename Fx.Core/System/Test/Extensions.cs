@@ -163,7 +163,7 @@
 
     public static class Program
     {
-        public static ref WheredEnumerable<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, TElement> Where<TEnumerable1, TEnumerable2, TElement>(
+        public static WheredEnumerable<ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement>, TElement> Where<TEnumerable1, TEnumerable2, TElement>(
             this in ConcatedEnumerable<TEnumerable1, TEnumerable2, TElement> concatedEnumerable,
             Func<TElement, bool> predicate)
             where TEnumerable1 : IEnumerable<TElement>

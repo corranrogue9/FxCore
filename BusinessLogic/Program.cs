@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Linq.V2;
     using System.Net.Http;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
 
     internal class Program
@@ -20,7 +21,7 @@
             Console.WriteLine();
         }
 
-        public static async Task DoWork()
+        /*public static async Task DoWork()
         {
             using (var httpClient = new HttpClient())
             {
@@ -29,103 +30,71 @@
                     httpResponse.
                 }
             }
+        }*/
+
+        private sealed class Company
+        {
+            public IReadOnlyDictionary<string, string> CompanyData { get; set; }
+
+            public IReadOnlyDictionary<string, string>[] RosterData { get; set; }
         }
 
-        static void Main(string[] args)
+        private static IReadOnlyDictionary<string, string> ParseNamedParameters(string filePath)
         {
+            using (var file = System.IO.File.OpenRead(filePath))
             {
-                var data = GetData();
-                Print(data);
+                return System.Text.Json.JsonSerializer.Deserialize<IReadOnlyDictionary<string, string>>(file)
+                    .ToDictionary(kvp => $"{{{kvp.Key}}}", kvp => kvp.Value);
+            }
+        }
+
+        private static void ReplacePowerPointContents(IReadOnlyDictionary<string, string> namedParameters, string powerpointTemplateFilePath, string outputPowerpointFilePath)
+        {
+            System.IO.File.Copy(powerpointTemplateFilePath, outputPowerpointFilePath);
+            var application = new Microsoft.Office.Interop.PowerPoint.Application();
+            application.Presentations.Open(
+                outputPowerpointFilePath,
+                Microsoft.Office.Core.MsoTriState.msoFalse,
+                Microsoft.Office.Core.MsoTriState.msoFalse,
+                Microsoft.Office.Core.MsoTriState.msoFalse);
+
+            foreach (Microsoft.Office.Interop.PowerPoint.Presentation presentation in application.Presentations)
+            {
+                foreach (Microsoft.Office.Interop.PowerPoint.Slide slide in presentation.Slides)
+                {
+                    foreach (Microsoft.Office.Interop.PowerPoint.Shape shape in slide.Shapes)
+                    {
+                        var textBoxText = shape.TextFrame.TextRange.Text;
+                        if (namedParameters.TryGetValue(textBoxText, out var replacementText))
+                        {
+                            shape.TextFrame.TextRange.Text = replacementText;
+                        }
+                    }
+                }
+
+                presentation.Save();
+                presentation.Close();
             }
 
+            application.Quit();
+        }
+
+        static int Main(string[] args)
+        {
+            if (args.Length != 3)
             {
-                var data = GetData2();
-                Print(data);
-                var whered = data.Where(_ => true);
-                Print(whered);
+                Console.Error.WriteLine("3 parameters are required: the path to the company's JSON file, the path to the companys powerpoint template, and the path that the output powerpoint file should be saved to");
+                return 1;
             }
 
-            {
-                var data = GetData2();
-                Print(data);
-                var concated = data
-                    .Concat(new[] { "1234" }.ToV2Enumerable())
-                    .Where(_ => true);
-                Print(concated);
-            }
+            var jsonFilePath = args[0];
+            var powerpointTemplateFilePath = args[1];
+            var outputPowerpointFilePath = args[2];
 
-            {
-                var data = GetData2();
-                Print(data);
-                var concatable = data.AddGarrett();
-                Print(concatable);
-                var concated = concatable
-                    .Concat(new[] { "1234" }.ToV2Enumerable())
-                    .Where(_ => true);
-                Print(concated);
-            }
-
-            {
-                var data = GetData2();
-                Print(data);
-                var concatable = data.AddGarrett();
-                Print(concatable);
-                var concated = concatable
-                    .Concat(new[] { "1234" }.ToV2Enumerable())
-                    .Concat(new[] { "!@#$" }.ToV2Enumerable())
-                    .Where(_ => true)
-                    .Concat(new[] { "ASDF" }.ToV2Enumerable());
-                Print(concated);
-            }
-
-            {
-                var data = GetData2();
-                Print(data);
-                var garretted = data.AddGarrett();
-                Print(garretted);
-                var whered = garretted.Where(_ => true);
-                Print(whered);
-            }
-
-            {
-                var data = GetDuplicatable();
-                Print(data);
-                var duplicated = data.Duplicate();
-                Print(duplicated);
-            }
-
-            {
-                var data = GetDuplicatable();
-                Print(data);
-                var garretted = data.AddGarrett();
-                Print(garretted);
-                var duplicated = garretted.Duplicate();
-                Print(duplicated);
-            }
-
-            {
-                var data = GetDuplicatable();
-                Print(data);
-                var garretted = data.AddGarrett();
-                Print(garretted);
-                var duplicated = garretted
-                    .Duplicate()
-                    .Concat(new[] { "1234"}.ToV2Enumerable());
-                Print(duplicated);
-            }
-
-            {
-                var data = GetDuplicatable();
-                Print(data);
-                var garretted = data.AddGarrett();
-                Print(garretted);
-                var duplicated = garretted
-                    .Concat(new[] { "1234" }.ToV2Enumerable())
-                    .Duplicate();
-                Print(duplicated);
-            }
-
-            //// TODO plus what happens if linq introduces a new extension "foo"?
+            var namedParameters = ParseNamedParameters(jsonFilePath);
+            ReplacePowerPointContents(namedParameters, powerpointTemplateFilePath, outputPowerpointFilePath);
+            
+            return 0;
         }
 
         public static IV2Enumerable<string> GetDuplicatable()
@@ -180,7 +149,7 @@
             private bool isWhered;
 
             public GetDataEnumerable()
-                : this (false)
+                : this(false)
             {
             }
 

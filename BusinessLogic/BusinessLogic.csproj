@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Office.Interop.PowerPoint" Version="15.0.4420.1018" />
+    <PackageReference Include="MicrosoftOfficeCore15" Version="15.0.4420.1017" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
     <ProjectReference Include="..\Fx.Garrett\Fx.Garrett.csproj" />
     <ProjectReference Include="..\Fx.Tyler\Fx.Tyler.csproj" />

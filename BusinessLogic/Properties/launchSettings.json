@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BusinessLogic": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\gdebruin\\Desktop\\powerpointdemo\\company1.json\" \"C:\\Users\\gdebruin\\Desktop\\powerpointdemo\\company1.pptx\" \"C:\\Users\\gdebruin\\Desktop\\powerpointdemo\\output.pptx\""
+    }
+  }
+}
