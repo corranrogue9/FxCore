@@ -3,6 +3,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Linq.V2;
     using System.Net.Http;
@@ -36,16 +38,7 @@
         {
             public IReadOnlyDictionary<string, string> CompanyData { get; set; }
 
-            public IReadOnlyDictionary<string, string>[] RosterData { get; set; }
-        }
-
-        private static IReadOnlyDictionary<string, string> ParseNamedParameters(string filePath)
-        {
-            using (var file = System.IO.File.OpenRead(filePath))
-            {
-                return System.Text.Json.JsonSerializer.Deserialize<IReadOnlyDictionary<string, string>>(file)
-                    .ToDictionary(kvp => $"{{{kvp.Key}}}", kvp => kvp.Value);
-            }
+            public IEnumerable<IReadOnlyDictionary<string, string>> RosterData { get; set; }
         }
 
         private static void ReplacePowerPointContents(IReadOnlyDictionary<string, string> namedParameters, string powerpointTemplateFilePath, string outputPowerpointFilePath)
@@ -81,19 +74,99 @@
 
         static int Main(string[] args)
         {
-            if (args.Length != 3)
+            if (args.Length != 5)
             {
+                //// TODO
                 Console.Error.WriteLine("3 parameters are required: the path to the company's JSON file, the path to the companys powerpoint template, and the path that the output powerpoint file should be saved to");
                 return 1;
             }
 
             var jsonFilePath = args[0];
-            var powerpointTemplateFilePath = args[1];
-            var outputPowerpointFilePath = args[2];
+            var partialreviewDeckFilePath = args[1];
+            var onePagersFolderPath = args[2];
+            var agenciesListSlideNumber = int.Parse(args[3]);
+            var outputReviewDeckFilePath = args[4];
 
-            var namedParameters = ParseNamedParameters(jsonFilePath);
-            ReplacePowerPointContents(namedParameters, powerpointTemplateFilePath, outputPowerpointFilePath);
-            
+            System.IO.File.Copy(partialreviewDeckFilePath, outputReviewDeckFilePath, true); //// TODO overwrite?
+            var application = new Microsoft.Office.Interop.PowerPoint.Application(); //// TODO dispose
+            try
+            {
+                application.Presentations.Open(
+                    outputReviewDeckFilePath,
+                    Microsoft.Office.Core.MsoTriState.msoFalse,
+                    Microsoft.Office.Core.MsoTriState.msoFalse,
+                    Microsoft.Office.Core.MsoTriState.msoFalse);
+
+                foreach (Microsoft.Office.Interop.PowerPoint.Presentation presentation in application.Presentations)
+                {
+                    try
+                    {
+                        string[] agencies = new string[0];
+                        int i = 0;
+                        foreach (Microsoft.Office.Interop.PowerPoint.Slide slide in presentation.Slides)
+                        {
+                            if (++i != agenciesListSlideNumber)
+                            {
+                                //// TODO assert
+                                continue;
+                            }
+
+                            string? agenciesList = null;
+                            foreach (Microsoft.Office.Interop.PowerPoint.Shape shape in slide.Shapes)
+                            {
+                                if (shape.TextFrame.TextRange.ParagraphFormat.Bullet.Type != Microsoft.Office.Interop.PowerPoint.PpBulletType.ppBulletNone)
+                                {
+                                    var textBoxText = shape.TextFrame.TextRange.Text;
+                                    if (!string.IsNullOrEmpty(textBoxText))
+                                    {
+                                        agenciesList = textBoxText;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (agenciesList == null)
+                            {
+                                throw new InvalidOperationException("TODO");
+                            }
+
+                            agencies = agenciesList.Split('\r', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                            break;
+                        }
+
+                        var missingOnePagers = new List<string>();
+                        foreach (var agency in agencies)
+                        {
+                            var agencyOnePagerFilePath = Path.Combine(onePagersFolderPath, agency + ".pptx");
+                            if (!File.Exists(agencyOnePagerFilePath))
+                            {
+                                missingOnePagers.Add(agencyOnePagerFilePath);
+                                continue;
+                            }
+
+                            presentation.Slides.InsertFromFile(agencyOnePagerFilePath, presentation.Slides.Count, 1);
+                        }
+
+                        if (missingOnePagers.Any())
+                        {
+                            throw new InvalidOperationException("TODO");
+                        }
+                    }
+                    finally
+                    {
+                        presentation.Save();
+                        presentation.Close();
+                    }
+                }
+            }
+            finally
+            {
+                application.Quit();
+            }
+
+            ////var namedParameters = ParseNamedParameters(jsonFilePath);
+            ////ReplacePowerPointContents(namedParameters, powerpointTemplateFilePath, outputPowerpointFilePath);
+
             return 0;
         }
 
