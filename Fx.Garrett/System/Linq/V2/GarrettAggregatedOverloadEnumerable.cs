@@ -3,40 +3,43 @@ using System.Collections.Generic;
 
 namespace System.Linq.V2
 {
-    public sealed class GarrettAggregatedOverloadEnumerable<T> : IAggregatedOverloadEnumerable<T>, IConcatEnumerable<T>
+    public sealed class GarrettAggregatedOverloadEnumerable<TElement> : IAggregatedOverloadEnumerable<TElement>, IConcatEnumerable<TElement>
     {
-        public GarrettAggregatedOverloadEnumerable(IV2Enumerable<T> source)
+        public GarrettAggregatedOverloadEnumerable(IV2Enumerable<TElement> source)
         {
             this.Source = source;
         }
 
-        public IV2Enumerable<T> Source { get; }
+        public IV2Enumerable<TElement> Source { get; }
 
-        public Func<IV2Enumerable<T>, IAggregatedOverloadEnumerable<T>> AggregatedOverloadFactory { get; } = enumerable => new GarrettAggregatedOverloadEnumerable<T>(enumerable);
+        public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
+        {
+            return source.AddGarrett();
+        }
 
-        public IV2Enumerable<T> Concat(IV2Enumerable<T> second)
+        public IV2Enumerable<TElement> Concat(IV2Enumerable<TElement> second)
         {
             return new ConcatedEnumerable(this.Source, second).AddGarrett();
         }
 
-        private sealed class ConcatedEnumerable : IWhereEnumerable<T>
+        private sealed class ConcatedEnumerable : IWhereEnumerable<TElement>
         {
-            private readonly IV2Enumerable<T> first;
+            private readonly IV2Enumerable<TElement> first;
 
-            private readonly IV2Enumerable<T> second;
+            private readonly IV2Enumerable<TElement> second;
 
-            public ConcatedEnumerable(IV2Enumerable<T> first, IV2Enumerable<T> second)
+            public ConcatedEnumerable(IV2Enumerable<TElement> first, IV2Enumerable<TElement> second)
             {
                 this.first = first;
                 this.second = second;
             }
 
-            public IEnumerator<T> GetEnumerator()
+            public IEnumerator<TElement> GetEnumerator()
             {
                 return this.first.Concat(this.second).GetEnumerator();
             }
 
-            public IV2Enumerable<T> Where(Func<T, bool> predicate)
+            public IV2Enumerable<TElement> Where(Func<TElement, bool> predicate)
             {
                 return new WheredEnumerable(this.first, this.second, predicate).AddGarrett();
             }
@@ -46,22 +49,22 @@ namespace System.Linq.V2
                 return this.GetEnumerator();
             }
 
-            private sealed class WheredEnumerable : IV2Enumerable<T>
+            private sealed class WheredEnumerable : IV2Enumerable<TElement>
             {
-                private readonly IV2Enumerable<T> first;
+                private readonly IV2Enumerable<TElement> first;
 
-                private readonly IV2Enumerable<T> second;
+                private readonly IV2Enumerable<TElement> second;
 
-                private readonly Func<T, bool> predicate;
+                private readonly Func<TElement, bool> predicate;
 
-                public WheredEnumerable(IV2Enumerable<T> first, IV2Enumerable<T> second, Func<T, bool> predicate)
+                public WheredEnumerable(IV2Enumerable<TElement> first, IV2Enumerable<TElement> second, Func<TElement, bool> predicate)
                 {
                     this.first = first;
                     this.second = second;
                     this.predicate = predicate;
                 }
 
-                public IEnumerator<T> GetEnumerator()
+                public IEnumerator<TElement> GetEnumerator()
                 {
                     return this.first.Where(predicate).Concat(this.second.Where(predicate)).GetEnumerator();
                 }
@@ -73,7 +76,7 @@ namespace System.Linq.V2
             }
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TElement> GetEnumerator()
         {
             return this.Source.GetEnumerator();
         }

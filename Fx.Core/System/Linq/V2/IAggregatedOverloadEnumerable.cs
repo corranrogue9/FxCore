@@ -1,9 +1,9 @@
 ﻿namespace System.Linq.V2
 {
-    public interface IAggregatedOverloadEnumerable<T> : IV2Enumerable<T>
+    public interface IAggregatedOverloadEnumerable<TElement> : IV2Enumerable<TElement>
     {
-        IV2Enumerable<T> Source { get; }
+        IV2Enumerable<TElement> Source { get; }
 
-        Func<IV2Enumerable<T>, IAggregatedOverloadEnumerable<T>> AggregatedOverloadFactory { get; }
+        IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source);
     }
 }

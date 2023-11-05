@@ -250,7 +250,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.AggregatedOverloadFactory(aggregatedOverload.Source.Append(element));
+                return aggregatedOverload.Create(aggregatedOverload.Source.Append(element));
             }
 
             return self.AsEnumerable().Append(element).ToV2Enumerable();
@@ -577,7 +577,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Chunk(size);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Chunk(size));
             }
 
             return self.AsEnumerable().Chunk(size).ToV2Enumerable();
@@ -592,7 +592,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Concat(second);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Concat(second));
             }
 
             return first.AsEnumerable().Concat(second).ToV2Enumerable();
@@ -667,7 +667,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.DefaultIfEmpty();
+                return aggregatedOverload.Create(aggregatedOverload.Source.DefaultIfEmpty());
             }
 
             return self.AsEnumerable().DefaultIfEmpty().ToV2Enumerable();
@@ -682,7 +682,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.DefaultIfEmpty(defaultValue);
+                return aggregatedOverload.Create(aggregatedOverload.Source.DefaultIfEmpty(defaultValue));
             }
 
             return self.AsEnumerable().DefaultIfEmpty(defaultValue).ToV2Enumerable();
@@ -697,7 +697,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Distinct();
+                return aggregatedOverload.Create(aggregatedOverload.Source.Distinct());
             }
 
             return self.AsEnumerable().Distinct().ToV2Enumerable();
@@ -712,7 +712,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Distinct(comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Distinct(comparer));
             }
 
             return self.AsEnumerable().Distinct(comparer).ToV2Enumerable();
@@ -727,7 +727,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.DistinctBy(keySelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.DistinctBy(keySelector));
             }
 
             return self.AsEnumerable().DistinctBy(keySelector).ToV2Enumerable();
@@ -742,7 +742,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.DistinctBy(keySelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.DistinctBy(keySelector, comparer));
             }
 
             return self.AsEnumerable().DistinctBy(keySelector, comparer).ToV2Enumerable();
@@ -823,7 +823,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Except(second);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Except(second));
             }
 
             return first.AsEnumerable().Except(second).ToV2Enumerable();
@@ -838,7 +838,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Except(second, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Except(second, comparer));
             }
 
             return first.AsEnumerable().Except(second, comparer).ToV2Enumerable();
@@ -853,7 +853,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.ExceptBy(second, keySelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.ExceptBy(second, keySelector));
             }
 
             return first.AsEnumerable().ExceptBy(second, keySelector).ToV2Enumerable();
@@ -872,7 +872,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.ExceptBy(second, keySelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.ExceptBy(second, keySelector, comparer));
             }
 
             return first.AsEnumerable().ExceptBy(second, keySelector, comparer).ToV2Enumerable();
@@ -982,7 +982,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector, comparer));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
@@ -1001,7 +1001,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
@@ -1020,7 +1020,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, resultSelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, resultSelector, comparer));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
@@ -1038,7 +1038,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, resultSelector));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
@@ -1053,7 +1053,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector));
             }
 
             return self.AsEnumerable().GroupBy(keySelector).Select(ToV2Grouping).ToV2Enumerable();
@@ -1071,7 +1071,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector).Select(ToV2Grouping).ToV2Enumerable();
@@ -1089,7 +1089,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, comparer));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
@@ -1108,7 +1108,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupBy(keySelector, elementSelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, comparer));
             }
 
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
@@ -1129,7 +1129,7 @@
 
             if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer));
             }
 
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable()), comparer).ToV2Enumerable();
@@ -1149,7 +1149,7 @@
 
             if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
             {
-                return aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector));
             }
 
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable())).ToV2Enumerable();
@@ -1164,7 +1164,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Intersect(second, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Intersect(second, comparer));
             }
 
             return first.AsEnumerable().Intersect(second, comparer).ToV2Enumerable();
@@ -1179,7 +1179,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Intersect(second);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Intersect(second));
             }
 
             return first.AsEnumerable().Intersect(second).ToV2Enumerable();
@@ -1194,7 +1194,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.IntersectBy(second, keySelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.IntersectBy(second, keySelector));
             }
 
             return first.AsEnumerable().IntersectBy(second, keySelector).ToV2Enumerable();
@@ -1213,7 +1213,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.IntersectBy(second, keySelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.IntersectBy(second, keySelector, comparer));
             }
 
             return first.AsEnumerable().IntersectBy(second, keySelector, comparer).ToV2Enumerable();
@@ -1233,7 +1233,7 @@
 
             if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector));
             }
 
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector).ToV2Enumerable();
@@ -1254,7 +1254,7 @@
 
             if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer));
             }
 
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer).ToV2Enumerable();
@@ -2145,10 +2145,47 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.OrderBy(keySelector, comparer);
+                var ordered = aggregatedOverload.Source.OrderBy(keySelector, comparer);
+                var aggregated = aggregatedOverload.Create(ordered);
+                return new V2OrderedEnumerableAggregatedEnumerable<TSource>(ordered, aggregated);
             }
 
             return self.AsEnumerable().OrderBy(keySelector, comparer).ToV2OrderedEnumerable();
+        }
+
+        private sealed class V2OrderedEnumerableAggregatedEnumerable<TElement> : IV2OrderedEnumerable<TElement>, IAggregatedOverloadEnumerable<TElement>
+        {
+            private readonly IV2OrderedEnumerable<TElement> orderedEnumerable;
+
+            private readonly IAggregatedOverloadEnumerable<TElement> aggregatedOverload;
+
+            public V2OrderedEnumerableAggregatedEnumerable(IV2OrderedEnumerable<TElement> orderedEnumerable, IAggregatedOverloadEnumerable<TElement> aggregatedOverload)
+            {
+                this.orderedEnumerable = orderedEnumerable;
+                this.aggregatedOverload = aggregatedOverload;
+            }
+
+            public IV2Enumerable<TElement> Source => this.orderedEnumerable;
+
+            public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
+            {
+                return this.aggregatedOverload.Create(source);
+            }
+
+            public IV2OrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
+            {
+                return this.orderedEnumerable.CreateOrderedEnumerable(keySelector, comparer, descending);
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                return this.aggregatedOverload.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
         }
 
         public static IV2OrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
@@ -2160,7 +2197,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.OrderBy(keySelector);
+                var ordered = aggregatedOverload.Source.OrderBy(keySelector);
+                var aggregated = aggregatedOverload.Create(ordered);
+                return new V2OrderedEnumerableAggregatedEnumerable<TSource>(ordered, aggregated);
             }
 
             return self.AsEnumerable().OrderBy(keySelector).ToV2OrderedEnumerable();
@@ -2175,7 +2214,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.OrderByDescending(keySelector);
+                var ordered = aggregatedOverload.Source.OrderByDescending(keySelector);
+                var aggregated = aggregatedOverload.Create(ordered);
+                return new V2OrderedEnumerableAggregatedEnumerable<TSource>(ordered, aggregated);
             }
 
             return self.AsEnumerable().OrderByDescending(keySelector).ToV2OrderedEnumerable();
@@ -2193,7 +2234,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.OrderByDescending(keySelector, comparer);
+                var ordered = aggregatedOverload.Source.OrderByDescending(keySelector, comparer);
+                var aggregated = aggregatedOverload.Create(ordered);
+                return new V2OrderedEnumerableAggregatedEnumerable<TSource>(ordered, aggregated);
             }
 
             return self.AsEnumerable().OrderByDescending(keySelector, comparer).ToV2OrderedEnumerable();
@@ -2208,7 +2251,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Prepend(element);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Prepend(element));
             }
 
             return self.AsEnumerable().Prepend(element).ToV2Enumerable();
@@ -2235,7 +2278,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Reverse();
+                return aggregatedOverload.Create(aggregatedOverload.Source.Reverse());
             }
 
             return self.AsEnumerable().Reverse().ToV2Enumerable();
@@ -2249,7 +2292,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Select(selector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Select(selector));
             }
 
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
@@ -2264,7 +2307,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Select(selector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Select(selector));
             }
 
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
@@ -2279,7 +2322,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SelectMany(selector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SelectMany(selector));
             }
 
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
@@ -2297,7 +2340,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector));
             }
 
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
@@ -2315,7 +2358,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SelectMany(collectionSelector, resultSelector));
             }
 
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
@@ -2330,7 +2373,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SelectMany(selector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SelectMany(selector));
             }
 
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
@@ -2465,7 +2508,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Skip(count);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Skip(count));
             }
 
             return self.AsEnumerable().Skip(count).ToV2Enumerable();
@@ -2480,7 +2523,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SkipLast(count);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SkipLast(count));
             }
 
             return self.AsEnumerable().SkipLast(count).ToV2Enumerable();
@@ -2495,7 +2538,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SkipWhile(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SkipWhile(predicate));
             }
 
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
@@ -2510,7 +2553,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.SkipWhile(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.SkipWhile(predicate));
             }
 
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
@@ -2825,7 +2868,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Take(range);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Take(range));
             }
 
             return self.AsEnumerable().Take(range).ToV2Enumerable();
@@ -2840,7 +2883,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Take(count);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Take(count));
             }
 
             return self.AsEnumerable().Take(count).ToV2Enumerable();
@@ -2855,7 +2898,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.TakeLast(count);
+                return aggregatedOverload.Create(aggregatedOverload.Source.TakeLast(count));
             }
 
             return self.AsEnumerable().TakeLast(count).ToV2Enumerable();
@@ -2870,7 +2913,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.TakeWhile(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.TakeWhile(predicate));
             }
 
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
@@ -2885,7 +2928,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.TakeWhile(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.TakeWhile(predicate));
             }
 
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
@@ -3065,6 +3108,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
+                //// TODO use aggregatedoverload factory
                 return aggregatedOverload.Source.ToLookup(keySelector, elementSelector, comparer);
             }
 
@@ -3083,6 +3127,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
+                //// TODO use aggregatedoverload factory
                 return aggregatedOverload.Source.ToLookup(keySelector, elementSelector);
             }
 
@@ -3098,6 +3143,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
+                //// TODO use aggregatedoverload factory
                 return aggregatedOverload.Source.ToLookup(keySelector);
             }
 
@@ -3113,6 +3159,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
+                //// TODO use aggregatedoverload factory
                 return aggregatedOverload.Source.ToLookup(keySelector, comparer);
             }
 
@@ -3143,7 +3190,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Union(second);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Union(second));
             }
 
             return first.AsEnumerable().Union(second).ToV2Enumerable();
@@ -3158,7 +3205,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Union(second, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Union(second, comparer));
             }
 
             return first.AsEnumerable().Union(second, comparer).ToV2Enumerable();
@@ -3173,7 +3220,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.UnionBy(second, keySelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.UnionBy(second, keySelector));
             }
 
             return first.AsEnumerable().UnionBy(second, keySelector).ToV2Enumerable();
@@ -3192,7 +3239,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.UnionBy(second, keySelector, comparer);
+                return aggregatedOverload.Create(aggregatedOverload.Source.UnionBy(second, keySelector, comparer));
             }
 
             return first.AsEnumerable().UnionBy(second, keySelector, comparer).ToV2Enumerable();
@@ -3207,7 +3254,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Where(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Where(predicate));
             }
 
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
@@ -3222,7 +3269,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Where(predicate);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Where(predicate));
             }
 
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
@@ -3240,7 +3287,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Zip(second, third);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Zip(second, third));
             }
 
             return first.AsEnumerable().Zip(second, third).ToV2Enumerable();
@@ -3255,7 +3302,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Zip(second);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Zip(second));
             }
 
             return first.AsEnumerable().Zip(second).ToV2Enumerable();
@@ -3273,7 +3320,7 @@
 
             if (first is IAggregatedOverloadEnumerable<TFirst> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Zip(second, resultSelector);
+                return aggregatedOverload.Create(aggregatedOverload.Source.Zip(second, resultSelector));
             }
 
             return first.AsEnumerable().Zip(second, resultSelector).ToV2Enumerable();
