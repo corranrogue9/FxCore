@@ -2156,32 +2156,31 @@
 
         private sealed class V2OrderedEnumerableAggregatedEnumerable<TElement> : IV2OrderedEnumerable<TElement>, IAggregatedOverloadEnumerable<TElement>
         {
-            private readonly IV2OrderedEnumerable<TElement> orderedEnumerable;
+            private readonly IV2OrderedEnumerable<TElement> ordered;
 
-            private readonly IAggregatedOverloadEnumerable<TElement> aggregatedOverload;
+            private readonly IAggregatedOverloadEnumerable<TElement> aggregated;
 
-            public V2OrderedEnumerableAggregatedEnumerable(IV2OrderedEnumerable<TElement> orderedEnumerable, IAggregatedOverloadEnumerable<TElement> aggregatedOverload)
+            public V2OrderedEnumerableAggregatedEnumerable(IV2OrderedEnumerable<TElement> ordered, IAggregatedOverloadEnumerable<TElement> aggregated)
             {
-                //// TODO normalize naming with lookup
-                this.orderedEnumerable = orderedEnumerable;
-                this.aggregatedOverload = aggregatedOverload;
+                this.ordered = ordered;
+                this.aggregated = aggregated;
             }
 
-            public IV2Enumerable<TElement> Source => this.orderedEnumerable;
+            public IV2Enumerable<TElement> Source => this.ordered;
 
             public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
             {
-                return this.aggregatedOverload.Create(source);
+                return this.aggregated.Create(source);
             }
 
             public IV2OrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
             {
-                return this.orderedEnumerable.CreateOrderedEnumerable(keySelector, comparer, descending);
+                return this.ordered.CreateOrderedEnumerable(keySelector, comparer, descending);
             }
 
             public IEnumerator<TElement> GetEnumerator()
             {
-                return this.aggregatedOverload.GetEnumerator();
+                return this.aggregated.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -3122,13 +3121,12 @@
         {
             private readonly IV2Lookup<TKey, TElement> lookup;
 
-            private readonly IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> overload;
+            private readonly IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated;
 
-            public V2LookupAggregatedOverload(IV2Lookup<TKey, TElement> lookup, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> overload)
+            public V2LookupAggregatedOverload(IV2Lookup<TKey, TElement> lookup, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated)
             {
-                //// TODO normalize naming with orderby
                 this.lookup = lookup;
-                this.overload = overload;
+                this.aggregated = aggregated;
             }
 
             public IV2Enumerable<TElement> this[TKey key] => this.lookup[key];
@@ -3144,12 +3142,12 @@
 
             public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
             {
-                return this.overload.Create(source);
+                return this.aggregated.Create(source);
             }
 
             public IEnumerator<IV2Grouping<TKey, TElement>> GetEnumerator()
             {
-                return this.overload.GetEnumerator();
+                return this.aggregated.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
