@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Reflection.Metadata.Ecma335;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Xml.Linq;
@@ -2161,6 +2162,7 @@
 
             public V2OrderedEnumerableAggregatedEnumerable(IV2OrderedEnumerable<TElement> orderedEnumerable, IAggregatedOverloadEnumerable<TElement> aggregatedOverload)
             {
+                //// TODO normalize naming with lookup
                 this.orderedEnumerable = orderedEnumerable;
                 this.aggregatedOverload = aggregatedOverload;
             }
@@ -3108,11 +3110,52 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                //// TODO use aggregatedoverload factory
-                return aggregatedOverload.Source.ToLookup(keySelector, elementSelector, comparer);
+                var lookup = aggregatedOverload.Source.ToLookup(keySelector, elementSelector, comparer);
+                var aggregated = aggregatedOverload.Create(lookup);
+                return new V2LookupAggregatedOverload<TKey, TElement>(lookup, aggregated);
             }
 
             return self.AsEnumerable().ToLookup(keySelector, elementSelector, comparer).ToV2Lookup();
+        }
+
+        private sealed class V2LookupAggregatedOverload<TKey, TElement> : IV2Lookup<TKey, TElement>, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>>
+        {
+            private readonly IV2Lookup<TKey, TElement> lookup;
+
+            private readonly IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> overload;
+
+            public V2LookupAggregatedOverload(IV2Lookup<TKey, TElement> lookup, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> overload)
+            {
+                //// TODO normalize naming with orderby
+                this.lookup = lookup;
+                this.overload = overload;
+            }
+
+            public IV2Enumerable<TElement> this[TKey key] => this.lookup[key];
+
+            public IV2Enumerable<IV2Grouping<TKey, TElement>> Source => this.lookup;
+
+            public int Count => this.lookup.Count;
+
+            public bool Contains(TKey key)
+            {
+                return this.lookup.Contains(key);
+            }
+
+            public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
+            {
+                return this.overload.Create(source);
+            }
+
+            public IEnumerator<IV2Grouping<TKey, TElement>> GetEnumerator()
+            {
+                return this.overload.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
         }
 
         public static IV2Lookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(
@@ -3127,8 +3170,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                //// TODO use aggregatedoverload factory
-                return aggregatedOverload.Source.ToLookup(keySelector, elementSelector);
+                var lookup = aggregatedOverload.Source.ToLookup(keySelector, elementSelector);
+                var aggregated = aggregatedOverload.Create(lookup);
+                return new V2LookupAggregatedOverload<TKey, TElement>(lookup, aggregated);
             }
 
             return self.AsEnumerable().ToLookup(keySelector, elementSelector).ToV2Lookup();
@@ -3143,8 +3187,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                //// TODO use aggregatedoverload factory
-                return aggregatedOverload.Source.ToLookup(keySelector);
+                var lookup = aggregatedOverload.Source.ToLookup(keySelector);
+                var aggregated = aggregatedOverload.Create(lookup);
+                return new V2LookupAggregatedOverload<TKey, TSource>(lookup, aggregated);
             }
 
             return self.AsEnumerable().ToLookup(keySelector).ToV2Lookup();
@@ -3159,8 +3204,9 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                //// TODO use aggregatedoverload factory
-                return aggregatedOverload.Source.ToLookup(keySelector, comparer);
+                var lookup = aggregatedOverload.Source.ToLookup(keySelector, comparer);
+                var aggregated = aggregatedOverload.Create(lookup);
+                return new V2LookupAggregatedOverload<TKey, TSource>(lookup, aggregated);
             }
 
             return self.AsEnumerable().ToLookup(keySelector, comparer).ToV2Lookup();
