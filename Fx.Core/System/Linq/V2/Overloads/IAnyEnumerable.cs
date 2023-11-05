@@ -2,6 +2,14 @@
 {
     public interface IAnyEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        bool Any();
+        public bool Any()
+        {
+            return this.AnyDefault();
+        }
+
+        public bool Any(Func<TSource, bool> predicate)
+        {
+            return this.AnyDefault(predicate);
+        }
     }
 }
