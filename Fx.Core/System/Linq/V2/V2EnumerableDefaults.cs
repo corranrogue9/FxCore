@@ -11,13 +11,8 @@
 
     public static partial class V2Enumerable
     {
-        public static TSource AggregateDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, TSource, TSource> func)
+        internal static TSource AggregateDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, TSource, TSource> func)
         {
-            if (self is IAggregateEnumerable<TSource> aggregate)
-            {
-                return aggregate.Aggregate(func);
-            }
-
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
                 return aggregatedOverload.Source.Aggregate(func);
@@ -26,7 +21,7 @@
             return self.AsEnumerable().Aggregate(func);
         }
 
-        public static TAccumulate AggregateDefault<TSource, TAccumulate>(this IV2Enumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        internal static TAccumulate AggregateDefault<TSource, TAccumulate>(this IV2Enumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (self is IAggregate2Enumerable<TSource> aggregate)
             {
@@ -41,7 +36,7 @@
             return self.AsEnumerable().Aggregate(seed, func);
         }
 
-        public static TResult AggregateDefault<TSource, TAccumulate, TResult>(
+        internal static TResult AggregateDefault<TSource, TAccumulate, TResult>(
             this IV2Enumerable<TSource> self,
             TAccumulate seed,
             Func<TAccumulate, TSource, TAccumulate> func,
@@ -60,7 +55,7 @@
             return self.AsEnumerable().Aggregate(seed, func, resultSelector);
         }
 
-        public static bool AllDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static bool AllDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is IAllEnumerable<TSource> all)
             {
@@ -85,7 +80,7 @@
             return self.AsEnumerable().Any();
         }
 
-        public static bool AnyDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static bool AnyDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is IAny2Enumerable<TSource> any)
             {
@@ -100,7 +95,7 @@
             return self.AsEnumerable().Any(predicate);
         }
 
-        public static IV2Enumerable<TSource> AppendDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
+        internal static IV2Enumerable<TSource> AppendDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
         {
             if (self is IAppendEnumerable<TSource> append)
             {
@@ -115,7 +110,7 @@
             return self.AsEnumerable().Append(element).ToV2Enumerable();
         }
 
-        public static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
+        internal static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
         {
             if (self is IAverageEnumerable<TSource> average)
             {
@@ -130,7 +125,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
+        internal static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
         {
             if (self is IAverage2Enumerable<TSource> average)
             {
@@ -145,7 +140,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
+        internal static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
         {
             if (self is IAverage3Enumerable<TSource> average)
             {
@@ -160,7 +155,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static float AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
+        internal static float AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
         {
             if (self is IAverage4Enumerable<TSource> average)
             {
@@ -175,7 +170,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
+        internal static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
         {
             if (self is IAverage5Enumerable<TSource> average)
             {
@@ -190,7 +185,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static float? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
+        internal static float? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
         {
             if (self is IAverage6Enumerable<TSource> average)
             {
@@ -205,7 +200,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
+        internal static double AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
         {
             if (self is IAverage7Enumerable<TSource> average)
             {
@@ -220,7 +215,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
+        internal static double? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
         {
             if (self is IAverage8Enumerable<TSource> average)
             {
@@ -235,7 +230,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static decimal AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
+        internal static decimal AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
         {
             if (self is IAverage9Enumerable<TSource> average)
             {
@@ -250,7 +245,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static decimal? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
+        internal static decimal? AverageDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
         {
             if (self is IAverage10Enumerable<TSource> average)
             {
@@ -265,7 +260,7 @@
             return self.AsEnumerable().Average(selector);
         }
 
-        public static float? AverageDefault(this IV2Enumerable<float?> self)
+        internal static float? AverageDefault(this IV2Enumerable<float?> self)
         {
             if (self is IAverage11Enumerable average)
             {
@@ -280,7 +275,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double? AverageDefault(this IV2Enumerable<long?> self)
+        internal static double? AverageDefault(this IV2Enumerable<long?> self)
         {
             if (self is IAverage12Enumerable average)
             {
@@ -295,7 +290,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double? AverageDefault(this IV2Enumerable<int?> self)
+        internal static double? AverageDefault(this IV2Enumerable<int?> self)
         {
             if (self is IAverage13Enumerable average)
             {
@@ -310,7 +305,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double? AverageDefault(this IV2Enumerable<double?> self)
+        internal static double? AverageDefault(this IV2Enumerable<double?> self)
         {
             if (self is IAverage14Enumerable average)
             {
@@ -325,7 +320,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static decimal? AverageDefault(this IV2Enumerable<decimal?> self)
+        internal static decimal? AverageDefault(this IV2Enumerable<decimal?> self)
         {
             if (self is IAverage15Enumerable average)
             {
@@ -340,7 +335,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double AverageDefault(this IV2Enumerable<long> self)
+        internal static double AverageDefault(this IV2Enumerable<long> self)
         {
             if (self is IAverage16Enumerable average)
             {
@@ -355,7 +350,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double AverageDefault(this IV2Enumerable<int> self)
+        internal static double AverageDefault(this IV2Enumerable<int> self)
         {
             if (self is IAverage17Enumerable average)
             {
@@ -370,7 +365,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static double AverageDefault(this IV2Enumerable<double> self)
+        internal static double AverageDefault(this IV2Enumerable<double> self)
         {
             if (self is IAverage18Enumerable average)
             {
@@ -385,7 +380,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static decimal AverageDefault(this IV2Enumerable<decimal> self)
+        internal static decimal AverageDefault(this IV2Enumerable<decimal> self)
         {
             if (self is IAverage19Enumerable average)
             {
@@ -400,7 +395,7 @@
             return self.AsEnumerable().Average();
         }
 
-        public static float AverageDefault(this IV2Enumerable<float> self)
+        internal static float AverageDefault(this IV2Enumerable<float> self)
         {
             if (self is IAverage20Enumerable average)
             {
@@ -415,13 +410,13 @@
             return self.AsEnumerable().Average();
         }
 
-        /*public static IV2Enumerable<TResult> Cast<TResult>(this IV2Enumerable self)
+        /*internal static IV2Enumerable<TResult> Cast<TResult>(this IV2Enumerable self)
         {
             //// TODO
             throw new System.NotImplementedException();
         }*/
 
-        public static IV2Enumerable<TSource[]> ChunkDefault<TSource>(this IV2Enumerable<TSource> self, int size)
+        internal static IV2Enumerable<TSource[]> ChunkDefault<TSource>(this IV2Enumerable<TSource> self, int size)
         {
             if (self is IChunkEnumerable<TSource> chunk)
             {
@@ -436,7 +431,7 @@
             return self.AsEnumerable().Chunk(size).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> ConcatDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
+        internal static IV2Enumerable<TSource> ConcatDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IConcatEnumerable<TSource> concat)
             {
@@ -451,7 +446,7 @@
             return first.AsEnumerable().Concat(second).ToV2Enumerable();
         }
 
-        public static bool ContainsDefault<TSource>(this IV2Enumerable<TSource> self, TSource value, IEqualityComparer<TSource>? comparer)
+        internal static bool ContainsDefault<TSource>(this IV2Enumerable<TSource> self, TSource value, IEqualityComparer<TSource>? comparer)
         {
             if (self is IContainsEnumerable<TSource> contains)
             {
@@ -466,7 +461,7 @@
             return self.AsEnumerable().Contains(value, comparer);
         }
 
-        public static bool ContainsDefault<TSource>(this IV2Enumerable<TSource> self, TSource value)
+        internal static bool ContainsDefault<TSource>(this IV2Enumerable<TSource> self, TSource value)
         {
             if (self is IContains2Enumerable<TSource> contains)
             {
@@ -481,7 +476,7 @@
             return self.AsEnumerable().Contains(value);
         }
 
-        public static int CountDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static int CountDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ICountEnumerable<TSource> count)
             {
@@ -496,7 +491,7 @@
             return self.AsEnumerable().Count();
         }
 
-        public static int CountDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static int CountDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ICount2Enumerable<TSource> count)
             {
@@ -511,7 +506,7 @@
             return self.AsEnumerable().Count(predicate);
         }
 
-        public static IV2Enumerable<TSource?> DefaultIfEmptyDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static IV2Enumerable<TSource?> DefaultIfEmptyDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IDefaultIfEmptyEnumerable<TSource> defaultIfEmpty)
             {
@@ -526,7 +521,7 @@
             return self.AsEnumerable().DefaultIfEmpty().ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> DefaultIfEmptyDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
+        internal static IV2Enumerable<TSource> DefaultIfEmptyDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
         {
             if (self is IDefaultIfEmpty2Enumerable<TSource> defaultIfEmpty)
             {
@@ -541,7 +536,7 @@
             return self.AsEnumerable().DefaultIfEmpty(defaultValue).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> DistinctDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static IV2Enumerable<TSource> DistinctDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IDistinctEnumerable<TSource> distinct)
             {
@@ -556,7 +551,7 @@
             return self.AsEnumerable().Distinct().ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> DistinctDefault<TSource>(this IV2Enumerable<TSource> self, IEqualityComparer<TSource>? comparer)
+        internal static IV2Enumerable<TSource> DistinctDefault<TSource>(this IV2Enumerable<TSource> self, IEqualityComparer<TSource>? comparer)
         {
             if (self is IDistinct2Enumerable<TSource> distinct)
             {
@@ -571,7 +566,7 @@
             return self.AsEnumerable().Distinct(comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> DistinctByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2Enumerable<TSource> DistinctByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IDistinctByEnumerable<TSource> distinctBy)
             {
@@ -586,7 +581,7 @@
             return self.AsEnumerable().DistinctBy(keySelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> DistinctByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+        internal static IV2Enumerable<TSource> DistinctByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
         {
             if (self is IDistinctBy2Enumerable<TSource> distinctBy)
             {
@@ -601,7 +596,7 @@
             return self.AsEnumerable().DistinctBy(keySelector, comparer).ToV2Enumerable();
         }
 
-        public static TSource ElementAtDefault<TSource>(this IV2Enumerable<TSource> self, Index index)
+        internal static TSource ElementAtDefault<TSource>(this IV2Enumerable<TSource> self, Index index)
         {
             if (self is IElementAtEnumerable<TSource> elementAt)
             {
@@ -616,7 +611,7 @@
             return self.AsEnumerable().ElementAt(index);
         }
 
-        public static TSource ElementAtDefault<TSource>(this IV2Enumerable<TSource> self, int index)
+        internal static TSource ElementAtDefault<TSource>(this IV2Enumerable<TSource> self, int index)
         {
             if (self is IElementAt2Enumerable<TSource> elementAt)
             {
@@ -631,7 +626,7 @@
             return self.AsEnumerable().ElementAt(index);
         }
 
-        public static TSource? ElementAtOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Index index)
+        internal static TSource? ElementAtOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Index index)
         {
             if (self is IElementAtOrDefaultEnumerable<TSource> elementAtOrDefault)
             {
@@ -646,7 +641,7 @@
             return self.AsEnumerable().ElementAtOrDefault(index);
         }
 
-        public static TSource? ElementAtOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, int index)
+        internal static TSource? ElementAtOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, int index)
         {
             if (self is IElementAtOrDefault2Enumerable<TSource> elementAtOrDefault)
             {
@@ -661,13 +656,13 @@
             return self.AsEnumerable().ElementAtOrDefault(index);
         }
 
-        public static IV2Enumerable<TResult> EmptyDefault<TResult>()
+        internal static IV2Enumerable<TResult> EmptyDefault<TResult>()
         {
             //// TODO
             throw new System.NotImplementedException();
         }
 
-        public static IV2Enumerable<TSource> ExceptDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
+        internal static IV2Enumerable<TSource> ExceptDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IExceptEnumerable<TSource> except)
             {
@@ -682,7 +677,7 @@
             return first.AsEnumerable().Except(second).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> ExceptDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        internal static IV2Enumerable<TSource> ExceptDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
         {
             if (first is IExcept2Enumerable<TSource> except)
             {
@@ -697,7 +692,7 @@
             return first.AsEnumerable().Except(second, comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> ExceptByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
+        internal static IV2Enumerable<TSource> ExceptByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
         {
             if (first is IExceptByEnumerable<TSource> exceptBy)
             {
@@ -712,7 +707,7 @@
             return first.AsEnumerable().ExceptBy(second, keySelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> ExceptByDefault<TSource, TKey>(
+        internal static IV2Enumerable<TSource> ExceptByDefault<TSource, TKey>(
             this IV2Enumerable<TSource> first,
             IV2Enumerable<TKey> second,
             Func<TSource, TKey> keySelector,
@@ -731,7 +726,7 @@
             return first.AsEnumerable().ExceptBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
-        public static TSource FirstDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource FirstDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IFirstEnumerable<TSource> first)
             {
@@ -746,7 +741,7 @@
             return self.AsEnumerable().First();
         }
 
-        public static TSource FirstDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource FirstDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is IFirst2Enumerable<TSource> first)
             {
@@ -761,7 +756,7 @@
             return self.AsEnumerable().First(predicate);
         }
 
-        public static TSource? FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource? FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IFirstOrDefaultEnumerable<TSource> firstOrDefault)
             {
@@ -776,7 +771,7 @@
             return self.AsEnumerable().FirstOrDefault();
         }
 
-        public static TSource FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
+        internal static TSource FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
         {
             if (self is IFirstOrDefault2Enumerable<TSource> firstOrDefault)
             {
@@ -791,7 +786,7 @@
             return self.AsEnumerable().FirstOrDefault(defaultValue);
         }
 
-        public static TSource? FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource? FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is IFirstOrDefault3Enumerable<TSource> firstOrDefault)
             {
@@ -806,7 +801,7 @@
             return self.AsEnumerable().FirstOrDefault(predicate);
         }
 
-        public static TSource FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
+        internal static TSource FirstOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
         {
             if (self is IFirstOrDefault4Enumerable<TSource> firstOrDefault)
             {
@@ -821,7 +816,7 @@
             return self.AsEnumerable().FirstOrDefault(predicate, defaultValue);
         }
 
-        public static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TElement, TResult>(
+        internal static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TElement, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
@@ -841,7 +836,7 @@
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TElement, TResult>(
+        internal static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TElement, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
@@ -860,7 +855,7 @@
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TResult>(
+        internal static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TKey, IV2Enumerable<TSource>, TResult> resultSelector,
@@ -879,7 +874,7 @@
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TResult>(
+        internal static IV2Enumerable<TResult> GroupByDefault<TSource, TKey, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TKey, IV2Enumerable<TSource>, TResult> resultSelector)
@@ -897,7 +892,7 @@
             return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IGroupBy5Enumerable<TSource> groupBy)
             {
@@ -912,7 +907,7 @@
             return self.AsEnumerable().GroupBy(keySelector).Select(ToV2Grouping).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupByDefault<TSource, TKey, TElement>(
+        internal static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupByDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector)
@@ -930,7 +925,7 @@
             return self.AsEnumerable().GroupBy(keySelector, elementSelector).Select(ToV2Grouping).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupByDefault<TSource, TKey>(
+        internal static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupByDefault<TSource, TKey>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
@@ -948,7 +943,7 @@
             return self.AsEnumerable().GroupBy(keySelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupByDefault<TSource, TKey, TElement>(
+        internal static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupByDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
@@ -967,7 +962,7 @@
             return self.AsEnumerable().GroupBy(keySelector, elementSelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> GroupJoinDefault<TOuter, TInner, TKey, TResult>(
+        internal static IV2Enumerable<TResult> GroupJoinDefault<TOuter, TInner, TKey, TResult>(
             this IV2Enumerable<TOuter> outer,
             IV2Enumerable<TInner> inner,
             Func<TOuter, TKey> outerKeySelector,
@@ -988,7 +983,7 @@
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable()), comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> GroupJoinDefault<TOuter, TInner, TKey, TResult>(
+        internal static IV2Enumerable<TResult> GroupJoinDefault<TOuter, TInner, TKey, TResult>(
             this IV2Enumerable<TOuter> outer,
             IV2Enumerable<TInner> inner,
             Func<TOuter, TKey> outerKeySelector,
@@ -1008,7 +1003,7 @@
             return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable())).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> IntersectDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        internal static IV2Enumerable<TSource> IntersectDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
         {
             if (first is IIntersectEnumerable<TSource> intersect)
             {
@@ -1023,7 +1018,7 @@
             return first.AsEnumerable().Intersect(second, comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> IntersectDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
+        internal static IV2Enumerable<TSource> IntersectDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IIntersect2Enumerable<TSource> intersect)
             {
@@ -1038,7 +1033,7 @@
             return first.AsEnumerable().Intersect(second).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> IntersectByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
+        internal static IV2Enumerable<TSource> IntersectByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
         {
             if (first is IIntersectByEnumerable<TSource> intersectBy)
             {
@@ -1053,7 +1048,7 @@
             return first.AsEnumerable().IntersectBy(second, keySelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> IntersectByDefault<TSource, TKey>(
+        internal static IV2Enumerable<TSource> IntersectByDefault<TSource, TKey>(
             this IV2Enumerable<TSource> first,
             IV2Enumerable<TKey> second,
             Func<TSource, TKey> keySelector,
@@ -1072,7 +1067,7 @@
             return first.AsEnumerable().IntersectBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> JoinDefault<TOuter, TInner, TKey, TResult>(
+        internal static IV2Enumerable<TResult> JoinDefault<TOuter, TInner, TKey, TResult>(
             this IV2Enumerable<TOuter> outer,
             IV2Enumerable<TInner> inner,
             Func<TOuter, TKey> outerKeySelector,
@@ -1092,7 +1087,7 @@
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> JoinDefault<TOuter, TInner, TKey, TResult>(
+        internal static IV2Enumerable<TResult> JoinDefault<TOuter, TInner, TKey, TResult>(
             this IV2Enumerable<TOuter> outer,
             IV2Enumerable<TInner> inner,
             Func<TOuter, TKey> outerKeySelector,
@@ -1113,7 +1108,7 @@
             return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer).ToV2Enumerable();
         }
 
-        public static TSource LastDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource LastDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ILastEnumerable<TSource> last)
             {
@@ -1128,7 +1123,7 @@
             return self.AsEnumerable().Last();
         }
 
-        public static TSource LastDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource LastDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ILast2Enumerable<TSource> last)
             {
@@ -1143,7 +1138,7 @@
             return self.AsEnumerable().Last(predicate);
         }
 
-        public static TSource? LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource? LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ILastOrDefaultEnumerable<TSource> lastOrDefault)
             {
@@ -1158,7 +1153,7 @@
             return self.AsEnumerable().LastOrDefault();
         }
 
-        public static TSource LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
+        internal static TSource LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
         {
             if (self is ILastOrDefault2Enumerable<TSource> lastOrDefault)
             {
@@ -1173,7 +1168,7 @@
             return self.AsEnumerable().LastOrDefault(defaultValue);
         }
 
-        public static TSource? LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource? LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ILastOrDefault3Enumerable<TSource> lastOrDefault)
             {
@@ -1188,7 +1183,7 @@
             return self.AsEnumerable().LastOrDefault(predicate);
         }
 
-        public static TSource LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
+        internal static TSource LastOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
         {
             if (self is ILastOrDefault4Enumerable<TSource> lastOrDefault)
             {
@@ -1203,7 +1198,7 @@
             return self.AsEnumerable().LastOrDefault(predicate, defaultValue);
         }
 
-        public static long LongCountDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static long LongCountDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ILongCountEnumerable<TSource> longCount)
             {
@@ -1218,7 +1213,7 @@
             return self.AsEnumerable().LongCount(predicate);
         }
 
-        public static long LongCountDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static long LongCountDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ILongCount2Enumerable<TSource> longCount)
             {
@@ -1233,7 +1228,7 @@
             return self.AsEnumerable().LongCount();
         }
 
-        public static long MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
+        internal static long MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
         {
             if (self is IMaxEnumerable<TSource> max)
             {
@@ -1248,7 +1243,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static decimal MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
+        internal static decimal MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
         {
             if (self is IMax2Enumerable<TSource> max)
             {
@@ -1263,7 +1258,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static double MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
+        internal static double MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
         {
             if (self is IMax3Enumerable<TSource> max)
             {
@@ -1278,7 +1273,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static int MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
+        internal static int MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
         {
             if (self is IMax4Enumerable<TSource> max)
             {
@@ -1293,7 +1288,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static decimal? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
+        internal static decimal? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
         {
             if (self is IMax5Enumerable<TSource> max)
             {
@@ -1308,7 +1303,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static TSource? MaxDefault<TSource>(this IV2Enumerable<TSource> self, IComparer<TSource>? comparer)
+        internal static TSource? MaxDefault<TSource>(this IV2Enumerable<TSource> self, IComparer<TSource>? comparer)
         {
             if (self is IMax6Enumerable<TSource> max)
             {
@@ -1323,7 +1318,7 @@
             return self.AsEnumerable().Max(comparer);
         }
 
-        public static int? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
+        internal static int? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
         {
             if (self is IMax7Enumerable<TSource> max)
             {
@@ -1338,7 +1333,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static long? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
+        internal static long? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
         {
             if (self is IMax8Enumerable<TSource> max)
             {
@@ -1353,7 +1348,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static float? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
+        internal static float? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
         {
             if (self is IMax9Enumerable<TSource> max)
             {
@@ -1368,7 +1363,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static TResult? MaxDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
+        internal static TResult? MaxDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
         {
             if (self is IMax10Enumerable<TSource> max)
             {
@@ -1383,7 +1378,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static double? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
+        internal static double? MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
         {
             if (self is IMax11Enumerable<TSource> max)
             {
@@ -1398,7 +1393,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static TSource? MaxDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource? MaxDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IMax12Enumerable<TSource> max)
             {
@@ -1413,7 +1408,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static float MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
+        internal static float MaxDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
         {
             if (self is IMax13Enumerable<TSource> max)
             {
@@ -1428,7 +1423,7 @@
             return self.AsEnumerable().Max(selector);
         }
 
-        public static float MaxDefault(this IV2Enumerable<float> self)
+        internal static float MaxDefault(this IV2Enumerable<float> self)
         {
             if (self is IMax14Enumerable max)
             {
@@ -1443,7 +1438,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static float? MaxDefault(this IV2Enumerable<float?> self)
+        internal static float? MaxDefault(this IV2Enumerable<float?> self)
         {
             if (self is IMax15Enumerable max)
             {
@@ -1458,7 +1453,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static long? MaxDefault(this IV2Enumerable<long?> self)
+        internal static long? MaxDefault(this IV2Enumerable<long?> self)
         {
             if (self is IMax16Enumerable max)
             {
@@ -1473,7 +1468,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static int? MaxDefault(this IV2Enumerable<int?> self)
+        internal static int? MaxDefault(this IV2Enumerable<int?> self)
         {
             if (self is IMax17Enumerable max)
             {
@@ -1488,7 +1483,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static double? MaxDefault(this IV2Enumerable<double?> self)
+        internal static double? MaxDefault(this IV2Enumerable<double?> self)
         {
             if (self is IMax18Enumerable max)
             {
@@ -1503,7 +1498,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static decimal? MaxDefault(this IV2Enumerable<decimal?> self)
+        internal static decimal? MaxDefault(this IV2Enumerable<decimal?> self)
         {
             if (self is IMax19Enumerable max)
             {
@@ -1518,7 +1513,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static long MaxDefault(this IV2Enumerable<long> self)
+        internal static long MaxDefault(this IV2Enumerable<long> self)
         {
             if (self is IMax20Enumerable max)
             {
@@ -1533,7 +1528,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static int MaxDefault(this IV2Enumerable<int> self)
+        internal static int MaxDefault(this IV2Enumerable<int> self)
         {
             if (self is IMax21Enumerable max)
             {
@@ -1548,7 +1543,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static double MaxDefault(this IV2Enumerable<double> self)
+        internal static double MaxDefault(this IV2Enumerable<double> self)
         {
             if (self is IMax22Enumerable max)
             {
@@ -1563,7 +1558,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static decimal MaxDefault(this IV2Enumerable<decimal> self)
+        internal static decimal MaxDefault(this IV2Enumerable<decimal> self)
         {
             if (self is IMax23Enumerable max)
             {
@@ -1578,7 +1573,7 @@
             return self.AsEnumerable().Max();
         }
 
-        public static TSource? MaxByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static TSource? MaxByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IMaxByEnumerable<TSource> maxBy)
             {
@@ -1593,7 +1588,7 @@
             return self.AsEnumerable().MaxBy(keySelector);
         }
 
-        public static TSource? MaxByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+        internal static TSource? MaxByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
         {
             if (self is IMaxBy2Enumerable<TSource> maxBy)
             {
@@ -1608,7 +1603,7 @@
             return self.AsEnumerable().MaxBy(keySelector, comparer);
         }
 
-        public static decimal MinDefault(this IV2Enumerable<decimal> self)
+        internal static decimal MinDefault(this IV2Enumerable<decimal> self)
         {
             if (self is IMinEnumerable min)
             {
@@ -1623,7 +1618,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static TResult? MinDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
+        internal static TResult? MinDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
         {
             if (self is IMin2Enumerable<TSource> min)
             {
@@ -1638,7 +1633,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static float MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
+        internal static float MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
         {
             if (self is IMin3Enumerable<TSource> min)
             {
@@ -1653,7 +1648,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static float? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
+        internal static float? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
         {
             if (self is IMin4Enumerable<TSource> min)
             {
@@ -1668,7 +1663,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static int? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
+        internal static int? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
         {
             if (self is IMin5Enumerable<TSource> min)
             {
@@ -1683,7 +1678,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static double? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
+        internal static double? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
         {
             if (self is IMin6Enumerable<TSource> min)
             {
@@ -1698,7 +1693,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static decimal? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
+        internal static decimal? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
         {
             if (self is IMin7Enumerable<TSource> min)
             {
@@ -1713,7 +1708,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static long MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
+        internal static long MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
         {
             if (self is IMin8Enumerable<TSource> min)
             {
@@ -1728,7 +1723,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static int MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
+        internal static int MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
         {
             if (self is IMin9Enumerable<TSource> min)
             {
@@ -1743,7 +1738,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static decimal MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
+        internal static decimal MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
         {
             if (self is IMin10Enumerable<TSource> min)
             {
@@ -1758,7 +1753,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static TSource? MinDefault<TSource>(this IV2Enumerable<TSource> self, IComparer<TSource>? comparer)
+        internal static TSource? MinDefault<TSource>(this IV2Enumerable<TSource> self, IComparer<TSource>? comparer)
         {
             if (self is IMin11Enumerable<TSource> min)
             {
@@ -1773,7 +1768,7 @@
             return self.AsEnumerable().Min(comparer);
         }
 
-        public static TSource? MinDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource? MinDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IMin12Enumerable<TSource> min)
             {
@@ -1788,7 +1783,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static long? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
+        internal static long? MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
         {
             if (self is IMin13Enumerable<TSource> min)
             {
@@ -1803,7 +1798,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static double MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
+        internal static double MinDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
         {
             if (self is IMin14Enumerable<TSource> min)
             {
@@ -1818,7 +1813,7 @@
             return self.AsEnumerable().Min(selector);
         }
 
-        public static float MinDefault(this IV2Enumerable<float> self)
+        internal static float MinDefault(this IV2Enumerable<float> self)
         {
             if (self is IMin15Enumerable min)
             {
@@ -1833,7 +1828,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static float? MinDefault(this IV2Enumerable<float?> self)
+        internal static float? MinDefault(this IV2Enumerable<float?> self)
         {
             if (self is IMin16Enumerable min)
             {
@@ -1848,7 +1843,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static long? MinDefault(this IV2Enumerable<long?> self)
+        internal static long? MinDefault(this IV2Enumerable<long?> self)
         {
             if (self is IMin17Enumerable min)
             {
@@ -1863,7 +1858,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static int? MinDefault(this IV2Enumerable<int?> self)
+        internal static int? MinDefault(this IV2Enumerable<int?> self)
         {
             if (self is IMin18Enumerable min)
             {
@@ -1878,7 +1873,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static double? MinDefault(this IV2Enumerable<double?> self)
+        internal static double? MinDefault(this IV2Enumerable<double?> self)
         {
             if (self is IMin19Enumerable min)
             {
@@ -1893,7 +1888,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static decimal? MinDefault(this IV2Enumerable<decimal?> self)
+        internal static decimal? MinDefault(this IV2Enumerable<decimal?> self)
         {
             if (self is IMin20Enumerable min)
             {
@@ -1908,7 +1903,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static double MinDefault(this IV2Enumerable<double> self)
+        internal static double MinDefault(this IV2Enumerable<double> self)
         {
             if (self is IMin21Enumerable min)
             {
@@ -1923,7 +1918,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static long MinDefault(this IV2Enumerable<long> self)
+        internal static long MinDefault(this IV2Enumerable<long> self)
         {
             if (self is IMin22Enumerable min)
             {
@@ -1938,7 +1933,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static int MinDefault(this IV2Enumerable<int> self)
+        internal static int MinDefault(this IV2Enumerable<int> self)
         {
             if (self is IMin23Enumerable min)
             {
@@ -1953,7 +1948,7 @@
             return self.AsEnumerable().Min();
         }
 
-        public static TSource? MinByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+        internal static TSource? MinByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
         {
             if (self is IMinByEnumerable<TSource> minBy)
             {
@@ -1968,7 +1963,7 @@
             return self.AsEnumerable().MinBy(keySelector, comparer);
         }
 
-        public static TSource? MinByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static TSource? MinByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IMinBy2Enumerable<TSource> minBy)
             {
@@ -1983,13 +1978,13 @@
             return self.AsEnumerable().MinBy(keySelector);
         }
 
-        /*public static IV2Enumerable<TResult> OfType<TResult>(this IV2Enumerable self)
+        /*internal static IV2Enumerable<TResult> OfType<TResult>(this IV2Enumerable self)
         {
             //// TODO
             throw new System.NotImplementedException();
         }*/
 
-        public static IV2OrderedEnumerable<TSource> OrderByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+        internal static IV2OrderedEnumerable<TSource> OrderByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
         {
             if (self is IOrderByEnumerable<TSource> orderBy)
             {
@@ -2041,7 +2036,7 @@
             }
         }
 
-        public static IV2OrderedEnumerable<TSource> OrderByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2OrderedEnumerable<TSource> OrderByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IOrderBy2Enumerable<TSource> orderBy)
             {
@@ -2058,7 +2053,7 @@
             return self.AsEnumerable().OrderBy(keySelector).ToV2OrderedEnumerable();
         }
 
-        public static IV2OrderedEnumerable<TSource> OrderByDescendingDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2OrderedEnumerable<TSource> OrderByDescendingDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IOrderByDescendingEnumerable<TSource> orderByDescending)
             {
@@ -2075,7 +2070,7 @@
             return self.AsEnumerable().OrderByDescending(keySelector).ToV2OrderedEnumerable();
         }
 
-        public static IV2OrderedEnumerable<TSource> OrderByDescendingDefault<TSource, TKey>(
+        internal static IV2OrderedEnumerable<TSource> OrderByDescendingDefault<TSource, TKey>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             IComparer<TKey>? comparer)
@@ -2095,7 +2090,7 @@
             return self.AsEnumerable().OrderByDescending(keySelector, comparer).ToV2OrderedEnumerable();
         }
 
-        public static IV2Enumerable<TSource> PrependDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
+        internal static IV2Enumerable<TSource> PrependDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
         {
             if (self is IPrependEnumerable<TSource> prepend)
             {
@@ -2110,19 +2105,19 @@
             return self.AsEnumerable().Prepend(element).ToV2Enumerable();
         }
 
-        /*public static IV2Enumerable<int> Range(int start, int count)
+        /*internal static IV2Enumerable<int> Range(int start, int count)
         {
             //// TODO
             throw new System.NotImplementedException();
         }*/
 
-        /*public static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
+        /*internal static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
         {
             //// TODO
             throw new System.NotImplementedException();
         }*/
 
-        public static IV2Enumerable<TSource> ReverseDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static IV2Enumerable<TSource> ReverseDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IReverseEnumerable<TSource> reverse)
             {
@@ -2137,7 +2132,7 @@
             return self.AsEnumerable().Reverse().ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, int, TResult> selector)
+        internal static IV2Enumerable<TResult> SelectDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, int, TResult> selector)
         {
             if (self is ISelectEnumerable<TSource> select)
             {
@@ -2152,7 +2147,7 @@
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
+        internal static IV2Enumerable<TResult> SelectDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
         {
             if (self is ISelect2Enumerable<TSource> select)
             {
@@ -2167,7 +2162,7 @@
             return self.AsEnumerable().Select(selector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectManyDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, int, IV2Enumerable<TResult>> selector)
+        internal static IV2Enumerable<TResult> SelectManyDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, int, IV2Enumerable<TResult>> selector)
         {
             if (self is ISelectManyEnumerable<TSource> selectMany)
             {
@@ -2182,7 +2177,7 @@
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectManyDefault<TSource, TCollection, TResult>(
+        internal static IV2Enumerable<TResult> SelectManyDefault<TSource, TCollection, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, IV2Enumerable<TCollection>> collectionSelector,
             Func<TSource, TCollection, TResult> resultSelector)
@@ -2200,7 +2195,7 @@
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectManyDefault<TSource, TCollection, TResult>(
+        internal static IV2Enumerable<TResult> SelectManyDefault<TSource, TCollection, TResult>(
             this IV2Enumerable<TSource> self,
             Func<TSource, int, IV2Enumerable<TCollection>> collectionSelector,
             Func<TSource, TCollection, TResult> resultSelector)
@@ -2218,7 +2213,7 @@
             return self.AsEnumerable().SelectMany(collectionSelector, resultSelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> SelectManyDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, IV2Enumerable<TResult>> selector)
+        internal static IV2Enumerable<TResult> SelectManyDefault<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, IV2Enumerable<TResult>> selector)
         {
             if (self is ISelectMany4Enumerable<TSource> selectMany)
             {
@@ -2233,7 +2228,7 @@
             return self.AsEnumerable().SelectMany(selector).ToV2Enumerable();
         }
 
-        public static bool SequenceEqualDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
+        internal static bool SequenceEqualDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is ISequenceEqualEnumerable<TSource> sequenceEqual)
             {
@@ -2248,7 +2243,7 @@
             return first.AsEnumerable().SequenceEqual(second);
         }
 
-        public static bool SequenceEqualDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        internal static bool SequenceEqualDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
         {
             if (first is ISequenceEqual2Enumerable<TSource> sequenceEqual)
             {
@@ -2263,7 +2258,7 @@
             return first.AsEnumerable().SequenceEqual(second, comparer);
         }
 
-        public static TSource SingleDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource SingleDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ISingleEnumerable<TSource> single)
             {
@@ -2278,7 +2273,7 @@
             return self.AsEnumerable().Single();
         }
 
-        public static TSource SingleDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource SingleDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ISingle2Enumerable<TSource> single)
             {
@@ -2293,7 +2288,7 @@
             return self.AsEnumerable().Single(predicate);
         }
 
-        public static TSource SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
+        internal static TSource SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
         {
             if (self is ISingleOrDefaultEnumerable<TSource> singleOrDefault)
             {
@@ -2308,7 +2303,7 @@
             return self.AsEnumerable().SingleOrDefault(predicate, defaultValue);
         }
 
-        public static TSource SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
+        internal static TSource SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
         {
             if (self is ISingleOrDefault2Enumerable<TSource> singleOrDefault)
             {
@@ -2323,7 +2318,7 @@
             return self.AsEnumerable().SingleOrDefault(defaultValue);
         }
 
-        public static TSource? SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource? SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is ISingleOrDefault3Enumerable<TSource> singleOrDefault)
             {
@@ -2338,7 +2333,7 @@
             return self.AsEnumerable().SingleOrDefault();
         }
 
-        public static TSource? SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static TSource? SingleOrDefaultDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ISingleOrDefault4Enumerable<TSource> singleOrDefault)
             {
@@ -2353,7 +2348,7 @@
             return self.AsEnumerable().SingleOrDefault(predicate);
         }
 
-        public static IV2Enumerable<TSource> SkipDefault<TSource>(this IV2Enumerable<TSource> self, int count)
+        internal static IV2Enumerable<TSource> SkipDefault<TSource>(this IV2Enumerable<TSource> self, int count)
         {
             if (self is ISkipEnumerable<TSource> skip)
             {
@@ -2368,7 +2363,7 @@
             return self.AsEnumerable().Skip(count).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> SkipLastDefault<TSource>(this IV2Enumerable<TSource> self, int count)
+        internal static IV2Enumerable<TSource> SkipLastDefault<TSource>(this IV2Enumerable<TSource> self, int count)
         {
             if (self is ISkipLastEnumerable<TSource> skipLast)
             {
@@ -2383,7 +2378,7 @@
             return self.AsEnumerable().SkipLast(count).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> SkipWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static IV2Enumerable<TSource> SkipWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ISkipWhileEnumerable<TSource> skipWhile)
             {
@@ -2398,7 +2393,7 @@
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> SkipWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
+        internal static IV2Enumerable<TSource> SkipWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
         {
             if (self is ISkipWhile2Enumerable<TSource> skipWhile)
             {
@@ -2413,7 +2408,7 @@
             return self.AsEnumerable().SkipWhile(predicate).ToV2Enumerable();
         }
 
-        public static int SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
+        internal static int SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
         {
             if (self is ISumEnumerable<TSource> sum)
             {
@@ -2428,7 +2423,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static long SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
+        internal static long SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
         {
             if (self is ISum2Enumerable<TSource> sum)
             {
@@ -2443,7 +2438,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static decimal? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
+        internal static decimal? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
         {
             if (self is ISum3Enumerable<TSource> sum)
             {
@@ -2458,7 +2453,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static long? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
+        internal static long? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
         {
             if (self is ISum4Enumerable<TSource> sum)
             {
@@ -2473,7 +2468,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static int? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
+        internal static int? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
         {
             if (self is ISum5Enumerable<TSource> sum)
             {
@@ -2488,7 +2483,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static double SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
+        internal static double SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
         {
             if (self is ISum6Enumerable<TSource> sum)
             {
@@ -2503,7 +2498,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static float? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
+        internal static float? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
         {
             if (self is ISum7Enumerable<TSource> sum)
             {
@@ -2518,7 +2513,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static float SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
+        internal static float SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
         {
             if (self is ISum8Enumerable<TSource> sum)
             {
@@ -2533,7 +2528,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static double? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
+        internal static double? SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
         {
             if (self is ISum9Enumerable<TSource> sum)
             {
@@ -2548,7 +2543,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static decimal SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
+        internal static decimal SumDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
         {
             if (self is ISum10Enumerable<TSource> sum)
             {
@@ -2563,7 +2558,7 @@
             return self.AsEnumerable().Sum(selector);
         }
 
-        public static long? SumDefault(this IV2Enumerable<long?> self)
+        internal static long? SumDefault(this IV2Enumerable<long?> self)
         {
             if (self is ISum11Enumerable sum)
             {
@@ -2578,7 +2573,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static float? SumDefault(this IV2Enumerable<float?> self)
+        internal static float? SumDefault(this IV2Enumerable<float?> self)
         {
             if (self is ISum12Enumerable sum)
             {
@@ -2593,7 +2588,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static int? SumDefault(this IV2Enumerable<int?> self)
+        internal static int? SumDefault(this IV2Enumerable<int?> self)
         {
             if (self is ISum13Enumerable sum)
             {
@@ -2608,7 +2603,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static double? SumDefault(this IV2Enumerable<double?> self)
+        internal static double? SumDefault(this IV2Enumerable<double?> self)
         {
             if (self is ISum14Enumerable sum)
             {
@@ -2623,7 +2618,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static decimal? SumDefault(this IV2Enumerable<decimal?> self)
+        internal static decimal? SumDefault(this IV2Enumerable<decimal?> self)
         {
             if (self is ISum15Enumerable sum)
             {
@@ -2638,7 +2633,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static long SumDefault(this IV2Enumerable<long> self)
+        internal static long SumDefault(this IV2Enumerable<long> self)
         {
             if (self is ISum16Enumerable sum)
             {
@@ -2653,7 +2648,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static int SumDefault(this IV2Enumerable<int> self)
+        internal static int SumDefault(this IV2Enumerable<int> self)
         {
             if (self is ISum17Enumerable sum)
             {
@@ -2668,7 +2663,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static double SumDefault(this IV2Enumerable<double> self)
+        internal static double SumDefault(this IV2Enumerable<double> self)
         {
             if (self is ISum18Enumerable sum)
             {
@@ -2683,7 +2678,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static decimal SumDefault(this IV2Enumerable<decimal> self)
+        internal static decimal SumDefault(this IV2Enumerable<decimal> self)
         {
             if (self is ISum19Enumerable sum)
             {
@@ -2698,7 +2693,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static float SumDefault(this IV2Enumerable<float> self)
+        internal static float SumDefault(this IV2Enumerable<float> self)
         {
             if (self is ISum20Enumerable sum)
             {
@@ -2713,7 +2708,7 @@
             return self.AsEnumerable().Sum();
         }
 
-        public static IV2Enumerable<TSource> TakeDefault<TSource>(this IV2Enumerable<TSource> self, Range range)
+        internal static IV2Enumerable<TSource> TakeDefault<TSource>(this IV2Enumerable<TSource> self, Range range)
         {
             if (self is ITakeEnumerable<TSource> take)
             {
@@ -2728,7 +2723,7 @@
             return self.AsEnumerable().Take(range).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> TakeDefault<TSource>(this IV2Enumerable<TSource> self, int count)
+        internal static IV2Enumerable<TSource> TakeDefault<TSource>(this IV2Enumerable<TSource> self, int count)
         {
             if (self is ITake2Enumerable<TSource> take)
             {
@@ -2743,7 +2738,7 @@
             return self.AsEnumerable().Take(count).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> TakeLastDefault<TSource>(this IV2Enumerable<TSource> self, int count)
+        internal static IV2Enumerable<TSource> TakeLastDefault<TSource>(this IV2Enumerable<TSource> self, int count)
         {
             if (self is ITakeLastEnumerable<TSource> takeLast)
             {
@@ -2758,7 +2753,7 @@
             return self.AsEnumerable().TakeLast(count).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> TakeWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static IV2Enumerable<TSource> TakeWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is ITakeWhileEnumerable<TSource> takeWhile)
             {
@@ -2773,7 +2768,7 @@
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> TakeWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
+        internal static IV2Enumerable<TSource> TakeWhileDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
         {
             if (self is ITakeWhile2Enumerable<TSource> takeWhile)
             {
@@ -2788,25 +2783,25 @@
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
         }
 
-        /*public static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
+        /*internal static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             //// TODO
             throw new System.NotImplementedException();
         }
 
-        public static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+        internal static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
         {
             //// TODO
             throw new System.NotImplementedException();
         }
 
-        public static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             //// TODO
             throw new System.NotImplementedException();
         }
 
-        public static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(
+        internal static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(
             this IV2OrderedEnumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             IComparer<TKey>? comparer)
@@ -2815,7 +2810,7 @@
             throw new System.NotImplementedException();
         }*/
 
-        public static TSource[] ToArrayDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static TSource[] ToArrayDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IToArrayEnumerable<TSource> toArray)
             {
@@ -2830,7 +2825,7 @@
             return self.AsEnumerable().ToArray();
         }
 
-        public static Dictionary<TKey, TSource> ToDictionaryDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static Dictionary<TKey, TSource> ToDictionaryDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
             where TKey : notnull
         {
             if (self is IToDictionaryEnumerable<TSource> toDictionary)
@@ -2846,7 +2841,7 @@
             return self.AsEnumerable().ToDictionary(keySelector);
         }
 
-        public static Dictionary<TKey, TSource> ToDictionaryDefault<TSource, TKey>(
+        internal static Dictionary<TKey, TSource> ToDictionaryDefault<TSource, TKey>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
@@ -2865,7 +2860,7 @@
             return self.AsEnumerable().ToDictionary(keySelector, comparer);
         }
 
-        public static Dictionary<TKey, TElement> ToDictionaryDefault<TSource, TKey, TElement>(
+        internal static Dictionary<TKey, TElement> ToDictionaryDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector)
@@ -2884,7 +2879,7 @@
             return self.AsEnumerable().ToDictionary(keySelector, elementSelector);
         }
 
-        public static Dictionary<TKey, TElement> ToDictionaryDefault<TSource, TKey, TElement>(
+        internal static Dictionary<TKey, TElement> ToDictionaryDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
@@ -2904,7 +2899,7 @@
             return self.AsEnumerable().ToDictionary(keySelector, elementSelector, comparer);
         }
 
-        public static HashSet<TSource> ToHashSetDefault<TSource>(this IV2Enumerable<TSource> self, IEqualityComparer<TSource>? comparer)
+        internal static HashSet<TSource> ToHashSetDefault<TSource>(this IV2Enumerable<TSource> self, IEqualityComparer<TSource>? comparer)
         {
             if (self is IToHashSetEnumerable<TSource> toHashSet)
             {
@@ -2919,7 +2914,7 @@
             return self.AsEnumerable().ToHashSet(comparer);
         }
 
-        public static HashSet<TSource> ToHashSetDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static HashSet<TSource> ToHashSetDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IToHashSet2Enumerable<TSource> toHashSet)
             {
@@ -2934,7 +2929,7 @@
             return self.AsEnumerable().ToHashSet();
         }
 
-        public static List<TSource> ToListDefault<TSource>(this IV2Enumerable<TSource> self)
+        internal static List<TSource> ToListDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IToListEnumerable<TSource> toList)
             {
@@ -2949,7 +2944,7 @@
             return self.AsEnumerable().ToList();
         }
 
-        public static IV2Lookup<TKey, TElement> ToLookupDefault<TSource, TKey, TElement>(
+        internal static IV2Lookup<TKey, TElement> ToLookupDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
@@ -3009,7 +3004,7 @@
             }
         }
 
-        public static IV2Lookup<TKey, TElement> ToLookupDefault<TSource, TKey, TElement>(
+        internal static IV2Lookup<TKey, TElement> ToLookupDefault<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector)
@@ -3029,7 +3024,7 @@
             return self.AsEnumerable().ToLookup(keySelector, elementSelector).ToV2Lookup();
         }
 
-        public static IV2Lookup<TKey, TSource> ToLookupDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
+        internal static IV2Lookup<TKey, TSource> ToLookupDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IToLookup3Enumerable<TSource> toLookup)
             {
@@ -3046,7 +3041,7 @@
             return self.AsEnumerable().ToLookup(keySelector).ToV2Lookup();
         }
 
-        public static IV2Lookup<TKey, TSource> ToLookupDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+        internal static IV2Lookup<TKey, TSource> ToLookupDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
         {
             if (self is IToLookup4Enumerable<TSource> toLookup)
             {
@@ -3063,7 +3058,7 @@
             return self.AsEnumerable().ToLookup(keySelector, comparer).ToV2Lookup();
         }
 
-        public static bool TryGetNonEnumeratedCountDefault<TSource>(this IV2Enumerable<TSource> self, out int count)
+        internal static bool TryGetNonEnumeratedCountDefault<TSource>(this IV2Enumerable<TSource> self, out int count)
         {
             if (self is ITryGetNonEnumeratedCountEnumerable<TSource> tryGetNonEnumeratedCount)
             {
@@ -3078,7 +3073,7 @@
             return self.AsEnumerable().TryGetNonEnumeratedCount(out count);
         }
 
-        public static IV2Enumerable<TSource> UnionDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
+        internal static IV2Enumerable<TSource> UnionDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IUnionEnumerable<TSource> union)
             {
@@ -3093,7 +3088,7 @@
             return first.AsEnumerable().Union(second).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> UnionDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        internal static IV2Enumerable<TSource> UnionDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
         {
             if (first is IUnion2Enumerable<TSource> union)
             {
@@ -3108,7 +3103,7 @@
             return first.AsEnumerable().Union(second, comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> UnionByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, Func<TSource, TKey> keySelector)
+        internal static IV2Enumerable<TSource> UnionByDefault<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, Func<TSource, TKey> keySelector)
         {
             if (first is IUnionByEnumerable<TSource> unionBy)
             {
@@ -3123,7 +3118,7 @@
             return first.AsEnumerable().UnionBy(second, keySelector).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> UnionByDefault<TSource, TKey>(
+        internal static IV2Enumerable<TSource> UnionByDefault<TSource, TKey>(
             this IV2Enumerable<TSource> first,
             IV2Enumerable<TSource> second,
             Func<TSource, TKey> keySelector,
@@ -3142,7 +3137,7 @@
             return first.AsEnumerable().UnionBy(second, keySelector, comparer).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> WhereDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
+        internal static IV2Enumerable<TSource> WhereDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
         {
             if (self is IWhereEnumerable<TSource> where)
             {
@@ -3157,7 +3152,7 @@
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TSource> WhereDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
+        internal static IV2Enumerable<TSource> WhereDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int, bool> predicate)
         {
             if (self is IWhere2Enumerable<TSource> where)
             {
@@ -3172,7 +3167,7 @@
             return self.AsEnumerable().Where(predicate).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<(TFirst First, TSecond Second, TThird Third)> ZipDefault<TFirst, TSecond, TThird>(
+        internal static IV2Enumerable<(TFirst First, TSecond Second, TThird Third)> ZipDefault<TFirst, TSecond, TThird>(
             this IV2Enumerable<TFirst> first,
             IV2Enumerable<TSecond> second,
             IV2Enumerable<TThird> third)
@@ -3190,7 +3185,7 @@
             return first.AsEnumerable().Zip(second, third).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<(TFirst First, TSecond Second)> ZipDefault<TFirst, TSecond>(this IV2Enumerable<TFirst> first, IV2Enumerable<TSecond> second)
+        internal static IV2Enumerable<(TFirst First, TSecond Second)> ZipDefault<TFirst, TSecond>(this IV2Enumerable<TFirst> first, IV2Enumerable<TSecond> second)
         {
             if (first is IZip2Enumerable<TFirst> zip)
             {
@@ -3205,7 +3200,7 @@
             return first.AsEnumerable().Zip(second).ToV2Enumerable();
         }
 
-        public static IV2Enumerable<TResult> ZipDefault<TFirst, TSecond, TResult>(
+        internal static IV2Enumerable<TResult> ZipDefault<TFirst, TSecond, TResult>(
             this IV2Enumerable<TFirst> first,
             IV2Enumerable<TSecond> second,
             Func<TFirst, TSecond, TResult> resultSelector)
