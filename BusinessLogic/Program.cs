@@ -18,6 +18,16 @@
             Console.WriteLine();
         }
 
+        private static void Print(IV2Enumerable<int> data)
+        {
+            foreach (var element in data)
+            {
+                Console.WriteLine(element);
+            }
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             //// Personas:
@@ -119,6 +129,30 @@
                     .Concat(new[] { "1234" }.ToV2Enumerable())
                     .Duplicate();
                 Print(duplicated);
+            }
+
+            {
+                var data = GetData2();
+                Print(data);
+                var concatable = data.AddGarrett();
+                Print(concatable);
+                var concated = concatable
+                    .Concat(new[] { "1234" }.ToV2Enumerable())
+                    .Concat(new[] { "!@#$" }.ToV2Enumerable())
+                    .Where(_ => true)
+                    .Concat(new[] { "ASDF" }.ToV2Enumerable());
+                Console.WriteLine("without append:");
+                Print(concated);
+
+                Console.WriteLine("with append:");
+                var appended = concatable
+                    .Concat(new[] { "1234" }.ToV2Enumerable())
+                    .Concat(new[] { "!@#$" }.ToV2Enumerable())
+                    .Where(_ => true)
+                    .Append("appended")
+                    .Concat(data)
+                    .Where(_ => true);
+                Print(appended);
             }
 
             //// TODO plus what happens if linq introduces a new extension "foo"?

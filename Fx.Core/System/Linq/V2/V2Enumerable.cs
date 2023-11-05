@@ -250,7 +250,7 @@
 
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
             {
-                return aggregatedOverload.Source.Append(element);
+                return aggregatedOverload.AggregatedOverloadFactory(aggregatedOverload.Source.Append(element));
             }
 
             return self.AsEnumerable().Append(element).ToV2Enumerable();

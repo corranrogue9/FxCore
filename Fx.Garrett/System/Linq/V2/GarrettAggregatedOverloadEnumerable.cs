@@ -12,6 +12,8 @@ namespace System.Linq.V2
 
         public IV2Enumerable<T> Source { get; }
 
+        public Func<IV2Enumerable<T>, IAggregatedOverloadEnumerable<T>> AggregatedOverloadFactory { get; } = enumerable => new GarrettAggregatedOverloadEnumerable<T>(enumerable);
+
         public IV2Enumerable<T> Concat(IV2Enumerable<T> second)
         {
             return new ConcatedEnumerable(this.Source, second).AddGarrett();
