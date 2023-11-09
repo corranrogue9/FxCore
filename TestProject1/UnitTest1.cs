@@ -147,7 +147,39 @@ namespace TestProject1
             var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
             var groupings = data.GroupBy(element => element.Length);
 
+            var counts = groupings.Select(grouping => new KeyValuePair<int, int>(grouping.Key, grouping.Count()));
+            using (var countsEnumerator = counts.GetEnumerator())
+            {
+                Assert.IsTrue(countsEnumerator.MoveNext());
+                Assert.AreEqual(5, countsEnumerator.Current.Key);
+                Assert.AreEqual(4, countsEnumerator.Current.Value);
 
+                Assert.IsTrue(countsEnumerator.MoveNext());
+                Assert.AreEqual(4, countsEnumerator.Current.Key);
+                Assert.AreEqual(3, countsEnumerator.Current.Value);
+
+                Assert.IsTrue(countsEnumerator.MoveNext());
+                Assert.AreEqual(3, countsEnumerator.Current.Key);
+                Assert.AreEqual(2, countsEnumerator.Current.Value);
+
+                Assert.IsFalse(countsEnumerator.MoveNext());
+            }
+
+            
+            var maxes = groupings.Select(grouping => grouping.Max());
+            using (var maxesEnumerator = maxes.GetEnumerator())
+            {
+                Assert.IsTrue(maxesEnumerator.MoveNext());
+                Assert.AreEqual("45678", maxesEnumerator.Current);
+
+                Assert.IsTrue(maxesEnumerator.MoveNext());
+                Assert.AreEqual("3456", maxesEnumerator.Current);
+
+                Assert.IsTrue(maxesEnumerator.MoveNext());
+                Assert.AreEqual("234", maxesEnumerator.Current);
+
+                Assert.IsFalse(maxesEnumerator.MoveNext());
+            }
         }
     }
 }
