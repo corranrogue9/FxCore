@@ -30,6 +30,7 @@ namespace TestProject1
         [TestMethod]
         public void TestMethod2()
         {
+            //// TODO do you need to reverse here?
             var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
             var queried = data
                 .GroupBy(element => element.Length)
@@ -113,6 +114,28 @@ namespace TestProject1
 
                 Assert.IsTrue(enumerator.MoveNext());
                 Assert.AreEqual(358, enumerator.Current);
+
+                Assert.IsFalse(enumerator.MoveNext());
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
+            var queried = data
+                .GroupBy(element => element.Length)
+                .Select(grouping => grouping.Select(element => int.Parse(element)));
+            using (var enumerator = queried.GetEnumerator())
+            {
+                Assert.IsTrue(enumerator.MoveNext());
+                CollectionAssert.AreEqual(new[] { 123, 234 }, enumerator.Current.ToList());
+
+                Assert.IsTrue(enumerator.MoveNext());
+                CollectionAssert.AreEqual(new[] { 1234, 2345, 3456 }, enumerator.Current.ToList());
+
+                Assert.IsTrue(enumerator.MoveNext());
+                CollectionAssert.AreEqual(new[] { 12345, 23456, 34567, 45678 }, enumerator.Current.ToList());
 
                 Assert.IsFalse(enumerator.MoveNext());
             }

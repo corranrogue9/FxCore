@@ -135,6 +135,8 @@ namespace System.Linq.V2
 
                 private sealed class GroupingAggregator : IV2Grouping<TKey, TElement>, IMax12Enumerable<TElement>, ISumEnumerable<TElement>
                 {
+                    private readonly TElement firstElement;
+
                     private readonly Dictionary<TKey, GroupingAggregator> groupings;
 
                     private readonly Dictionary<TKey, TResult> results;
@@ -147,8 +149,15 @@ namespace System.Linq.V2
 
                     private readonly List<Action<TElement>> aggregators;
 
+                    /// <summary>
+                    /// The default behavior is to reify a list of the elements and store it, so if we get enumerated, we should do exactly that; null here
+                    /// means that we are not being enumerated, non-null after the first enumeration means that we have the full list of elements
+                    /// </summary>
+                    private List<TElement>? elements;
+
                     public GroupingAggregator(
-                        TKey key, 
+                        TKey key,
+                        TElement firstElement,
                         Dictionary<TKey, GarrettGroupByable<TElement>.GroupByed<TKey>.Selected<TResult>.GroupingAggregator> groupings, 
                         Dictionary<TKey, TResult> results, 
                         Func<TElement, TKey> keySelector,
@@ -157,6 +166,7 @@ namespace System.Linq.V2
                     {
                         this.Key = key;
 
+                        this.firstElement = firstElement;
                         this.groupings = groupings;
                         this.results = results;
                         this.keySelector = keySelector;
@@ -164,12 +174,23 @@ namespace System.Linq.V2
                         this.enumerator = enumerator;
 
                         this.aggregators = new List<Action<TElement>>();
+                        this.elements = null;
                     }
 
                     public TKey Key { get; }
 
                     public void Add(TElement element)
                     {
+                        if (this.aggregators.Count == 0)
+                        {
+                            // we are being added to, but we have no aggregators; this means that the groupby is being evaluated, and then some non-reifying
+                            // query (something that returns ienumerable and is therefore lazy) is being applied; in this case, we should use the default
+                            // groupby behavior of reifying a list, so let's go ahead and add that aggregator
+                            this.elements = new List<TElement>();
+                            this.aggregators.Add(element => this.elements.Add(element));
+                            this.Add(this.firstElement);
+                        }
+
                         foreach (var aggregator in this.aggregators)
                         {
                             aggregator(element);
@@ -227,7 +248,7 @@ namespace System.Linq.V2
                             var key = this.keySelector(element);
                             if (!this.groupings.TryGetValue(key, out var grouping))
                             {
-                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
                                 this.groupings[key] = grouping;
                                 results[key] = this.selector(grouping);
                             }
@@ -259,7 +280,7 @@ namespace System.Linq.V2
                             var key = this.keySelector(element);
                             if (!this.groupings.TryGetValue(key, out var grouping))
                             {
-                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
                                 this.groupings[key] = grouping;
                                 results[key] = this.selector(grouping);
                             }
@@ -282,9 +303,14 @@ namespace System.Linq.V2
 
                     public IEnumerator<TElement> GetEnumerator()
                     {
+                        if (this.elements != null)
+                        {
+                            return this.elements.GetEnumerator();
+                        }
+                        
                         //// TODO can this aggregator accidentally be added twice? do you need an if statement somewhere?
-                        var elements = new List<TElement>();
-                        this.aggregators.Add(element => elements.Add(element));
+                        this.elements = new List<TElement>();
+                        this.aggregators.Add(element => this.elements.Add(element));
 
                         this.Add(this.enumerator.Current);
                         while (this.enumerator.MoveNext())
@@ -293,7 +319,7 @@ namespace System.Linq.V2
                             var key = this.keySelector(element);
                             if (!this.groupings.TryGetValue(key, out var grouping))
                             {
-                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
                                 this.groupings[key] = grouping;
                                 results[key] = this.selector(grouping);
                             }
@@ -324,7 +350,7 @@ namespace System.Linq.V2
                             var key = this.keySelector(element);
                             if (!groupings.TryGetValue(key, out var grouping))
                             {
-                                grouping = new GroupingAggregator(key, groupings, results, this.keySelector, this.selector, enumerator);
+                                grouping = new GroupingAggregator(key, element, groupings, results, this.keySelector, this.selector, enumerator);
                                 groupings[key] = grouping;
                                 results[key] = this.selector(grouping);
                             }
