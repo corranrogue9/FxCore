@@ -135,6 +135,41 @@ namespace System.Linq.V2
 
                 private sealed class GroupingAggregator : IV2Grouping<TKey, TElement>, IMax12Enumerable<TElement>, ISumEnumerable<TElement>
                 {
+                    public ref struct AggregationContext //// TODO remove setters
+                    {
+                        public Dictionary<TKey, GroupingAggregator> Groupings { get; set; }
+
+                        public Dictionary<TKey, TResult> Results { get; set; }
+
+                        public Func<TElement, TKey> KeySelector { get; set; }
+
+                        public Func<IV2Grouping<TKey, TElement>, TResult> Selector { get; set; }
+
+                        public IEnumerator<TElement> Enumerator { get; set; }
+
+                        public Action<TElement> Aggregator { get; set; }
+                    }
+
+                    public static void Aggregate(ref AggregationContext context)
+                    {
+                        context.Aggregator(context.Enumerator.Current);
+                        while (context.Enumerator.MoveNext())
+                        {
+                            var element = context.Enumerator.Current;
+                            var key = context.KeySelector(element);
+                            if (!context.Groupings.TryGetValue(key, out var grouping))
+                            {
+                                grouping = new GroupingAggregator(key, element, context.Groupings, context.Results, context.KeySelector, context.Selector, context.Enumerator);
+                                context.Groupings[key] = grouping;
+                                context.Results[key] = context.Selector(grouping);
+                            }
+                            else
+                            {
+                                grouping.Add(element);
+                            }
+                        }
+                    }
+
                     private readonly TElement firstElement;
 
                     private readonly Dictionary<TKey, GroupingAggregator> groupings;
@@ -241,22 +276,16 @@ namespace System.Linq.V2
                             }
                         });
 
-                        this.Add(this.enumerator.Current);
-                        while (this.enumerator.MoveNext())
+                        var aggregationContext = new AggregationContext()
                         {
-                            var element = this.enumerator.Current;
-                            var key = this.keySelector(element);
-                            if (!this.groupings.TryGetValue(key, out var grouping))
-                            {
-                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
-                                this.groupings[key] = grouping;
-                                results[key] = this.selector(grouping);
-                            }
-                            else
-                            {
-                                grouping.Add(element);
-                            }
-                        }
+                            Aggregator = this.Add,
+                            Enumerator = this.enumerator,
+                            Groupings = this.groupings,
+                            KeySelector = this.keySelector,
+                            Results = this.results,
+                            Selector = this.selector,
+                        };
+                        Aggregate(ref aggregationContext);
 
                         if (max.HasValue)
                         {
@@ -273,22 +302,16 @@ namespace System.Linq.V2
                         var aggregate = new Pointer<int>() { Value = 0 };
                         this.aggregators.Add(element => aggregate.Value += selector(element));
 
-                        this.Add(this.enumerator.Current);
-                        while (this.enumerator.MoveNext())
+                        var aggregationContext = new AggregationContext()
                         {
-                            var element = this.enumerator.Current;
-                            var key = this.keySelector(element);
-                            if (!this.groupings.TryGetValue(key, out var grouping))
-                            {
-                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
-                                this.groupings[key] = grouping;
-                                results[key] = this.selector(grouping);
-                            }
-                            else
-                            {
-                                grouping.Add(element);
-                            }
-                        }
+                            Aggregator = this.Add,
+                            Enumerator = this.enumerator,
+                            Groupings = this.groupings,
+                            KeySelector = this.keySelector,
+                            Results = this.results,
+                            Selector = this.selector,
+                        };
+                        Aggregate(ref aggregationContext);
 
                         if (aggregate.HasValue)
                         {
@@ -312,22 +335,16 @@ namespace System.Linq.V2
                         this.elements = new List<TElement>();
                         this.aggregators.Add(element => this.elements.Add(element));
 
-                        this.Add(this.enumerator.Current);
-                        while (this.enumerator.MoveNext())
+                        var aggregationContext = new AggregationContext()
                         {
-                            var element = this.enumerator.Current;
-                            var key = this.keySelector(element);
-                            if (!this.groupings.TryGetValue(key, out var grouping))
-                            {
-                                grouping = new GroupingAggregator(key, element, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
-                                this.groupings[key] = grouping;
-                                results[key] = this.selector(grouping);
-                            }
-                            else
-                            {
-                                grouping.Add(element);
-                            }
-                        }
+                            Aggregator = this.Add,
+                            Enumerator = this.enumerator,
+                            Groupings = this.groupings,
+                            KeySelector = this.keySelector,
+                            Results = this.results,
+                            Selector = this.selector,
+                        };
+                        Aggregate(ref aggregationContext);
 
                         return elements.GetEnumerator();
                     }
@@ -340,6 +357,7 @@ namespace System.Linq.V2
 
                 public IEnumerator<TResult> GetEnumerator()
                 {
+                    //// TODO refactor to use GroupingAggregator.Aggregate
                     var groupings = new Dictionary<TKey, GroupingAggregator>();
                     var results = new Dictionary<TKey, TResult>();
                     using (var enumerator = this.source.GetEnumerator())
@@ -384,26 +402,6 @@ namespace System.Linq.V2
                     IEnumerator IEnumerable.GetEnumerator()
                     {
                         return this.GetEnumerator();
-                    }
-                }
-
-                private sealed class Grouping : IV2Grouping<TKey, TElement>, IAggregate2Enumerable<TElement>
-                {
-                    public TKey Key => throw new NotImplementedException();
-
-                    public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TElement, TAccumulate> func)
-                    {
-                        throw new NotImplementedException();
-                    }
-
-                    public IEnumerator<TElement> GetEnumerator()
-                    {
-                        throw new NotImplementedException();
-                    }
-
-                    IEnumerator IEnumerable.GetEnumerator()
-                    {
-                        throw new NotImplementedException();
                     }
                 }
 
