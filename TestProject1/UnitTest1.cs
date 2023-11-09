@@ -80,17 +80,39 @@ namespace TestProject1
             var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
             var queried = data
                 .GroupBy(element => element.Length)
-                .Select(grouping => grouping.Max());
+                .Select(grouping => grouping.Sum(element => int.Parse(element)));
             using (var enumerator = queried.GetEnumerator())
             {
                 Assert.IsTrue(enumerator.MoveNext());
-                Assert.AreEqual("45678", enumerator.Current);
+                Assert.AreEqual(116046, enumerator.Current);
 
                 Assert.IsTrue(enumerator.MoveNext());
-                Assert.AreEqual("3456", enumerator.Current);
+                Assert.AreEqual(7035, enumerator.Current);
 
                 Assert.IsTrue(enumerator.MoveNext());
-                Assert.AreEqual("234", enumerator.Current);
+                Assert.AreEqual(357, enumerator.Current);
+
+                Assert.IsFalse(enumerator.MoveNext());
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
+            var queried = data
+                .GroupBy(element => element.Length)
+                .Select(grouping => grouping.Sum(element => int.Parse(element)) + 1);
+            using (var enumerator = queried.GetEnumerator())
+            {
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(116047, enumerator.Current);
+
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(7036, enumerator.Current);
+
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(358, enumerator.Current);
 
                 Assert.IsFalse(enumerator.MoveNext());
             }

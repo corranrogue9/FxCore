@@ -133,7 +133,7 @@ namespace System.Linq.V2
                     this.selector = selector;
                 }
 
-                private sealed class GroupingAggregator : IV2Grouping<TKey, TElement>, IMax12Enumerable<TElement>
+                private sealed class GroupingAggregator : IV2Grouping<TKey, TElement>, IMax12Enumerable<TElement>, ISumEnumerable<TElement>
                 {
                     private readonly Dictionary<TKey, GroupingAggregator> groupings;
 
@@ -203,7 +203,7 @@ namespace System.Linq.V2
 
                     public TElement? Max()
                     {
-                        //// TODO can this aggregator accidentally be added twice? do you need an if statement somewhere?
+                        //// TODO can this aggregator accidentally be added twice? do you need an if statement somewhere? is it even reasonable for there to be 2 aggregators? wouldn't that mean you'd need to keep track of the previously aggregated elements and retroactively apply the new aggregator, thus defeating the purpose of the optimization?
                         var max = new Pointer<TElement?>();
                         this.aggregators.Add(element =>
                         {
@@ -243,6 +243,39 @@ namespace System.Linq.V2
                         }
                         else
                         {
+                            throw new InvalidOperationException("TODO no elements");
+                        }
+                    }
+
+                    public int Sum(Func<TElement, int> selector)
+                    {
+                        var aggregate = new Pointer<int>() { Value = 0 };
+                        this.aggregators.Add(element => aggregate.Value += selector(element));
+
+                        this.Add(this.enumerator.Current);
+                        while (this.enumerator.MoveNext())
+                        {
+                            var element = this.enumerator.Current;
+                            var key = this.keySelector(element);
+                            if (!this.groupings.TryGetValue(key, out var grouping))
+                            {
+                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                this.groupings[key] = grouping;
+                                results[key] = this.selector(grouping);
+                            }
+                            else
+                            {
+                                grouping.Add(element);
+                            }
+                        }
+
+                        if (aggregate.HasValue)
+                        {
+                            return aggregate.Value;
+                        }
+                        else
+                        {
+                            //// TODO does sum throw if there are no elements? i don't remember
                             throw new InvalidOperationException("TODO no elements");
                         }
                     }
