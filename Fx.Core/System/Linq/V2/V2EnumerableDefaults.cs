@@ -2001,41 +2001,6 @@
             return self.AsEnumerable().OrderBy(keySelector, comparer).ToV2OrderedEnumerable();
         }
 
-        private sealed class V2OrderedEnumerableAggregatedEnumerable<TElement> : IV2OrderedEnumerable<TElement>, IAggregatedOverloadEnumerable<TElement>
-        {
-            private readonly IV2OrderedEnumerable<TElement> ordered;
-
-            private readonly IAggregatedOverloadEnumerable<TElement> aggregated;
-
-            public V2OrderedEnumerableAggregatedEnumerable(IV2OrderedEnumerable<TElement> ordered, IAggregatedOverloadEnumerable<TElement> aggregated)
-            {
-                this.ordered = ordered;
-                this.aggregated = aggregated;
-            }
-
-            public IV2Enumerable<TElement> Source => this.ordered;
-
-            public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
-            {
-                return this.aggregated.Create(source);
-            }
-
-            public IV2OrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
-            {
-                return this.ordered.CreateOrderedEnumerable(keySelector, comparer, descending);
-            }
-
-            public IEnumerator<TElement> GetEnumerator()
-            {
-                return this.aggregated.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
-        }
-
         internal static IV2OrderedEnumerable<TSource> OrderByDefault<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
         {
             if (self is IOrderBy2Enumerable<TSource> orderBy)
@@ -2963,45 +2928,6 @@
             }
 
             return self.AsEnumerable().ToLookup(keySelector, elementSelector, comparer).ToV2Lookup();
-        }
-
-        private sealed class V2LookupAggregatedOverload<TKey, TElement> : IV2Lookup<TKey, TElement>, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>>
-        {
-            private readonly IV2Lookup<TKey, TElement> lookup;
-
-            private readonly IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated;
-
-            public V2LookupAggregatedOverload(IV2Lookup<TKey, TElement> lookup, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated)
-            {
-                this.lookup = lookup;
-                this.aggregated = aggregated;
-            }
-
-            public IV2Enumerable<TElement> this[TKey key] => this.lookup[key];
-
-            public IV2Enumerable<IV2Grouping<TKey, TElement>> Source => this.lookup;
-
-            public int Count => this.lookup.Count;
-
-            public bool Contains(TKey key)
-            {
-                return this.lookup.Contains(key);
-            }
-
-            public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
-            {
-                return this.aggregated.Create(source);
-            }
-
-            public IEnumerator<IV2Grouping<TKey, TElement>> GetEnumerator()
-            {
-                return this.aggregated.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
         }
 
         internal static IV2Lookup<TKey, TElement> ToLookupDefault<TSource, TKey, TElement>(

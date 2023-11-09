@@ -1,9 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace System.Linq.V2
 {
     /// <summary>
+    /// test cases:
+    /// var data = new[] { "532", "21354", ... };
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Count());
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Max());
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Sum(element => int.Parse(element)));
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Sum(element => int.Parse(element)) + 1);
+    /// data.GroupBy(element => element.Length);
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Select(element => int.Parse(element)));
+    /// 
+    /// var grouped = data.GroupBy(element => element.Length);
+    /// grouped.Select(grouping => grouping.Count());
+    /// grouped.Select(grouping => grouping.Max());
+    /// 
+    /// data.GroupBy(element => element.Length).Select((grouping, index) => index % 2 == 0 ? grouping.Sum(element => int.Parse(element)) + 1 : grouping.Count());
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
     /// Implements:
     /// 
     /// source
@@ -115,108 +135,174 @@ namespace System.Linq.V2
 
                 private sealed class GroupingAggregator : IV2Grouping<TKey, TElement>, IMax12Enumerable<TElement>
                 {
-                    public GroupingAggregator(TKey key)
+                    private readonly Dictionary<TKey, GroupingAggregator> groupings;
+
+                    private readonly Dictionary<TKey, TResult> results;
+
+                    private readonly Func<TElement, TKey> keySelector;
+
+                    private readonly Func<IV2Grouping<TKey, TElement>, TResult> selector;
+
+                    private readonly IEnumerator<TElement> enumerator;
+
+                    private readonly List<Action<TElement>> aggregators;
+
+                    public GroupingAggregator(
+                        TKey key, 
+                        Dictionary<TKey, GarrettGroupByable<TElement>.GroupByed<TKey>.Selected<TResult>.GroupingAggregator> groupings, 
+                        Dictionary<TKey, TResult> results, 
+                        Func<TElement, TKey> keySelector,
+                        Func<IV2Grouping<TKey, TElement>, TResult> selector, 
+                        IEnumerator<TElement> enumerator)
                     {
                         this.Key = key;
+
+                        this.groupings = groupings;
+                        this.results = results;
+                        this.keySelector = keySelector;
+                        this.selector = selector;
+                        this.enumerator = enumerator;
+
+                        this.aggregators = new List<Action<TElement>>();
                     }
 
                     public TKey Key { get; }
 
                     public void Add(TElement element)
                     {
+                        foreach (var aggregator in this.aggregators)
+                        {
+                            aggregator(element);
+                        }
+                    }
+
+                    private sealed class Pointer<T>
+                    {
+                        private T value;
+
+                        public bool HasValue { get; private set; } = false;
+
+                        public T Value
+                        {
+                            get
+                            {
+                                if (!this.HasValue)
+                                {
+                                    throw new InvalidOperationException("TODO");
+                                }
+
+                                return this.value;
+                            }
+                            set
+                            {
+                                this.value = value;
+                                this.HasValue = true;
+                            }
+                        }
                     }
 
                     public TElement? Max()
                     {
-                        //// TODO make sure this still works if max *isn't* called and the groupings are just enumerated after a select or something, i dunno, you figure out the scenario
-                        throw new NotImplementedException();
+                        //// TODO can this aggregator accidentally be added twice? do you need an if statement somewhere?
+                        var max = new Pointer<TElement?>();
+                        this.aggregators.Add(element =>
+                        {
+                            if (max.HasValue)
+                            {
+                                if (Comparer<TElement?>.Default.Compare(element, max.Value) > 0)
+                                {
+                                    max.Value = element;
+                                }
+                            }
+                            else
+                            {
+                                max.Value = element;
+                            }
+                        });
+
+                        this.Add(this.enumerator.Current);
+                        while (this.enumerator.MoveNext())
+                        {
+                            var element = this.enumerator.Current;
+                            var key = this.keySelector(element);
+                            if (!this.groupings.TryGetValue(key, out var grouping))
+                            {
+                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                this.groupings[key] = grouping;
+                                results[key] = this.selector(grouping);
+                            }
+                            else
+                            {
+                                grouping.Add(element);
+                            }
+                        }
+
+                        if (max.HasValue)
+                        {
+                            return max.Value;
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("TODO no elements");
+                        }
                     }
 
                     public IEnumerator<TElement> GetEnumerator()
                     {
-                        throw new NotImplementedException();
+                        //// TODO can this aggregator accidentally be added twice? do you need an if statement somewhere?
+                        var elements = new List<TElement>();
+                        this.aggregators.Add(element => elements.Add(element));
+
+                        this.Add(this.enumerator.Current);
+                        while (this.enumerator.MoveNext())
+                        {
+                            var element = this.enumerator.Current;
+                            var key = this.keySelector(element);
+                            if (!this.groupings.TryGetValue(key, out var grouping))
+                            {
+                                grouping = new GroupingAggregator(key, this.groupings, this.results, this.keySelector, this.selector, this.enumerator);
+                                this.groupings[key] = grouping;
+                                results[key] = this.selector(grouping);
+                            }
+                            else
+                            {
+                                grouping.Add(element);
+                            }
+                        }
+
+                        return elements.GetEnumerator();
                     }
 
                     IEnumerator IEnumerable.GetEnumerator()
                     {
-                        throw new NotImplementedException();
+                        return this.GetEnumerator();
                     }
                 }
 
                 public IEnumerator<TResult> GetEnumerator()
                 {
-                    var dictionary = new Dictionary<TKey, GroupingAggregator>();
-                    foreach (var element in this.source)
+                    var groupings = new Dictionary<TKey, GroupingAggregator>();
+                    var results = new Dictionary<TKey, TResult>();
+                    using (var enumerator = this.source.GetEnumerator())
                     {
-                        var key = this.keySelector(element);
-                        if (!dictionary.TryGetValue(key, out var groupingAggregator))
+                        while (enumerator.MoveNext())
                         {
-                            groupingAggregator = new GroupingAggregator(key);
-                        }
-
-                        this.selector(groupingAggregator);
-
-                    }
-
-
-                    var grouping = new Grouping();
-                    this.selector(grouping);
-                    if (grouping.IsMax)
-                    {
-                        //// double? should be "aggregation" type, standard case is append, sum is addition, count is +1, max is compare, etc.
-                        var dictionary = new Dictionary<TKey, TElement>();
-                        foreach (var element in this.source)
-                        {
+                            var element = enumerator.Current;
                             var key = this.keySelector(element);
-                            if (!dictionary.TryGetValue(key, out var max) || Comparer<TElement>.Default.Compare(element, max) > 0)
+                            if (!groupings.TryGetValue(key, out var grouping))
                             {
-                                dictionary[key] = element;
+                                grouping = new GroupingAggregator(key, groupings, results, this.keySelector, this.selector, enumerator);
+                                groupings[key] = grouping;
+                                results[key] = this.selector(grouping);
+                            }
+                            else
+                            {
+                                grouping.Add(element);
                             }
                         }
-
-                        return dictionary.Select(kvp => kvp.Value).Cast<TResult>().GetEnumerator();
                     }
-                    else if (new Random().Next() == 0) //// sum
-                    {
-                        var dictionary = new Dictionary<TKey, double>();
-                        foreach (var element in this.source)
-                        {
-                            var key = this.keySelector(element);
-                            if (!dictionary.TryGetValue(key, out var sum))
-                            {
-                                sum = 0;
-                            }
 
-                            sum += element;
-                            dictionary[key] = sum;
-                        }
-                    }
-                    else if (new Random().Next() == 0) //// aggregate
-                    {
-                    }
-                    else
-                    {
-                        var dictionary = new Dictionary<TKey, List<TElement>>();
-                        foreach (var element in this.source)
-                        {
-                            var key = this.keySelector(element);
-                            if (!dictionary.TryGetValue(key, out var list))
-                            {
-                                list = new List<TElement>();
-                            }
-
-                            list.Add(element);
-                        }
-
-                        return dictionary.Select(kvp => new GroupingAdapter(kvp.Key, kvp.Value)).Select(this.selector).GetEnumerator();
-                    }
-                }
-
-                private sealed class Aggregator
-                {
-                    public void Add(TElement element)
-                    {
-                    }
+                    return results.Select(kvp => kvp.Value).GetEnumerator();
                 }
 
                 private sealed class GroupingAdapter : IV2Grouping<TKey, TElement>

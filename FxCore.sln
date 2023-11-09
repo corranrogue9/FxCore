@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Garrett", "Fx.Garrett\Fx.Garrett.csproj", "{41CBBEEB-AB31-469B-A4F1-D452CAB92F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Tyler", "Fx.Tyler\Fx.Tyler.csproj", "{4826B338-FA67-44B6-A609-733752B66F6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Tyler", "Fx.Tyler\Fx.Tyler.csproj", "{4826B338-FA67-44B6-A609-733752B66F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{606FF14F-F9D8-4797-A8B7-A0A10752DAAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4826B338-FA67-44B6-A609-733752B66F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4826B338-FA67-44B6-A609-733752B66F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4826B338-FA67-44B6-A609-733752B66F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606FF14F-F9D8-4797-A8B7-A0A10752DAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606FF14F-F9D8-4797-A8B7-A0A10752DAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606FF14F-F9D8-4797-A8B7-A0A10752DAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606FF14F-F9D8-4797-A8B7-A0A10752DAAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
