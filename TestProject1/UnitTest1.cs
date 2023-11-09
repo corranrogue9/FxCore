@@ -140,5 +140,14 @@ namespace TestProject1
                 Assert.IsFalse(enumerator.MoveNext());
             }
         }
+
+        [TestMethod]
+        public void TestMethod7()
+        {
+            var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
+            var groupings = data.GroupBy(element => element.Length);
+
+
+        }
     }
 }
