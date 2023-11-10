@@ -7,7 +7,7 @@ namespace System.Linq.V2
     /// <summary>
     /// test cases:
     /// var data = new[] { "532", "21354", ... };
-    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Count());
+    /// data.GroupBy(element => element.Length).Select(grouping => grouping.Count()); //// TODO you can actually optimize Count(); you should pick another example of something that reifies that you cannot optimize
     /// data.GroupBy(element => element.Length).Select(grouping => grouping.Max());
     /// data.GroupBy(element => element.Length).Select(grouping => grouping.Sum(element => int.Parse(element)));
     /// data.GroupBy(element => element.Length).Select(grouping => grouping.Sum(element => int.Parse(element)) + 1);
@@ -15,10 +15,11 @@ namespace System.Linq.V2
     /// data.GroupBy(element => element.Length).Select(grouping => grouping.Select(element => int.Parse(element)));
     /// 
     /// var grouped = data.GroupBy(element => element.Length);
-    /// grouped.Select(grouping => grouping.Count());
+    /// grouped.Select(grouping => grouping.Count()); //// TODO replace Count() with whatever you choose from line 10
     /// grouped.Select(grouping => grouping.Max());
     /// 
-    /// data.GroupBy(element => element.Length).Select((grouping, index) => index % 2 == 0 ? grouping.Sum(element => int.Parse(element)) + 1 : grouping.Count());
+    /// data.GroupBy(element => element.Length).Select((grouping, index) => index % 2 == 0 ? grouping.Sum(element => int.Parse(element)) + 1 : grouping.Count()); //// TODO replace count with whatever you choose from line 10
+    /// 
     /// 
     /// 
     /// 
@@ -165,7 +166,7 @@ namespace System.Linq.V2
                             }
                             else
                             {
-                                grouping.Add(element);
+                                grouping.PushNext(element);
                             }
                         }
                     }
@@ -214,7 +215,7 @@ namespace System.Linq.V2
 
                     public TKey Key { get; }
 
-                    public void Add(TElement element)
+                    public void PushNext(TElement element)
                     {
                         if (this.aggregators.Count == 0)
                         {
@@ -223,7 +224,7 @@ namespace System.Linq.V2
                             // groupby behavior of reifying a list, so let's go ahead and add that aggregator
                             this.elements = new List<TElement>();
                             this.aggregators.Add(element => this.elements.Add(element));
-                            this.Add(this.firstElement);
+                            this.PushNext(this.firstElement);
                         }
 
                         foreach (var aggregator in this.aggregators)
@@ -278,7 +279,7 @@ namespace System.Linq.V2
 
                         var aggregationContext = new AggregationContext()
                         {
-                            Aggregator = this.Add,
+                            Aggregator = this.PushNext,
                             Enumerator = this.enumerator,
                             Groupings = this.groupings,
                             KeySelector = this.keySelector,
@@ -304,7 +305,7 @@ namespace System.Linq.V2
 
                         var aggregationContext = new AggregationContext()
                         {
-                            Aggregator = this.Add,
+                            Aggregator = this.PushNext,
                             Enumerator = this.enumerator,
                             Groupings = this.groupings,
                             KeySelector = this.keySelector,
@@ -337,7 +338,7 @@ namespace System.Linq.V2
 
                         var aggregationContext = new AggregationContext()
                         {
-                            Aggregator = this.Add,
+                            Aggregator = this.PushNext,
                             Enumerator = this.enumerator,
                             Groupings = this.groupings,
                             KeySelector = this.keySelector,
@@ -374,35 +375,12 @@ namespace System.Linq.V2
                             }
                             else
                             {
-                                grouping.Add(element);
+                                grouping.PushNext(element);
                             }
                         }
                     }
 
                     return results.Select(kvp => kvp.Value).GetEnumerator();
-                }
-
-                private sealed class GroupingAdapter : IV2Grouping<TKey, TElement>
-                {
-                    private readonly IEnumerable<TElement> enumerable;
-
-                    public GroupingAdapter(TKey key, IEnumerable<TElement> enumerable)
-                    {
-                        this.Key = key;
-                        this.enumerable = enumerable;
-                    }
-
-                    public TKey Key { get; }
-
-                    public IEnumerator<TElement> GetEnumerator()
-                    {
-                        return this.enumerable.GetEnumerator();
-                    }
-
-                    IEnumerator IEnumerable.GetEnumerator()
-                    {
-                        return this.GetEnumerator();
-                    }
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()
