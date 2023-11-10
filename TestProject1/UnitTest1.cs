@@ -204,5 +204,28 @@ namespace TestProject1
                 Assert.IsFalse(enumerator.MoveNext());
             }
         }
+
+        [TestMethod]
+        public void TestMethod9()
+        {
+            var data = new GarrettGroupByable<string>(new[] { "123", "1234", "12345", "234", "2345", "23456", "3456", "34567", "45678" }.ToV2Enumerable());
+            int index = 0;
+            var queried = data
+                .GroupBy(element => element.Length)
+                .Select(grouping => index++ % 2 == 0 ? grouping.Sum(element => int.Parse(element)) + 1 : int.Parse(grouping.Max()));
+            using (var enumerator = queried.GetEnumerator())
+            {
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(116047, enumerator.Current);
+
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(3456, enumerator.Current);
+
+                Assert.IsTrue(enumerator.MoveNext());
+                Assert.AreEqual(358, enumerator.Current);
+
+                Assert.IsFalse(enumerator.MoveNext());
+            }
+        }
     }
 }
