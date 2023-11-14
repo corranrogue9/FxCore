@@ -5,5 +5,7 @@
     public interface ILongCountEnumerable<TSource> : IV2Enumerable<TSource>
     {
         long LongCount(Func<TSource, bool> predicate);
+
+        long LongCount();
     }
 }

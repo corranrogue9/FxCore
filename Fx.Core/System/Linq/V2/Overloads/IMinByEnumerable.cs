@@ -6,5 +6,7 @@
     public interface IMinByEnumerable<TSource> : IV2Enumerable<TSource>
     {
         TSource? MinBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer);
+
+        TSource? MinBy<TKey>(Func<TSource, TKey> keySelector);
     }
 }
