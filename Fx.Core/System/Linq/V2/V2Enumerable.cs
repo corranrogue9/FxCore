@@ -155,12 +155,7 @@
                 return aggregate.Aggregate(func);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Aggregate(func);
-            }
-
-            return self.AsEnumerable().Aggregate(func);
+            return self.AggregateDefault(func);
         }
 
         public static TAccumulate Aggregate<TSource, TAccumulate>(this IV2Enumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
@@ -170,12 +165,7 @@
                 return aggregate.Aggregate(seed, func);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Aggregate(seed, func);
-            }
-
-            return self.AsEnumerable().Aggregate(seed, func);
+            return self.AggregateDefault(seed, func);
         }
 
         public static TResult Aggregate<TSource, TAccumulate, TResult>(
@@ -189,12 +179,7 @@
                 return aggregate.Aggregate(seed, func, resultSelector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Aggregate(seed, func, resultSelector);
-            }
-
-            return self.AsEnumerable().Aggregate(seed, func, resultSelector);
+            return self.AggregateDefault(seed, func, resultSelector);
         }
 
         public static bool All<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -204,12 +189,7 @@
                 return all.All(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.All(predicate);
-            }
-
-            return self.AsEnumerable().All(predicate);
+            return self.AllDefault(predicate);
         }
 
         public static bool Any<TSource>(this IV2Enumerable<TSource> self)
@@ -239,12 +219,7 @@
                 return append.Append(element);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Append(element));
-            }
-
-            return self.AsEnumerable().Append(element).ToV2Enumerable();
+            return self.AppendDefault(element);
         }
 
         public static IV2Enumerable<TSource> AsV2Enumerable<TSource>(this IV2Enumerable<TSource> self)
@@ -260,12 +235,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static double Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
@@ -275,12 +245,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
@@ -290,12 +255,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static float Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
@@ -305,12 +265,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
@@ -320,12 +275,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static float? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
@@ -335,12 +285,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static double Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
@@ -350,12 +295,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
@@ -365,12 +305,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static decimal Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
@@ -380,12 +315,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static decimal? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
@@ -395,12 +325,7 @@
                 return average.Average(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average(selector);
-            }
-
-            return self.AsEnumerable().Average(selector);
+            return self.AverageDefault(selector);
         }
 
         public static float? Average(this IV2Enumerable<float?> self)
@@ -410,12 +335,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double? Average(this IV2Enumerable<long?> self)
@@ -425,12 +345,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double? Average(this IV2Enumerable<int?> self)
@@ -440,12 +355,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double? Average(this IV2Enumerable<double?> self)
@@ -455,12 +365,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<double?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static decimal? Average(this IV2Enumerable<decimal?> self)
@@ -470,12 +375,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<decimal?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double Average(this IV2Enumerable<long> self)
@@ -485,12 +385,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<long> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double Average(this IV2Enumerable<int> self)
@@ -500,12 +395,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<int> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static double Average(this IV2Enumerable<double> self)
@@ -515,12 +405,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<double> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static decimal Average(this IV2Enumerable<decimal> self)
@@ -530,12 +415,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<decimal> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         public static float Average(this IV2Enumerable<float> self)
@@ -545,12 +425,7 @@
                 return average.Average();
             }
 
-            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Average();
-            }
-
-            return self.AsEnumerable().Average();
+            return self.AverageDefault();
         }
 
         /*public static IV2Enumerable<TResult> Cast<TResult>(this IV2Enumerable self)
@@ -566,12 +441,7 @@
                 return chunk.Chunk(size);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Chunk(size));
-            }
-
-            return self.AsEnumerable().Chunk(size).ToV2Enumerable();
+            return self.ChunkDefault(size);
         }
 
         public static IV2Enumerable<TSource> Concat<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
