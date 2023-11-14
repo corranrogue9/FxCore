@@ -5,5 +5,7 @@
     public interface ITakeEnumerable<TSource> : IV2Enumerable<TSource>
     {
         IV2Enumerable<TSource> Take(Range range);
+
+        IV2Enumerable<TSource> Take(int count);
     }
 }

@@ -5,5 +5,7 @@
     public interface ISelectEnumerable<TSource> : IV2Enumerable<TSource>
     {
         IV2Enumerable<TResult> Select<TResult>(Func<TSource, int, TResult> selector);
+
+        IV2Enumerable<TResult> Select<TResult>(Func<TSource, TResult> selector);
     }
 }
