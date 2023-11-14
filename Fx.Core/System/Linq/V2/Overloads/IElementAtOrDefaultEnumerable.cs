@@ -5,5 +5,7 @@
     public interface IElementAtOrDefaultEnumerable<TSource> : IV2Enumerable<TSource>
     {
         TSource? ElementAtOrDefault(Index index);
+
+        TSource? ElementAtOrDefault(int index);
     }
 }
