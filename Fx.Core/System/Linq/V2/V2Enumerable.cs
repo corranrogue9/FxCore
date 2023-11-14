@@ -165,7 +165,7 @@
 
         public static TAccumulate Aggregate<TSource, TAccumulate>(this IV2Enumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
-            if (self is IAggregate2Enumerable<TSource> aggregate)
+            if (self is IAggregateEnumerable<TSource> aggregate)
             {
                 return aggregate.Aggregate(seed, func);
             }
@@ -184,7 +184,7 @@
             Func<TAccumulate, TSource, TAccumulate> func,
             Func<TAccumulate, TResult> resultSelector)
         {
-            if (self is IAggregate3Enumerable<TSource> aggregate)
+            if (self is IAggregateEnumerable<TSource> aggregate)
             {
                 return aggregate.Aggregate(seed, func, resultSelector);
             }
@@ -210,24 +210,6 @@
             }
 
             return self.AsEnumerable().All(predicate);
-        }
-
-        private sealed class AnyOverload<TSource> : IAnyEnumerable<TSource>
-        {
-            public bool Any()
-            {
-                return true;
-            }
-
-            public IEnumerator<TSource> GetEnumerator()
-            {
-                yield return default;
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
         }
 
         public static bool Any<TSource>(this IV2Enumerable<TSource> self)
@@ -288,7 +270,7 @@
 
         public static double Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
         {
-            if (self is IAverage2Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -303,7 +285,7 @@
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
         {
-            if (self is IAverage3Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -318,7 +300,7 @@
 
         public static float Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
         {
-            if (self is IAverage4Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -333,7 +315,7 @@
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
         {
-            if (self is IAverage5Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -348,7 +330,7 @@
 
         public static float? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
         {
-            if (self is IAverage6Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -363,7 +345,7 @@
 
         public static double Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
         {
-            if (self is IAverage7Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -378,7 +360,7 @@
 
         public static double? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
         {
-            if (self is IAverage8Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -393,7 +375,7 @@
 
         public static decimal Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
         {
-            if (self is IAverage9Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -408,7 +390,7 @@
 
         public static decimal? Average<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
         {
-            if (self is IAverage10Enumerable<TSource> average)
+            if (self is IAverageEnumerable<TSource> average)
             {
                 return average.Average(selector);
             }
@@ -624,7 +606,7 @@
 
         public static bool Contains<TSource>(this IV2Enumerable<TSource> self, TSource value)
         {
-            if (self is IContains2Enumerable<TSource> contains)
+            if (self is IContainsEnumerable<TSource> contains)
             {
                 return contains.Contains(value);
             }
