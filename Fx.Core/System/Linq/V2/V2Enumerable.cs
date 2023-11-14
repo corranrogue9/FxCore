@@ -581,12 +581,7 @@
                 return elementAtOrDefault.ElementAtOrDefault(index);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.ElementAtOrDefault(index);
-            }
-
-            return self.AsEnumerable().ElementAtOrDefault(index);
+            return self.ElementAtOrDefaultDefault(index);
         }
 
         public static TSource? ElementAtOrDefault<TSource>(this IV2Enumerable<TSource> self, int index)
@@ -596,12 +591,7 @@
                 return elementAtOrDefault.ElementAtOrDefault(index);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.ElementAtOrDefault(index);
-            }
-
-            return self.AsEnumerable().ElementAtOrDefault(index);
+            return self.ElementAtOrDefaultDefault(index);
         }
 
         public static IV2Enumerable<TResult> Empty<TResult>()
@@ -617,12 +607,7 @@
                 return except.Except(second);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Except(second));
-            }
-
-            return first.AsEnumerable().Except(second).ToV2Enumerable();
+            return first.ExceptDefault(second);
         }
 
         public static IV2Enumerable<TSource> Except<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
@@ -632,12 +617,7 @@
                 return except.Except(second, comparer);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Except(second, comparer));
-            }
-
-            return first.AsEnumerable().Except(second, comparer).ToV2Enumerable();
+            return first.ExceptDefault(second, comparer);
         }
 
         public static IV2Enumerable<TSource> ExceptBy<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
@@ -647,12 +627,7 @@
                 return exceptBy.ExceptBy(second, keySelector);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.ExceptBy(second, keySelector));
-            }
-
-            return first.AsEnumerable().ExceptBy(second, keySelector).ToV2Enumerable();
+            return first.ExceptByDefault(second, keySelector);
         }
 
         public static IV2Enumerable<TSource> ExceptBy<TSource, TKey>(
