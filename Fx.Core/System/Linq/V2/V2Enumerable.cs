@@ -2370,45 +2370,6 @@
             return self.AsEnumerable().ToLookup(keySelector, elementSelector, comparer).ToV2Lookup();
         }
 
-        private sealed class V2LookupAggregatedOverload<TKey, TElement> : IV2Lookup<TKey, TElement>, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>>
-        {
-            private readonly IV2Lookup<TKey, TElement> lookup;
-
-            private readonly IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated;
-
-            public V2LookupAggregatedOverload(IV2Lookup<TKey, TElement> lookup, IAggregatedOverloadEnumerable<IV2Grouping<TKey, TElement>> aggregated)
-            {
-                this.lookup = lookup;
-                this.aggregated = aggregated;
-            }
-
-            public IV2Enumerable<TElement> this[TKey key] => this.lookup[key];
-
-            public IV2Enumerable<IV2Grouping<TKey, TElement>> Source => this.lookup;
-
-            public int Count => this.lookup.Count;
-
-            public bool Contains(TKey key)
-            {
-                return this.lookup.Contains(key);
-            }
-
-            public IAggregatedOverloadEnumerable<TSource> Create<TSource>(IV2Enumerable<TSource> source)
-            {
-                return this.aggregated.Create(source);
-            }
-
-            public IEnumerator<IV2Grouping<TKey, TElement>> GetEnumerator()
-            {
-                return this.aggregated.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
-        }
-
         public static IV2Lookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(
             this IV2Enumerable<TSource> self,
             Func<TSource, TKey> keySelector,
