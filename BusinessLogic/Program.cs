@@ -30,6 +30,16 @@
 
         static void Main(string[] args)
         {
+            System.Types.Foo.DoWork();
+
+
+
+
+
+
+
+
+
             //// Personas:
             //// person who is writing optimized "business logic" (series calendar events e.g.)
             //// person who is writing an optimized linq call (overloading groupby)

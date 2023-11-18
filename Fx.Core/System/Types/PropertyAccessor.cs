@@ -25,14 +25,14 @@ namespace System.Types
 
         public static void DoWork()
         {
-            var data = new[] { new Bar() };
+            var data = new[] { new Bar() { Frob = 1, Fizz = "a" }, new Bar() { Frob = 3, Fizz = "c" } };
             var ordered = data.BetterOrderBy(bar => bar.Fizz);
 
-            var data2 = new[] { new Bar() };
-            var ordered2 = data2.BetterOrderBy(bar => bar.Buzz);
+            var data2 = new[] { new Bar() { Frob = 2, Fizz = "b" } };
+            var ordered2 = data2.BetterOrderBy(bar => bar.Fizz);
 
 
-            var merged = ordered.Merge(ordered2);
+            var merged = ordered.Merge(ordered2).ToArray();
 
 
             //// var whered = ordered.Where(bar => bar.Frob < 5);
@@ -44,12 +44,12 @@ namespace System.Types
             this IBetterOrderedEnumerable<TSource, TCompare> first,
             IBetterOrderedEnumerable<TSource, TCompare> second)
         {
-            if (first.Selector != second.Selector)
+            /*if (first.Selector != second.Selector)
             {
                 throw new ArgumentException();
-            }
+            }*/
 
-            var comparer = Comparer<TSource>.Default;
+            var comparer = Comparer<TCompare>.Default;
 
             using (var firstEnumerator = first.GetEnumerator())
             using (var secondEnumerator = second.GetEnumerator())
@@ -69,11 +69,15 @@ namespace System.Types
                     return firstEnumerator.Enumerate();
                 }
 
-                return MergeIterator(firstEnumerator, secondEnumerator, comparer);
+                return MergeIterator(firstEnumerator, secondEnumerator, comparer, first.Selector);
             }
         }
 
-        private static IEnumerable<T> MergeIterator<T>(IEnumerator<T> firstEnumerator, IEnumerator<T> secondEnumerator, IComparer<T> comparer)
+        private static IEnumerable<TSource> MergeIterator<TSource, TCompare>(
+            IEnumerator<TSource> firstEnumerator, 
+            IEnumerator<TSource> secondEnumerator, 
+            IComparer<TCompare> comparer, 
+            Func<TSource, TCompare> selector)
         {
             var firstElement = firstEnumerator.Current;
             var secondElement = secondEnumerator.Current;
@@ -82,15 +86,17 @@ namespace System.Types
 
             while (firstHasMoved && secondHasMoved)
             {
-                if (comparer.Compare(firstElement, secondElement) < 0)
+                if (comparer.Compare(selector(firstElement), selector(secondElement)) < 0)
                 {
                     yield return firstElement;
                     firstHasMoved = firstEnumerator.MoveNext();
+                    firstElement = firstEnumerator.Current;
                 }
                 else
                 {
                     yield return secondElement;
                     secondHasMoved = secondEnumerator.MoveNext();
+                    secondElement = secondEnumerator.Current;
                 }
             }
 
@@ -98,11 +104,17 @@ namespace System.Types
             // enumerator that has moved past the end will throw for most enumerators
             if (firstHasMoved)
             {
-                firstEnumerator.Enumerate();
+                foreach (var element in firstEnumerator.Enumerate())
+                {
+                    yield return element;
+                }
             }
             else if (secondHasMoved)
             {
-                secondEnumerator.Enumerate();
+                foreach (var element in secondEnumerator.Enumerate())
+                {
+                    yield return element;
+                }
             }
         }
 
