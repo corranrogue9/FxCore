@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 
 namespace System.Types
@@ -24,13 +26,13 @@ namespace System.Types
         public static void DoWork()
         {
             var data = new[] { new Bar() };
-            var ordered = data.OrderBy(bar => bar.Frob);
+            var ordered = data.BetterOrderBy(bar => bar.Fizz);
 
             var data2 = new[] { new Bar() };
-            var ordered2 = data2.OrderBy(bar => bar.Frob);
+            var ordered2 = data2.BetterOrderBy(bar => bar.Buzz);
 
 
-            var merged = ordered.Merge(ordered2, bar => bar.Frob);
+            var merged = ordered.Merge(ordered2);
 
 
             //// var whered = ordered.Where(bar => bar.Frob < 5);
@@ -39,11 +41,24 @@ namespace System.Types
         }
 
         public static IEnumerable<TSource> Merge<TSource, TCompare>(
-            this IEnumerable<TSource> first, 
-            IEnumerable<TSource> second,
-            Func<TSource, TCompare> selector)
+            this IBetterOrderedEnumerable<TSource, TCompare> first,
+            IBetterOrderedEnumerable<TSource, TCompare> second)
         {
+            return null;
         }
+    }
+
+    public static class OrderedExtension
+    {
+        public static IBetterOrderedEnumerable<TSource, TCompare> BetterOrderBy<TSource, TCompare>(this IEnumerable<TSource> self, Func<TSource, TCompare> selector)
+        {
+            return null;
+        }
+    }
+
+    public interface IBetterOrderedEnumerable<TSource, out TCompare> : IEnumerable<TSource>
+    {
+        public Func<TSource, TCompare> Selector { get; }
     }
 
     public sealed class PropertyAccessor
