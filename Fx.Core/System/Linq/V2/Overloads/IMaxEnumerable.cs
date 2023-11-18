@@ -30,7 +30,5 @@
         TSource? Max();
 
         double? Max(Func<TSource, double?> selector);
-
-        TResult? Max<TResult>(Func<TSource, TResult> selector);
     }
 }

@@ -641,12 +641,7 @@
                 return exceptBy.ExceptBy(second, keySelector, comparer);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.ExceptBy(second, keySelector, comparer));
-            }
-
-            return first.AsEnumerable().ExceptBy(second, keySelector, comparer).ToV2Enumerable();
+            return first.ExceptByDefault(second, keySelector);
         }
 
         public static TSource First<TSource>(this IV2Enumerable<TSource> self)
@@ -656,12 +651,7 @@
                 return first.First();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.First();
-            }
-
-            return self.AsEnumerable().First();
+            return self.FirstDefault();
         }
 
         public static TSource First<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -671,12 +661,7 @@
                 return first.First(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.First(predicate);
-            }
-
-            return self.AsEnumerable().First(predicate);
+            return self.FirstDefault(predicate);
         }
 
         public static TSource? FirstOrDefault<TSource>(this IV2Enumerable<TSource> self)
@@ -686,12 +671,7 @@
                 return firstOrDefault.FirstOrDefault();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.FirstOrDefault();
-            }
-
-            return self.AsEnumerable().FirstOrDefault();
+            return self.FirstOrDefaultDefault();
         }
 
         public static TSource FirstOrDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
@@ -701,12 +681,7 @@
                 return firstOrDefault.FirstOrDefault(defaultValue);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.FirstOrDefault(defaultValue);
-            }
-
-            return self.AsEnumerable().FirstOrDefault(defaultValue);
+            return self.FirstOrDefaultDefault(defaultValue);
         }
 
         public static TSource? FirstOrDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -716,12 +691,7 @@
                 return firstOrDefault.FirstOrDefault(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.FirstOrDefault(predicate);
-            }
-
-            return self.AsEnumerable().FirstOrDefault(predicate);
+            return self.FirstOrDefaultDefault(predicate);
         }
 
         public static TSource FirstOrDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
@@ -731,12 +701,7 @@
                 return firstOrDefault.FirstOrDefault(predicate, defaultValue);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.FirstOrDefault(predicate, defaultValue);
-            }
-
-            return self.AsEnumerable().FirstOrDefault(predicate, defaultValue);
+            return self.FirstOrDefaultDefault(predicate, defaultValue);
         }
 
         public static IV2Enumerable<TResult> GroupBy<TSource, TKey, TElement, TResult>(
@@ -751,12 +716,7 @@
                 return groupBy.GroupBy(keySelector, elementSelector, resultSelector, comparer);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector, comparer));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, elementSelector, resultSelector, comparer);
         }
 
         public static IV2Enumerable<TResult> GroupBy<TSource, TKey, TElement, TResult>(
@@ -770,12 +730,7 @@
                 return groupBy.GroupBy(keySelector, elementSelector, resultSelector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, resultSelector));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, elementSelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, elementSelector, resultSelector);
         }
 
         public static IV2Enumerable<TResult> GroupBy<TSource, TKey, TResult>(
@@ -789,12 +744,7 @@
                 return groupBy.GroupBy(keySelector, resultSelector, comparer);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, resultSelector, comparer));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable()), comparer).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, resultSelector, comparer);
         }
 
         public static IV2Enumerable<TResult> GroupBy<TSource, TKey, TResult>(
@@ -807,12 +757,7 @@
                 return groupBy.GroupBy(keySelector, resultSelector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, resultSelector));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, (key, enumerable) => resultSelector(key, enumerable.ToV2Enumerable())).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, resultSelector);
         }
 
         public static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TSource, TKey>(this IV2Enumerable<TSource> self, Func<TSource, TKey> keySelector)
@@ -822,12 +767,7 @@
                 return groupBy.GroupBy(keySelector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector).Select(ToV2Grouping).ToV2Enumerable();
+            return self.GroupByDefault(keySelector);
         }
 
         public static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(
@@ -840,12 +780,7 @@
                 return groupBy.GroupBy(keySelector, elementSelector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, elementSelector).Select(ToV2Grouping).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, elementSelector);
         }
 
         public static IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TSource, TKey>(
@@ -858,12 +793,7 @@
                 return groupBy.GroupBy(keySelector, comparer);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, comparer));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, comparer);
         }
 
         public static IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(
@@ -877,12 +807,7 @@
                 return groupBy.GroupBy(keySelector, elementSelector, comparer);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupBy(keySelector, elementSelector, comparer));
-            }
-
-            return self.AsEnumerable().GroupBy(keySelector, elementSelector, comparer).Select(ToV2Grouping).ToV2Enumerable();
+            return self.GroupByDefault(keySelector, elementSelector, comparer);
         }
 
         public static IV2Enumerable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
@@ -898,12 +823,7 @@
                 return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
             }
 
-            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer));
-            }
-
-            return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable()), comparer).ToV2Enumerable();
+            return outer.GroupJoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
         }
 
         public static IV2Enumerable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
@@ -918,12 +838,7 @@
                 return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
             }
 
-            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector));
-            }
-
-            return outer.AsEnumerable().GroupJoin(inner, outerKeySelector, innerKeySelector, (element, sequence) => resultSelector(element, sequence.ToV2Enumerable())).ToV2Enumerable();
+            return outer.GroupJoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector);
         }
 
         public static IV2Enumerable<TSource> Intersect<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
@@ -933,12 +848,7 @@
                 return intersect.Intersect(second, comparer);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Intersect(second, comparer));
-            }
-
-            return first.AsEnumerable().Intersect(second, comparer).ToV2Enumerable();
+            return first.IntersectDefault(second, comparer);
         }
 
         public static IV2Enumerable<TSource> Intersect<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
@@ -948,12 +858,7 @@
                 return intersect.Intersect(second);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Intersect(second));
-            }
-
-            return first.AsEnumerable().Intersect(second).ToV2Enumerable();
+            return first.IntersectDefault(second);
         }
 
         public static IV2Enumerable<TSource> IntersectBy<TSource, TKey>(this IV2Enumerable<TSource> first, IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
@@ -963,12 +868,7 @@
                 return intersectBy.IntersectBy(second, keySelector);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.IntersectBy(second, keySelector));
-            }
-
-            return first.AsEnumerable().IntersectBy(second, keySelector).ToV2Enumerable();
+            return first.IntersectByDefault(second, keySelector);
         }
 
         public static IV2Enumerable<TSource> IntersectBy<TSource, TKey>(
@@ -982,12 +882,7 @@
                 return intersectBy.IntersectBy(second, keySelector, comparer);
             }
 
-            if (first is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.IntersectBy(second, keySelector, comparer));
-            }
-
-            return first.AsEnumerable().IntersectBy(second, keySelector, comparer).ToV2Enumerable();
+            return first.IntersectByDefault(second, keySelector, comparer);
         }
 
         public static IV2Enumerable<TResult> Join<TOuter, TInner, TKey, TResult>(
@@ -1002,12 +897,7 @@
                 return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
             }
 
-            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector));
-            }
-
-            return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector).ToV2Enumerable();
+            return outer.JoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector);
         }
 
         public static IV2Enumerable<TResult> Join<TOuter, TInner, TKey, TResult>(
@@ -1023,12 +913,7 @@
                 return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
             }
 
-            if (outer is IAggregatedOverloadEnumerable<TOuter> aggregatedOverload)
-            {
-                return aggregatedOverload.Create(aggregatedOverload.Source.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer));
-            }
-
-            return outer.AsEnumerable().Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer).ToV2Enumerable();
+            return outer.JoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
         }
 
         public static TSource Last<TSource>(this IV2Enumerable<TSource> self)
@@ -1038,12 +923,7 @@
                 return last.Last();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Last();
-            }
-
-            return self.AsEnumerable().Last();
+            return self.LastDefault();
         }
 
         public static TSource Last<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -1053,12 +933,7 @@
                 return last.Last(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Last(predicate);
-            }
-
-            return self.AsEnumerable().Last(predicate);
+            return self.LastDefault(predicate);
         }
 
         public static TSource? LastOrDefault<TSource>(this IV2Enumerable<TSource> self)
@@ -1068,12 +943,7 @@
                 return lastOrDefault.LastOrDefault();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LastOrDefault();
-            }
-
-            return self.AsEnumerable().LastOrDefault();
+            return self.LastOrDefaultDefault();
         }
 
         public static TSource LastOrDefault<TSource>(this IV2Enumerable<TSource> self, TSource defaultValue)
@@ -1083,12 +953,7 @@
                 return lastOrDefault.LastOrDefault(defaultValue);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LastOrDefault(defaultValue);
-            }
-
-            return self.AsEnumerable().LastOrDefault(defaultValue);
+            return self.LastOrDefaultDefault(defaultValue);
         }
 
         public static TSource? LastOrDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -1098,12 +963,7 @@
                 return lastOrDefault.LastOrDefault(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LastOrDefault(predicate);
-            }
-
-            return self.AsEnumerable().LastOrDefault(predicate);
+            return self.LastOrDefaultDefault(predicate);
         }
 
         public static TSource LastOrDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate, TSource defaultValue)
@@ -1113,12 +973,7 @@
                 return lastOrDefault.LastOrDefault(predicate, defaultValue);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LastOrDefault(predicate, defaultValue);
-            }
-
-            return self.AsEnumerable().LastOrDefault(predicate, defaultValue);
+            return self.LastOrDefaultDefault(predicate, defaultValue);
         }
 
         public static long LongCount<TSource>(this IV2Enumerable<TSource> self, Func<TSource, bool> predicate)
@@ -1128,12 +983,7 @@
                 return longCount.LongCount(predicate);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LongCount(predicate);
-            }
-
-            return self.AsEnumerable().LongCount(predicate);
+            return self.LongCountDefault(predicate);
         }
 
         public static long LongCount<TSource>(this IV2Enumerable<TSource> self)
@@ -1143,12 +993,7 @@
                 return longCount.LongCount();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.LongCount();
-            }
-
-            return self.AsEnumerable().LongCount();
+            return self.LongCountDefault();
         }
 
         public static long Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long> selector)
@@ -1158,12 +1003,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static decimal Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal> selector)
@@ -1173,12 +1013,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static double Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double> selector)
@@ -1188,12 +1023,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static int Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int> selector)
@@ -1203,12 +1033,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static decimal? Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, decimal?> selector)
@@ -1218,12 +1043,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static TSource? Max<TSource>(this IV2Enumerable<TSource> self, IComparer<TSource>? comparer)
@@ -1233,12 +1053,7 @@
                 return max.Max(comparer);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(comparer);
-            }
-
-            return self.AsEnumerable().Max(comparer);
+            return self.MaxDefault(comparer);
         }
 
         public static int? Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, int?> selector)
@@ -1248,12 +1063,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static long? Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, long?> selector)
@@ -1263,12 +1073,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static float? Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float?> selector)
@@ -1278,12 +1083,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static TResult? Max<TSource, TResult>(this IV2Enumerable<TSource> self, Func<TSource, TResult> selector)
@@ -1293,12 +1093,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static double? Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, double?> selector)
@@ -1308,12 +1103,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static TSource? Max<TSource>(this IV2Enumerable<TSource> self)
@@ -1323,12 +1113,7 @@
                 return max.Max();
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max();
-            }
-
-            return self.AsEnumerable().Max();
+            return self.MaxDefault();
         }
 
         public static float Max<TSource>(this IV2Enumerable<TSource> self, Func<TSource, float> selector)
@@ -1338,12 +1123,7 @@
                 return max.Max(selector);
             }
 
-            if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max(selector);
-            }
-
-            return self.AsEnumerable().Max(selector);
+            return self.MaxDefault(selector);
         }
 
         public static float Max(this IV2Enumerable<float> self)
@@ -1353,12 +1133,7 @@
                 return max.Max();
             }
 
-            if (self is IAggregatedOverloadEnumerable<float> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max();
-            }
-
-            return self.AsEnumerable().Max();
+            return self.MaxDefault();
         }
 
         public static float? Max(this IV2Enumerable<float?> self)
@@ -1368,12 +1143,7 @@
                 return max.Max();
             }
 
-            if (self is IAggregatedOverloadEnumerable<float?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max();
-            }
-
-            return self.AsEnumerable().Max();
+            return self.MaxDefault();
         }
 
         public static long? Max(this IV2Enumerable<long?> self)
@@ -1383,12 +1153,7 @@
                 return max.Max();
             }
 
-            if (self is IAggregatedOverloadEnumerable<long?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max();
-            }
-
-            return self.AsEnumerable().Max();
+            return self.MaxDefault();
         }
 
         public static int? Max(this IV2Enumerable<int?> self)
@@ -1398,12 +1163,7 @@
                 return max.Max();
             }
 
-            if (self is IAggregatedOverloadEnumerable<int?> aggregatedOverload)
-            {
-                return aggregatedOverload.Source.Max();
-            }
-
-            return self.AsEnumerable().Max();
+            return self.MaxDefault();
         }
 
         public static double? Max(this IV2Enumerable<double?> self)
