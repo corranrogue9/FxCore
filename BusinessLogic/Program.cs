@@ -236,6 +236,11 @@
                 return new GetDataEnumerable(true);
             }
 
+            public IV2Enumerable<string> Where(Func<string, int, bool> predicate)
+            {
+                throw new NotImplementedException();
+            }
+
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return this.GetEnumerator();

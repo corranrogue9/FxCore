@@ -44,6 +44,11 @@ namespace System.Linq.V2
                 return new WheredEnumerable(this.first, this.second, predicate).AddGarrett();
             }
 
+            public IV2Enumerable<TElement> Where(Func<TElement, int, bool> predicate)
+            {
+                throw new NotImplementedException();
+            }
+
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return this.GetEnumerator();
