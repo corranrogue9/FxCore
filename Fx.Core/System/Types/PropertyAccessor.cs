@@ -52,14 +52,14 @@ namespace System.Types
         }
     }
 
-    public abstract class PropertyAccessor<TSource, TCompare>
+    public static class PropertyAccessor
     {
-        public static PropertyAccessor<TSource, TCompare> Create(Expression<Func<TSource, TCompare>> selectorExpression)
+        public static PropertyAccessor<TSource, TCompare> Create<TSource, TCompare>(Expression<Func<TSource, TCompare>> selectorExpression)
         {
             return Create(selectorExpression.Body, selectorExpression);
         }
 
-        public static PropertyAccessor<TSource, TCompare> Create(Expression expression, Expression<Func<TSource, TCompare>> selectorExpression)
+        private static PropertyAccessor<TSource, TCompare> Create<TSource, TCompare>(Expression expression, Expression<Func<TSource, TCompare>> selectorExpression)
         {
             if (expression is MemberExpression memberExpression)
             {
@@ -67,19 +67,28 @@ namespace System.Types
                 {
                     if (memberExpression.Expression is ParameterExpression constantExpression)
                     {
-                        return new DirectPropertyAccessor<TSource, TCompare>(selectorExpression);
+                        return new PropertyAccessor<TSource, TCompare>.DirectPropertyAccessor<TSource, TCompare>(selectorExpression);
                     }
-                    /*else if (memberExpression.Expression is MemberExpression nestedDereference)
+                    else if (memberExpression.Expression is MemberExpression nestedDereference)
                     {
+                        /*var directPropertyAccessor = new DirectPropertyAccessor<TSource, string>(null);
+                        var potentiallyIndirectPropertyAccessor = Create(null, null);
+                        return new IndirectPropertyAccessor<TSource, string, TCompare>(directPropertyAccessor, potentiallyIndirectPropertyAccessor);
+
+                        return new IndirectPropertyAccessor(nestedDereference.Member, Create(nestedDereference.Expression));
+
                         var directPropertyAccessor = new DirectPropertyAccessor<TSource, string>(null);
-                        return new IndirectPropertyAccessor<TSource, string, TCompare>(directPropertyAccessor, Create(memberExpression.Expression, selectorExpression));
-                    }*/
+                        return new IndirectPropertyAccessor<TSource, string, TCompare>(directPropertyAccessor, Create(memberExpression.Expression, selectorExpression));*/
+                    }
                 }
             }
 
             throw new InvalidOperationException("TODO expression is not a chain of accessors");
         }
+    }
 
+    public abstract class PropertyAccessor<TSource, TCompare>
+    {
         private protected PropertyAccessor()
         {
         }
@@ -109,6 +118,57 @@ namespace System.Types
         }
     }
 
+    public abstract class Shared<TSource, TResult>
+    {
+    }
+
+    public sealed class BaseCase<TSource> : Shared<TSource, TSource>
+    {
+        public BaseCase(Expression<Func<TSource, TSource>> selectorExpression) //// TODO make this not public
+        {
+            this.SelectorExpression = selectorExpression;
+        }
+
+        public Expression<Func<TSource, TSource>> SelectorExpression { get; }
+    }
+
+    public sealed class DirectCase<TSource, TResult> : Shared<TSource, TResult>
+    {
+        public DirectCase(Expression<Func<TSource, TResult>> selectorExpression)
+        {
+        }
+
+        public Expression<Func<TSource, TResult>> Accessor { get; set; }
+
+        public BaseCase<TResult> BaseCase { get; set; }
+    }
+
+    public sealed class IndirectCase<TSource, TIntermediate, TResult> : Shared<TSource, TResult> //// where TShared : Shared<TSource, TIntermediate>
+    {
+        public IndirectCase(Shared<TSource, TIntermediate> sourceToIntermediate, DirectCase<TIntermediate, TResult> intermediateToResult)
+        {
+            IntermediateToResult = intermediateToResult;
+            SourceToIntermediate = sourceToIntermediate;
+        }
+
+        public DirectCase<TIntermediate, TResult> IntermediateToResult { get; }
+
+        //// public TShared SourceToIntermediate { get; }
+
+        public Shared<TSource, TIntermediate> SourceToIntermediate { get; }
+    }
+
+    public static class AccessorExtensions
+    {
+        public static IndirectCase<TSource, TIntermediate, TResult> And<TSource, TIntermediate, TResult>(
+            this Shared<TSource, TIntermediate> shared, 
+            Expression<Func<TIntermediate, TResult>> func)
+            ////where TShared : Shared<TSource, TIntermediate>
+        {
+            return new IndirectCase<TSource, TIntermediate, TResult>(shared, new DirectCase<TIntermediate, TResult>(func));
+        }
+    }
+
     public static class Foo
     {
         public static string Test(Bar bar)
@@ -116,11 +176,21 @@ namespace System.Types
             return bar.Fizz;
         }
 
+        public static void TestExpression(Expression<Func<Bar, string>> func)
+        {
+         ////   TestAccessor(func);
+        }
+
         public static void DoWork()
         {
+            var accessor = new DirectCase<Bar, Frub>(bar => bar.Frub);
+            var newAccessor = accessor.And(frub => frub.First).And(first => first.Second);
+
+
             //// TODO make this work: new PropertyAccessor<Bar, string>.DirectPropertyAccessor(Test);
 
-            PropertyAccessor<Bar, string>.Create(bar => bar.Fizz);
+            PropertyAccessor.Create((Bar bar) => bar);
+            ////            PropertyAccessor<Bar, string>.Create(bar => bar.Frub.Tazz);
 
             var data = new[] { new Bar() { Frob = 1, Fizz = "a" }, new Bar() { Frob = 3, Fizz = "c" } };
             var ordered = data.BetterOrderBy(bar => bar.Fizz);
@@ -240,5 +310,22 @@ namespace System.Types
     public class Frub
     {
         public char Tazz { get; set; }
+
+        public First First { get; set; }
+    }
+
+    public class First
+    {
+        public Second Second { get; set; }
+    }
+
+    public class Second
+    {
+        public Third Third { get; set; }
+    }
+
+    public class Third
+    {
+        public byte ThirdProp { get; set; }
     }
 }
