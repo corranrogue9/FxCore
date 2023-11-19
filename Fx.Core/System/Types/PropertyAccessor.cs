@@ -143,9 +143,9 @@ namespace System.Types
         public BaseCase<TResult> BaseCase { get; set; }
     }
 
-    public sealed class IndirectCase<TSource, TIntermediate, TResult> : Shared<TSource, TResult> //// where TShared : Shared<TSource, TIntermediate>
+    public sealed class IndirectCase<TShared, TResult, TSource, TIntermediate> : Shared<TSource, TResult> where TShared : Shared<TSource, TIntermediate>
     {
-        public IndirectCase(Shared<TSource, TIntermediate> sourceToIntermediate, DirectCase<TIntermediate, TResult> intermediateToResult)
+        public IndirectCase(TShared sourceToIntermediate, DirectCase<TIntermediate, TResult> intermediateToResult)
         {
             IntermediateToResult = intermediateToResult;
             SourceToIntermediate = sourceToIntermediate;
@@ -155,17 +155,17 @@ namespace System.Types
 
         //// public TShared SourceToIntermediate { get; }
 
-        public Shared<TSource, TIntermediate> SourceToIntermediate { get; }
+        public TShared SourceToIntermediate { get; }
     }
 
     public static class AccessorExtensions
     {
-        public static IndirectCase<TSource, TIntermediate, TResult> And<TSource, TIntermediate, TResult>(
-            this Shared<TSource, TIntermediate> shared, 
+        public static IndirectCase<TShared, TResult, TSource, TIntermediate> And<TShared, TResult, TSource, TIntermediate>(
+            this TShared shared,
             Expression<Func<TIntermediate, TResult>> func)
-            ////where TShared : Shared<TSource, TIntermediate>
+            where TShared : Shared<TSource, TIntermediate>
         {
-            return new IndirectCase<TSource, TIntermediate, TResult>(shared, new DirectCase<TIntermediate, TResult>(func));
+            return new IndirectCase<TShared, TResult, TSource, TIntermediate>(shared, new DirectCase<TIntermediate, TResult>(func));
         }
     }
 
@@ -178,13 +178,15 @@ namespace System.Types
 
         public static void TestExpression(Expression<Func<Bar, string>> func)
         {
-         ////   TestAccessor(func);
+            ////   TestAccessor(func);
         }
 
         public static void DoWork()
         {
             var accessor = new DirectCase<Bar, Frub>(bar => bar.Frub);
-            var newAccessor = accessor.And(frub => frub.First).And(first => first.Second);
+            var newAccessor = accessor
+                .And<DirectCase<Bar, Frub>, First, Bar, Frub>(frub => frub.First)
+                .And<IndirectCase<DirectCase<Bar, Frub>, First, Bar, Frub>, Second, Bar, First>(first => first.Second);
 
 
             //// TODO make this work: new PropertyAccessor<Bar, string>.DirectPropertyAccessor(Test);
@@ -241,9 +243,9 @@ namespace System.Types
         }
 
         private static IEnumerable<TSource> MergeIterator<TSource, TCompare>(
-            IEnumerator<TSource> firstEnumerator, 
-            IEnumerator<TSource> secondEnumerator, 
-            IComparer<TCompare> comparer, 
+            IEnumerator<TSource> firstEnumerator,
+            IEnumerator<TSource> secondEnumerator,
+            IComparer<TCompare> comparer,
             Func<TSource, TCompare> selector)
         {
             var firstElement = firstEnumerator.Current;
