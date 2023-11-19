@@ -141,6 +141,12 @@ namespace System.Types
         public Expression<Func<TSource, TResult>> Accessor { get; set; }
 
         public BaseCase<TResult> BaseCase { get; set; }
+
+        public IndirectCase<DirectCase<TSource, TResult>, TNewResult, TSource, TResult> And<TNewResult>(
+            Expression<Func<TResult, TNewResult>> func)
+        {
+            return new IndirectCase<DirectCase<TSource, TResult>, TNewResult, TSource, TResult>(this, new DirectCase<TResult, TNewResult>(func));
+        }
     }
 
     public sealed class IndirectCase<TShared, TResult, TSource, TIntermediate> : Shared<TSource, TResult> where TShared : Shared<TSource, TIntermediate>
@@ -156,17 +162,23 @@ namespace System.Types
         //// public TShared SourceToIntermediate { get; }
 
         public TShared SourceToIntermediate { get; }
+
+        public IndirectCase<IndirectCase<TShared, TResult, TSource, TIntermediate>, TNewResult, TSource, TResult> And<TNewResult>(
+            Expression<Func<TResult, TNewResult>> func)
+        {
+            return new IndirectCase<IndirectCase<TShared, TResult, TSource, TIntermediate>, TNewResult, TSource, TResult>(this, new DirectCase<TResult, TNewResult>(func));
+        }
     }
 
     public static class AccessorExtensions
     {
-        public static IndirectCase<TShared, TResult, TSource, TIntermediate> And<TShared, TResult, TSource, TIntermediate>(
+        /*public static IndirectCase<TShared, TResult, TSource, TIntermediate> And<TShared, TResult, TSource, TIntermediate>(
             this TShared shared,
             Expression<Func<TIntermediate, TResult>> func)
             where TShared : Shared<TSource, TIntermediate>
         {
             return new IndirectCase<TShared, TResult, TSource, TIntermediate>(shared, new DirectCase<TIntermediate, TResult>(func));
-        }
+        }*/
     }
 
     public static class Foo
@@ -185,8 +197,8 @@ namespace System.Types
         {
             var accessor = new DirectCase<Bar, Frub>(bar => bar.Frub);
             var newAccessor = accessor
-                .And<DirectCase<Bar, Frub>, First, Bar, Frub>(frub => frub.First)
-                .And<IndirectCase<DirectCase<Bar, Frub>, First, Bar, Frub>, Second, Bar, First>(first => first.Second);
+                .And(frub => frub.First)
+                .And(first => first.Second);
 
 
             //// TODO make this work: new PropertyAccessor<Bar, string>.DirectPropertyAccessor(Test);
