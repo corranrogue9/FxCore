@@ -330,7 +330,7 @@
 
         public static float? Average(this IV2Enumerable<float?> self)
         {
-            if (self is IAverage11Enumerable average)
+            if (self is IAverageNullableSingleEnumerable average)
             {
                 return average.Average();
             }
@@ -340,7 +340,7 @@
 
         public static double? Average(this IV2Enumerable<long?> self)
         {
-            if (self is IAverage12Enumerable average)
+            if (self is IAverageNullableInt64Enumerable average)
             {
                 return average.Average();
             }
@@ -350,7 +350,7 @@
 
         public static double? Average(this IV2Enumerable<int?> self)
         {
-            if (self is IAverage13Enumerable average)
+            if (self is IAverageNullableInt32Enumerable average)
             {
                 return average.Average();
             }
@@ -360,7 +360,7 @@
 
         public static double? Average(this IV2Enumerable<double?> self)
         {
-            if (self is IAverage14Enumerable average)
+            if (self is IAverageNullableDoubleEnumerable average)
             {
                 return average.Average();
             }
@@ -370,7 +370,7 @@
 
         public static decimal? Average(this IV2Enumerable<decimal?> self)
         {
-            if (self is IAverage15Enumerable average)
+            if (self is IAverageNullableDecimalEnumerable average)
             {
                 return average.Average();
             }
@@ -380,7 +380,7 @@
 
         public static double Average(this IV2Enumerable<long> self)
         {
-            if (self is IAverage16Enumerable average)
+            if (self is IAverageInt64Enumerable average)
             {
                 return average.Average();
             }
@@ -390,7 +390,7 @@
 
         public static double Average(this IV2Enumerable<int> self)
         {
-            if (self is IAverage17Enumerable average)
+            if (self is IAverageInt32Enumerable average)
             {
                 return average.Average();
             }
@@ -400,7 +400,7 @@
 
         public static double Average(this IV2Enumerable<double> self)
         {
-            if (self is IAverage18Enumerable average)
+            if (self is IAverageDoubleEnumerable average)
             {
                 return average.Average();
             }
@@ -410,7 +410,7 @@
 
         public static decimal Average(this IV2Enumerable<decimal> self)
         {
-            if (self is IAverage19Enumerable average)
+            if (self is IAverageDecimalEnumerable average)
             {
                 return average.Average();
             }
@@ -420,7 +420,7 @@
 
         public static float Average(this IV2Enumerable<float> self)
         {
-            if (self is IAverage20Enumerable average)
+            if (self is IAverageNullableSingleEnumerable average)
             {
                 return average.Average();
             }
@@ -1128,7 +1128,7 @@
 
         public static float Max(this IV2Enumerable<float> self)
         {
-            if (self is IMax14Enumerable max)
+            if (self is IMaxSingleEnumerable max)
             {
                 return max.Max();
             }
@@ -1138,7 +1138,7 @@
 
         public static float? Max(this IV2Enumerable<float?> self)
         {
-            if (self is IMax15Enumerable max)
+            if (self is IMaxNullableSingleEnumerable max)
             {
                 return max.Max();
             }
@@ -1148,7 +1148,7 @@
 
         public static long? Max(this IV2Enumerable<long?> self)
         {
-            if (self is IMax16Enumerable max)
+            if (self is IMaxMaxNullableInt64Enumerable max)
             {
                 return max.Max();
             }
@@ -1158,7 +1158,7 @@
 
         public static int? Max(this IV2Enumerable<int?> self)
         {
-            if (self is IMax17Enumerable max)
+            if (self is IMaxNullableInt32Enumerable max)
             {
                 return max.Max();
             }
@@ -1168,7 +1168,7 @@
 
         public static double? Max(this IV2Enumerable<double?> self)
         {
-            if (self is IMax18Enumerable max)
+            if (self is IMaxNullableDoubleEnumerable max)
             {
                 return max.Max();
             }
@@ -1178,7 +1178,7 @@
 
         public static decimal? Max(this IV2Enumerable<decimal?> self)
         {
-            if (self is IMax19Enumerable max)
+            if (self is IMaxNullableDecimalEnumerable max)
             {
                 return max.Max();
             }
@@ -1188,7 +1188,7 @@
 
         public static long Max(this IV2Enumerable<long> self)
         {
-            if (self is IMax20Enumerable max)
+            if (self is IMaxInt64Enumerable max)
             {
                 return max.Max();
             }
@@ -1198,7 +1198,7 @@
 
         public static int Max(this IV2Enumerable<int> self)
         {
-            if (self is IMax21Enumerable max)
+            if (self is IMaxInt32Enumerable max)
             {
                 return max.Max();
             }
@@ -1208,7 +1208,7 @@
 
         public static double Max(this IV2Enumerable<double> self)
         {
-            if (self is IMax22Enumerable max)
+            if (self is IMaxDoubleEnumerable max)
             {
                 return max.Max();
             }
@@ -1218,7 +1218,7 @@
 
         public static decimal Max(this IV2Enumerable<decimal> self)
         {
-            if (self is IMax23Enumerable max)
+            if (self is IMaxDecimalEnumerable max)
             {
                 return max.Max();
             }
@@ -1248,7 +1248,7 @@
 
         public static decimal Min(this IV2Enumerable<decimal> self)
         {
-            if (self is IMinEnumerable min)
+            if (self is IMinDecimalEnumerable min)
             {
                 return min.Min();
             }
@@ -1388,7 +1388,7 @@
 
         public static float Min(this IV2Enumerable<float> self)
         {
-            if (self is IMin15Enumerable min)
+            if (self is IMinSingleEnumerable min)
             {
                 return min.Min();
             }
@@ -1398,7 +1398,7 @@
 
         public static float? Min(this IV2Enumerable<float?> self)
         {
-            if (self is IMin16Enumerable min)
+            if (self is IMinNullableSingleEnumerable min)
             {
                 return min.Min();
             }
@@ -1408,7 +1408,7 @@
 
         public static long? Min(this IV2Enumerable<long?> self)
         {
-            if (self is IMin17Enumerable min)
+            if (self is IMinNullableInt64Enumerable min)
             {
                 return min.Min();
             }
@@ -1418,7 +1418,7 @@
 
         public static int? Min(this IV2Enumerable<int?> self)
         {
-            if (self is IMin18Enumerable min)
+            if (self is IMinNullableInt32Enumerable min)
             {
                 return min.Min();
             }
@@ -1428,7 +1428,7 @@
 
         public static double? Min(this IV2Enumerable<double?> self)
         {
-            if (self is IMin19Enumerable min)
+            if (self is IMinNullableDoubleEnumerable min)
             {
                 return min.Min();
             }
@@ -1438,7 +1438,7 @@
 
         public static decimal? Min(this IV2Enumerable<decimal?> self)
         {
-            if (self is IMin20Enumerable min)
+            if (self is IMinNullableDecimalEnumerable min)
             {
                 return min.Min();
             }
@@ -1448,7 +1448,7 @@
 
         public static double Min(this IV2Enumerable<double> self)
         {
-            if (self is IMin21Enumerable min)
+            if (self is IMinDoubleEnumerable min)
             {
                 return min.Min();
             }
@@ -1458,7 +1458,7 @@
 
         public static long Min(this IV2Enumerable<long> self)
         {
-            if (self is IMin22Enumerable min)
+            if (self is IMinInt64Enumerable min)
             {
                 return min.Min();
             }
@@ -1468,7 +1468,7 @@
 
         public static int Min(this IV2Enumerable<int> self)
         {
-            if (self is IMin23Enumerable min)
+            if (self is IMinInt32Enumerable min)
             {
                 return min.Min();
             }
@@ -1865,7 +1865,7 @@
 
         public static long? Sum(this IV2Enumerable<long?> self)
         {
-            if (self is ISum11Enumerable sum)
+            if (self is ISumNullableInt64Enumerable sum)
             {
                 return sum.Sum();
             }
@@ -1875,7 +1875,7 @@
 
         public static float? Sum(this IV2Enumerable<float?> self)
         {
-            if (self is ISum12Enumerable sum)
+            if (self is ISumNullableSingleEnumerable sum)
             {
                 return sum.Sum();
             }
@@ -1885,7 +1885,7 @@
 
         public static int? Sum(this IV2Enumerable<int?> self)
         {
-            if (self is ISum13Enumerable sum)
+            if (self is ISumNullableInt32Enumerable sum)
             {
                 return sum.Sum();
             }
@@ -1895,7 +1895,7 @@
 
         public static double? Sum(this IV2Enumerable<double?> self)
         {
-            if (self is ISum14Enumerable sum)
+            if (self is ISumNullableDoubleEnumerable sum)
             {
                 return sum.Sum();
             }
@@ -1905,7 +1905,7 @@
 
         public static decimal? Sum(this IV2Enumerable<decimal?> self)
         {
-            if (self is ISum15Enumerable sum)
+            if (self is ISumNullableDecimalEnumerable sum)
             {
                 return sum.Sum();
             }
@@ -1915,7 +1915,7 @@
 
         public static long Sum(this IV2Enumerable<long> self)
         {
-            if (self is ISum16Enumerable sum)
+            if (self is ISumInt64Enumerable sum)
             {
                 return sum.Sum();
             }
@@ -1925,7 +1925,7 @@
 
         public static int Sum(this IV2Enumerable<int> self)
         {
-            if (self is ISum17Enumerable sum)
+            if (self is ISumInt32Enumerable sum)
             {
                 return sum.Sum();
             }
@@ -1935,7 +1935,7 @@
 
         public static double Sum(this IV2Enumerable<double> self)
         {
-            if (self is ISum18Enumerable sum)
+            if (self is ISumDoubleEnumerable sum)
             {
                 return sum.Sum();
             }
@@ -1945,7 +1945,7 @@
 
         public static decimal Sum(this IV2Enumerable<decimal> self)
         {
-            if (self is ISum19Enumerable sum)
+            if (self is ISumDecimalEnumerable sum)
             {
                 return sum.Sum();
             }
@@ -1955,7 +1955,7 @@
 
         public static float Sum(this IV2Enumerable<float> self)
         {
-            if (self is ISum20Enumerable sum)
+            if (self is ISumSingleEnumerable sum)
             {
                 return sum.Sum();
             }
