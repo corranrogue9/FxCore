@@ -420,7 +420,7 @@
 
         public static float Average(this IV2Enumerable<float> self)
         {
-            if (self is IAverageNullableSingleEnumerable average)
+            if (self is IAverageSingleEnumerable average)
             {
                 return average.Average();
             }
