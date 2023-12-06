@@ -3,8 +3,125 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Linq.V2;
+    using System.Numerics;
+
+    public sealed class Dimension<T>
+    {
+        public Dimension(T value)
+        {
+            this.Value = value;
+        }
+
+        public T Value { get; }
+    }
+
+    //// TODO can you define an alias for 2d and 3d points? it seems you can't have generic type parameters in aliases
+    public abstract class Point<T> where T : INumber<T>
+    {
+        private Point(Dimension<T> dimension)
+        {
+            this.Dimension = dimension;
+        }
+
+        public Dimension<T> Dimension { get; }
+
+        public sealed class SingleDimensionalPoint : Point<T>
+        {
+            public SingleDimensionalPoint(Dimension<T> dimension)
+                : base (dimension)
+            {
+            }
+        }
+
+        public sealed class MultidimensionalPoint<TPoint> : Point<T> where TPoint : Point<T>
+        {
+            public MultidimensionalPoint(TPoint point, Dimension<T> dimension)
+                : base(dimension)
+            {
+                this.Point = point;
+            }
+
+            public TPoint Point { get; }
+
+            //// TODO have an implicit operator from lower dimensional types to higher dimensional types
+
+            public static implicit operator MultidimensionalPoint<TPoint>(SingleDimensionalPoint point)
+            {
+                ////return new MultidimensionalPoint<TPoint>(point, new Dimension<T>(T.Zero));
+                return null;
+            }
+
+
+            public static implicit operator MultidimensionalPoint<MultidimensionalPoint<TPoint>>(Point<T>.MultidimensionalPoint<TPoint> point)
+            {
+                return point.Generalize();
+            }
+        }
+    }
+
+    public static class Point
+    {
+        public static Point<T>.MultidimensionalPoint<TPoint> MultidimensionalPoint<TPoint, T>(TPoint point, Dimension<T> dimension) where TPoint : Point<T> where T : INumber<T>
+        {
+            return new Point<T>.MultidimensionalPoint<TPoint>(point, dimension);
+        }
+
+        public static Point<T>.SingleDimensionalPoint SingleDimensionalPoint<T>(Dimension<T> dimension) where T : INumber<T>
+        {
+            return new Point<T>.SingleDimensionalPoint(dimension);
+        }
+
+        public static Dimension<T> Dimension<T>(T value)
+        {
+            return new Dimension<T>(value);
+        }
+    }
+
+    public static class Extensions
+    {
+        public static Point<T>.MultidimensionalPoint<Point<T>.MultidimensionalPoint<TPoint>> Generalize<TPoint, T>(
+            this Point<T>.MultidimensionalPoint<TPoint> self) where TPoint : Point<T> where T : INumber<T>
+        {
+            return Point.MultidimensionalPoint(self, Point.Dimension(T.Zero));
+        }
+
+        public static void DoWork()
+        {
+            var point1 = Point.MultidimensionalPoint(Point.SingleDimensionalPoint(Point.Dimension(0)), Point.Dimension(3));
+            var point2 = Point.MultidimensionalPoint(Point.SingleDimensionalPoint(Point.Dimension(4)), Point.Dimension(0));
+            var distaince = point1.Distance(point2);
+            if (distaince != 5)
+            {
+                throw new Exception("TODO");
+            }
+        }
+
+        public static double Distance<T>(
+            this Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint> point1, 
+            Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint> point2) where T : INumber<T>
+        {
+            ////return point1.Generalize().Distance(point2);
+            return point1.Generalize().Distance(point2.Generalize());
+        }
+
+        public static double Distance<T>(
+            this Point<T>.MultidimensionalPoint<Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint>> point1,
+            Point<T>.MultidimensionalPoint<Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint>> point2) where T : INumber<T>
+        {
+            var xes = point2.Dimension.Value - point1.Dimension.Value;
+            var yes = point2.Point.Dimension.Value - point1.Point.Dimension.Value;
+            var zes = point2.Point.Point.Dimension.Value - point1.Point.Point.Dimension.Value;
+
+            var summedSquares = xes * xes + yes * yes + zes * zes;
+
+            //// TODO cast to something suqare rootable
+            var @double = double.CreateChecked(summedSquares);
+            return Math.Sqrt(@double);
+        }
+    }
 
     internal class Program
     {
@@ -30,6 +147,8 @@
 
         static void Main(string[] args)
         {
+            Extensions.DoWork();
+
             //// Personas:
             //// person who is writing optimized "business logic" (series calendar events e.g.)
             //// person who is writing an optimized linq call (overloading groupby)
@@ -234,6 +353,11 @@
             public IV2Enumerable<string> Where(Func<string, bool> predicate)
             {
                 return new GetDataEnumerable(true);
+            }
+
+            public IV2Enumerable<string> Where(Func<string, int, bool> predicate)
+            {
+                throw new NotImplementedException();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
