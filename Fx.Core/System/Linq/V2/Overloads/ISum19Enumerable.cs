@@ -2,6 +2,9 @@
 {
     public interface ISum19Enumerable : IV2Enumerable<decimal>
     {
-        decimal Sum();
+        public decimal Sum()
+        {
+            return this.SumDefault();
+        }
     }
 }

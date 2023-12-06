@@ -2,6 +2,9 @@
 {
     public interface IMax19Enumerable : IV2Enumerable<decimal?>
     {
-        decimal? Max();
+        public decimal? Max()
+        {
+            return this.MaxDefault();
+        }
     }
 }

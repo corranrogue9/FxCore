@@ -2,6 +2,9 @@
 {
     public interface ITryGetNonEnumeratedCountEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        bool TryGetNonEnumeratedCount(out int count);
+        public bool TryGetNonEnumeratedCount(out int count)
+        {
+            return this.TryGetNonEnumeratedCountDefault(out count);
+        }
     }
 }

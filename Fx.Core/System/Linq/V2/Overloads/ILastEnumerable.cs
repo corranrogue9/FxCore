@@ -2,8 +2,14 @@
 {
     public interface ILastEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource Last();
+        public TSource Last()
+        {
+            return this.LastDefault();
+        }
 
-        TSource Last(Func<TSource, bool> predicate);
+        public TSource Last(Func<TSource, bool> predicate)
+        {
+            return this.LastDefault(predicate);
+        }
     }
 }

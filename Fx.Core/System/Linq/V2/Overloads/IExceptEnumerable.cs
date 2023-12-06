@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace System.Linq.V2
+﻿namespace System.Linq.V2
 {
+    using System.Collections.Generic;
+
     public interface IExceptEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Except(IV2Enumerable<TSource> second);
+        public IV2Enumerable<TSource> Except(IV2Enumerable<TSource> second)
+        {
+            return this.ExceptDefault(second);
+        }
 
-        IV2Enumerable<TSource> Except(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer);
+        public IV2Enumerable<TSource> Except(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        {
+            return this.ExceptDefault(second, comparer);
+        }
     }
 }

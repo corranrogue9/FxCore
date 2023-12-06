@@ -2,8 +2,14 @@
 {
     public interface IFirstEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource First();
+        public TSource First()
+        {
+            return this.FirstDefault();
+        }
 
-        TSource First(Func<TSource, bool> predicate);
+        public TSource First(Func<TSource, bool> predicate)
+        {
+            return this.FirstDefault(predicate);
+        }
     }
 }

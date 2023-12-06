@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace System.Linq.V2
+﻿namespace System.Linq.V2
 {
+    using System.Collections.Generic;
+
     public interface ISequenceEqualEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        bool SequenceEqual(IV2Enumerable<TSource> second);
+        public bool SequenceEqual(IV2Enumerable<TSource> second)
+        {
+            return this.SequenceEqualDefault(second);
+        }
 
-        bool SequenceEqual(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer);
+        public bool SequenceEqual(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        {
+            return this.SequenceEqualDefault(second, comparer);
+        }
     }
 }

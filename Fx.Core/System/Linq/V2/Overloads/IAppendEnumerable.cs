@@ -2,6 +2,9 @@
 {
     public interface IAppendEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Append(TSource element);
+        public IV2Enumerable<TSource> Append(TSource element)
+        {
+            return this.AppendDefault(element);
+        }
     }
 }

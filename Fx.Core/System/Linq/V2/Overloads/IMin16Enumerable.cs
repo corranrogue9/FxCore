@@ -2,6 +2,9 @@
 {
     public interface IMin16Enumerable : IV2Enumerable<float?>
     {
-        float? Min();
+        public float? Min()
+        {
+            return this.MinDefault();
+        }
     }
 }

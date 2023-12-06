@@ -2,6 +2,9 @@
 {
     public interface IPrependEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Prepend(TSource element);
+        public IV2Enumerable<TSource> Prepend(TSource element)
+        {
+            return this.PrependDefault(element);
+        }
     }
 }

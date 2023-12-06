@@ -4,6 +4,9 @@
 
     public interface IToListEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        List<TSource> ToList();
+        public List<TSource> ToList()
+        {
+            return this.ToListDefault();
+        }
     }
 }

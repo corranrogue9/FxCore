@@ -4,8 +4,14 @@
 
     public interface IIntersectEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Intersect(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer);
+        public IV2Enumerable<TSource> Intersect(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        {
+            return this.IntersectDefault(second, comparer);
+        }
 
-        IV2Enumerable<TSource> Intersect(IV2Enumerable<TSource> second);
+        public IV2Enumerable<TSource> Intersect(IV2Enumerable<TSource> second)
+        {
+            return this.IntersectDefault(second);
+        }
     }
 }

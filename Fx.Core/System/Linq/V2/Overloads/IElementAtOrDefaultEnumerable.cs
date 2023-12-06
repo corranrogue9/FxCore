@@ -1,11 +1,15 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface IElementAtOrDefaultEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource? ElementAtOrDefault(Index index);
+        public TSource? ElementAtOrDefault(Index index)
+        {
+            return this.ElementAtOrDefaultDefault(index);
+        }
 
-        TSource? ElementAtOrDefault(int index);
+        public TSource? ElementAtOrDefault(int index)
+        {
+            return this.ElementAtOrDefaultDefault(index);
+        }
     }
 }

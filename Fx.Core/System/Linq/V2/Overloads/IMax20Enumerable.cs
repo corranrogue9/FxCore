@@ -2,6 +2,9 @@
 {
     public interface IMax20Enumerable : IV2Enumerable<long>
     {
-        long Max();
+        public long Max()
+        {
+            return this.MaxDefault();
+        }
     }
 }

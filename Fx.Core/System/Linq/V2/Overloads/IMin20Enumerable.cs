@@ -2,6 +2,9 @@
 {
     public interface IMin20Enumerable : IV2Enumerable<decimal?>
     {
-        decimal? Min();
+        public decimal? Min()
+        {
+            return this.MinDefault();
+        }
     }
 }

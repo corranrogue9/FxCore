@@ -1,16 +1,23 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface IAggregateEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource Aggregate(Func<TSource, TSource, TSource> func);
+        public TSource Aggregate(Func<TSource, TSource, TSource> func)
+        {
+            return this.AggregateDefault(func);
+        }
 
-        TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func);
+        public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        {
+            return this.AggregateDefault(seed, func);
+        }
 
-        TResult Aggregate<TAccumulate, TResult>(
+        public TResult Aggregate<TAccumulate, TResult>(
             TAccumulate seed,
             Func<TAccumulate, TSource, TAccumulate> func,
-            Func<TAccumulate, TResult> resultSelector);
+            Func<TAccumulate, TResult> resultSelector)
+        {
+            return this.AggregateDefault(seed, func, resultSelector);
+        }
     }
 }

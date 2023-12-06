@@ -2,6 +2,9 @@
 {
     public interface ISum18Enumerable : IV2Enumerable<double>
     {
-        double Sum();
+        public double Sum()
+        {
+            return this.SumDefault();
+        }
     }
 }

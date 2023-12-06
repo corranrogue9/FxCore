@@ -1,33 +1,72 @@
-﻿using System.Collections.Generic;
-
-namespace System.Linq.V2
+﻿namespace System.Linq.V2
 {
+    using System.Collections.Generic;
+
     public interface IMinEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        int Min(Func<TSource, int> selector);
+        public int Min(Func<TSource, int> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        long Min(Func<TSource, long> selector);
+        public long Min(Func<TSource, long> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        decimal? Min(Func<TSource, decimal?> selector);
+        public decimal? Min(Func<TSource, decimal?> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        double? Min(Func<TSource, double?> selector);
+        public double? Min(Func<TSource, double?> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        int? Min(Func<TSource, int?> selector);
+        public int? Min(Func<TSource, int?> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        float? Min(Func<TSource, float?> selector);
+        public float? Min(Func<TSource, float?> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        float Min(Func<TSource, float> selector);
+        public float Min(Func<TSource, float> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        TResult? Min<TResult>(Func<TSource, TResult> selector);
+        public TResult? Min<TResult>(Func<TSource, TResult> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        double Min(Func<TSource, double> selector);
+        public double Min(Func<TSource, double> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        long? Min(Func<TSource, long?> selector);
+        public long? Min(Func<TSource, long?> selector)
+        {
+            return this.MinDefault(selector);
+        }
 
-        TSource? Min();
+        public TSource? Min()
+        {
+            return this.MinDefault();
+        }
 
-        TSource? Min(IComparer<TSource>? comparer);
+        public TSource? Min(IComparer<TSource>? comparer)
+        {
+            return this.MinDefault(comparer);
+        }
 
-        decimal Min(Func<TSource, decimal> selector);
+        public decimal Min(Func<TSource, decimal> selector)
+        {
+            return this.MinDefault(selector);
+        }
     }
 }

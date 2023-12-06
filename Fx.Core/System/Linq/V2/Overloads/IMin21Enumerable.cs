@@ -2,6 +2,9 @@
 {
     public interface IMin21Enumerable : IV2Enumerable<double>
     {
-        double Min();
+        public double Min()
+        {
+            return this.MinDefault();
+        }
     }
 }

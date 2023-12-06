@@ -2,8 +2,14 @@
 {
     public interface IDefaultIfEmptyEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource?> DefaultIfEmpty();
+        public IV2Enumerable<TSource?> DefaultIfEmpty()
+        {
+            return this.DefaultIfEmptyDefault();
+        }
 
-        IV2Enumerable<TSource> DefaultIfEmpty(TSource defaultValue);
+        public IV2Enumerable<TSource> DefaultIfEmpty(TSource defaultValue)
+        {
+            return this.DefaultIfEmptyDefault(defaultValue);
+        }
     }
 }

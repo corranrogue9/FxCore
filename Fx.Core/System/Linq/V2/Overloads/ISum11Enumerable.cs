@@ -2,6 +2,9 @@
 {
     public interface ISum11Enumerable : IV2Enumerable<long?>
     {
-        long? Sum();
+        public long? Sum()
+        {
+            return this.SumDefault();
+        }
     }
 }

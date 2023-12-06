@@ -1,11 +1,15 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface ITakeWhileEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> TakeWhile(Func<TSource, bool> predicate);
+        public IV2Enumerable<TSource> TakeWhile(Func<TSource, bool> predicate)
+        {
+            return this.TakeWhileDefault(predicate);
+        }
 
-        IV2Enumerable<TSource> TakeWhile(Func<TSource, int, bool> predicate);
+        public IV2Enumerable<TSource> TakeWhile(Func<TSource, int, bool> predicate)
+        {
+            return this.TakeWhileDefault(predicate);
+        }
     }
 }

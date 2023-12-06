@@ -1,15 +1,25 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface ISingleOrDefaultEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource SingleOrDefault(Func<TSource, bool> predicate, TSource defaultValue);
+        public TSource SingleOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
+        {
+            return this.SingleOrDefaultDefault(predicate, defaultValue);
+        }
 
-        TSource? SingleOrDefault(Func<TSource, bool> predicate);
+        public TSource? SingleOrDefault(Func<TSource, bool> predicate)
+        {
+            return this.SingleOrDefaultDefault(predicate);
+        }
 
-        TSource? SingleOrDefault();
+        public TSource? SingleOrDefault()
+        {
+            return this.SingleOrDefaultDefault();
+        }
 
-        TSource SingleOrDefault(TSource defaultValue);
+        public TSource SingleOrDefault(TSource defaultValue)
+        {
+            return this.SingleOrDefaultDefault(defaultValue);
+        }
     }
 }

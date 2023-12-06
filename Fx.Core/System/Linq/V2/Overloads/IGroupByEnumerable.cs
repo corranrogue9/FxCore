@@ -1,43 +1,66 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IGroupByEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TResult> GroupBy<TKey, TElement, TResult>(
+        public IV2Enumerable<TResult> GroupBy<TKey, TElement, TResult>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
             Func<TKey, IV2Enumerable<TElement>, TResult> resultSelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.GroupByDefault(keySelector, elementSelector, resultSelector, comparer);
+        }
 
-        IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(
+        public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.GroupByDefault(keySelector, elementSelector, comparer);
+        }
 
-        IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TKey>(
+        public IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TKey>(
             Func<TSource, TKey> keySelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.GroupByDefault(keySelector, comparer);
+        }
 
-        IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(
+        public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(
             Func<TSource, TKey> keySelector,
-            Func<TSource, TElement> elementSelector);
+            Func<TSource, TElement> elementSelector)
+        {
+            return this.GroupByDefault(keySelector, elementSelector);
+        }
 
-        IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TKey>(Func<TSource, TKey> keySelector);
+        public IV2Enumerable<IV2Grouping<TKey, TSource>> GroupBy<TKey>(Func<TSource, TKey> keySelector)
+        {
+            return this.GroupByDefault(keySelector);
+        }
 
-        IV2Enumerable<TResult> GroupBy<TKey, TResult>(
+        public IV2Enumerable<TResult> GroupBy<TKey, TResult>(
             Func<TSource, TKey> keySelector,
-            Func<TKey, IV2Enumerable<TSource>, TResult> resultSelector);
+            Func<TKey, IV2Enumerable<TSource>, TResult> resultSelector)
+        {
+            return this.GroupByDefault(keySelector, resultSelector);
+        }
 
-        IV2Enumerable<TResult> GroupBy<TKey, TResult>(
+        public IV2Enumerable<TResult> GroupBy<TKey, TResult>(
             Func<TSource, TKey> keySelector,
             Func<TKey, IV2Enumerable<TSource>, TResult> resultSelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.GroupByDefault(keySelector, resultSelector, comparer);
+        }
 
-        IV2Enumerable<TResult> GroupBy<TKey, TElement, TResult>(
+        public IV2Enumerable<TResult> GroupBy<TKey, TElement, TResult>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
-            Func<TKey, IV2Enumerable<TElement>, TResult> resultSelector);
+            Func<TKey, IV2Enumerable<TElement>, TResult> resultSelector)
+        {
+            return this.GroupByDefault(keySelector, elementSelector, resultSelector);
+        }
     }
 }

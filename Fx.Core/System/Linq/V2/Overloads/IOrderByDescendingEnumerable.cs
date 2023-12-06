@@ -1,14 +1,19 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IOrderByDescendingEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2OrderedEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector);
+        public IV2OrderedEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector)
+        {
+            return this.OrderByDescendingDefault(keySelector);
+        }
 
-        IV2OrderedEnumerable<TSource> OrderByDescending<TKey>(
+        public IV2OrderedEnumerable<TSource> OrderByDescending<TKey>(
             Func<TSource, TKey> keySelector,
-            IComparer<TKey>? comparer);
+            IComparer<TKey>? comparer)
+        {
+            return this.OrderByDescendingDefault(keySelector, comparer);
+        }
     }
 }

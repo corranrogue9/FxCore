@@ -1,12 +1,17 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IDistinctByEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector);
+        public IV2Enumerable<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
+        {
+            return this.DistinctByDefault(keySelector);
+        }
 
-        IV2Enumerable<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer);
+        public IV2Enumerable<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+        {
+            return this.DistinctByDefault(keySelector, comparer);
+        }
     }
 }

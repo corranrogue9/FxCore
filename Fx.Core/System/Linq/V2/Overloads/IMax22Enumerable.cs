@@ -2,6 +2,9 @@
 {
     public interface IMax22Enumerable : IV2Enumerable<double>
     {
-        double Max();
+        public double Max()
+        {
+            return this.MaxDefault();
+        }
     }
 }

@@ -2,6 +2,9 @@
 {
     public interface ISkipLastEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> SkipLast(int count);
+        public IV2Enumerable<TSource> SkipLast(int count)
+        {
+            return this.SkipLastDefault(count);
+        }
     }
 }

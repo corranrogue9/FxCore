@@ -2,6 +2,9 @@
 {
     public interface ISum20Enumerable : IV2Enumerable<float>
     {
-        float Sum();
+        public float Sum()
+        {
+            return this.SumDefault();
+        }
     }
 }

@@ -1,27 +1,55 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface IAverageEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        double Average(Func<TSource, int> selector);
+        public double Average(Func<TSource, int> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        double? Average(Func<TSource, int?> selector);
+        public double? Average(Func<TSource, int?> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        decimal Average(Func<TSource, decimal> selector);
+        public decimal Average(Func<TSource, decimal> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        double Average(Func<TSource, double> selector);
+        public double Average(Func<TSource, double> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        float? Average(Func<TSource, float?> selector);
+        public float? Average(Func<TSource, float?> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        double? Average(Func<TSource, long?> selector);
+        public double? Average(Func<TSource, long?> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        float Average(Func<TSource, float> selector);
+        public float Average(Func<TSource, float> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        double? Average(Func<TSource, double?> selector);
+        public double? Average(Func<TSource, double?> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        double Average(Func<TSource, long> selector);
+        public double Average(Func<TSource, long> selector)
+        {
+            return this.AverageDefault(selector);
+        }
 
-        decimal? Average(Func<TSource, decimal?> selector);
+        public decimal? Average(Func<TSource, decimal?> selector)
+        {
+            return this.AverageDefault(selector);
+        }
     }
 }

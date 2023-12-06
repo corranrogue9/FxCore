@@ -2,6 +2,9 @@
 {
     public interface IReverseEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Reverse();
+        public IV2Enumerable<TSource> Reverse()
+        {
+            return this.ReverseDefault();
+        }
     }
 }

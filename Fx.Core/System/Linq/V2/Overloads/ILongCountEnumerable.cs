@@ -1,11 +1,15 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
-
     public interface ILongCountEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        long LongCount(Func<TSource, bool> predicate);
+        public long LongCount(Func<TSource, bool> predicate)
+        {
+            return this.LongCountDefault(predicate);
+        }
 
-        long LongCount();
+        public long LongCount()
+        {
+            return this.LongCountDefault();
+        }
     }
 }

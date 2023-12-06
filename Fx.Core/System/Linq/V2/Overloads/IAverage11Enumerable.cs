@@ -2,6 +2,9 @@
 {
     public interface IAverage11Enumerable : IV2Enumerable<float?>
     {
-        float? Average(IV2Enumerable<float?> self);
+        public float? Average(IV2Enumerable<float?> self)
+        {
+            return this.AverageDefault();
+        }
     }
 }

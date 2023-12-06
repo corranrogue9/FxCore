@@ -2,8 +2,14 @@
 {
     public interface ISingleEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource Single();
+        public TSource Single()
+        {
+            return this.SingleDefault();
+        }
 
-        TSource Single(Func<TSource, bool> predicate);
+        public TSource Single(Func<TSource, bool> predicate)
+        {
+            return this.SingleDefault(predicate);
+        }
     }
 }

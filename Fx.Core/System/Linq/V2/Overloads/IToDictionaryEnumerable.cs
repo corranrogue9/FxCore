@@ -1,27 +1,38 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IToDictionaryEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        Dictionary<TKey, TSource> ToDictionary<TKey>(Func<TSource, TKey> keySelector)
-            where TKey : notnull;
+        public Dictionary<TKey, TSource> ToDictionary<TKey>(Func<TSource, TKey> keySelector)
+            where TKey : notnull
+        {
+            return this.ToDictionaryDefault(keySelector);
+        }
 
-        Dictionary<TKey, TElement> ToDictionary<TKey, TElement>(
+        public Dictionary<TKey, TElement> ToDictionary<TKey, TElement>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
             IEqualityComparer<TKey>? comparer)
-            where TKey : notnull;
+            where TKey : notnull
+        {
+            return this.ToDictionaryDefault(keySelector, elementSelector, comparer);
+        }
 
-        Dictionary<TKey, TElement> ToDictionary<TKey, TElement>(
+        public Dictionary<TKey, TElement> ToDictionary<TKey, TElement>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector)
-            where TKey : notnull;
+            where TKey : notnull
+        {
+            return this.ToDictionaryDefault(keySelector, elementSelector);
+        }
 
-        Dictionary<TKey, TSource> ToDictionary<TKey>(
+        public Dictionary<TKey, TSource> ToDictionary<TKey>(
             Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
-            where TKey : notnull;
+            where TKey : notnull
+        {
+            return this.ToDictionaryDefault(keySelector, comparer);
+        }
     }
 }

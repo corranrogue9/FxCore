@@ -2,6 +2,9 @@
 {
     public interface ITakeLastEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> TakeLast(int count);
+        public IV2Enumerable<TSource> TakeLast(int count)
+        {
+            return this.TakeLastDefault(count);
+        }
     }
 }

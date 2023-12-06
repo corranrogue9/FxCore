@@ -2,8 +2,14 @@
 {
     public interface ICountEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        int Count();
+        public int Count()
+        {
+            return this.CountDefault();
+        }
 
-        int Count(Func<TSource, bool> predicate);
+        public int Count(Func<TSource, bool> predicate)
+        {
+            return this.CountDefault(predicate);
+        }
     }
 }

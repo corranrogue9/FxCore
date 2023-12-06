@@ -2,6 +2,9 @@
 {
     public interface IMin22Enumerable : IV2Enumerable<long>
     {
-        long Min();
+        public long Min()
+        {
+            return this.MinDefault();
+        }
     }
 }

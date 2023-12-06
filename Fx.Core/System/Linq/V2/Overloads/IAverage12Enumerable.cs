@@ -2,6 +2,9 @@
 {
     public interface IAverage12Enumerable : IV2Enumerable<long?>
     {
-        double? Average();
+        public double? Average()
+        {
+            return this.AverageDefault();
+        }
     }
 }

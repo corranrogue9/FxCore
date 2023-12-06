@@ -2,6 +2,9 @@
 {
     public interface IToArrayEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource[] ToArray();
+        public TSource[] ToArray()
+        {
+            return this.ToArrayDefault();
+        }
     }
 }

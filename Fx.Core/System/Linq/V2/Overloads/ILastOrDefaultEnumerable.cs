@@ -2,12 +2,24 @@
 {
     public interface ILastOrDefaultEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        TSource? LastOrDefault();
+        public TSource? LastOrDefault()
+        {
+            return this.LastOrDefaultDefault();
+        }
 
-        TSource LastOrDefault(Func<TSource, bool> predicate, TSource defaultValue);
+        public TSource LastOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
+        {
+            return this.LastOrDefaultDefault(predicate, defaultValue);
+        }
 
-        TSource? LastOrDefault(Func<TSource, bool> predicate);
+        public TSource? LastOrDefault(Func<TSource, bool> predicate)
+        {
+            return this.LastOrDefaultDefault(predicate);
+        }
 
-        TSource LastOrDefault(TSource defaultValue);
+        public TSource LastOrDefault(TSource defaultValue)
+        {
+            return this.LastOrDefaultDefault(defaultValue);
+        }
     }
 }

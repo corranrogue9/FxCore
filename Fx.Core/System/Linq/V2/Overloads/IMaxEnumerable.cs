@@ -1,34 +1,72 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IMaxEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        long Max(Func<TSource, long> selector);
+        public long Max(Func<TSource, long> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        long? Max(Func<TSource, long?> selector);
+        public long? Max(Func<TSource, long?> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        float? Max(Func<TSource, float?> selector);
+        public float? Max(Func<TSource, float?> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        int? Max(Func<TSource, int?> selector);
+        public int? Max(Func<TSource, int?> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        TSource? Max(IComparer<TSource>? comparer);
+        public TSource? Max(IComparer<TSource>? comparer)
+        {
+            return this.MaxDefault(comparer);
+        }
 
-        decimal? Max(Func<TSource, decimal?> selector);
+        public decimal? Max(Func<TSource, decimal?> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        int Max(Func<TSource, int> selector);
+        public int Max(Func<TSource, int> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        double Max(Func<TSource, double> selector);
+        public double Max(Func<TSource, double> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        decimal Max(Func<TSource, decimal> selector);
+        public decimal Max(Func<TSource, decimal> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        TResult? Max<TResult>(Func<TSource, TResult> selector);
+        public TResult? Max<TResult>(Func<TSource, TResult> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        float Max(Func<TSource, float> selector);
+        public float Max(Func<TSource, float> selector)
+        {
+            return this.MaxDefault(selector);
+        }
 
-        TSource? Max();
+        public TSource? Max()
+        {
+            return this.MaxDefault();
+        }
 
-        double? Max(Func<TSource, double?> selector);
+        public double? Max(Func<TSource, double?> selector)
+        {
+            return this.MaxDefault(selector);
+        }
     }
 }

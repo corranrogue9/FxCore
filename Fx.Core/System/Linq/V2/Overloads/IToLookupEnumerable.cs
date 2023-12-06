@@ -1,21 +1,32 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IToLookupEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Lookup<TKey, TElement> ToLookup<TKey, TElement>(
+        public IV2Lookup<TKey, TElement> ToLookup<TKey, TElement>(
             Func<TSource, TKey> keySelector,
             Func<TSource, TElement> elementSelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.ToLookupDefault(keySelector, elementSelector, comparer);
+        }
 
-        IV2Lookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer);
+        public IV2Lookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+        {
+            return this.ToLookupDefault(keySelector, comparer);
+        }
 
-        IV2Lookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector);
+        public IV2Lookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector)
+        {
+            return this.ToLookupDefault(keySelector);
+        }
 
-        IV2Lookup<TKey, TElement> ToLookup<TKey, TElement>(
+        public IV2Lookup<TKey, TElement> ToLookup<TKey, TElement>(
             Func<TSource, TKey> keySelector,
-            Func<TSource, TElement> elementSelector);
+            Func<TSource, TElement> elementSelector)
+        {
+            return this.ToLookupDefault(keySelector, elementSelector);
+        }
     }
 }

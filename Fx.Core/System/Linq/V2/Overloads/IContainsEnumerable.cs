@@ -4,8 +4,14 @@
 
     public interface IContainsEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        bool Contains(TSource value, IEqualityComparer<TSource>? comparer);
+        public bool Contains(TSource value, IEqualityComparer<TSource>? comparer)
+        {
+            return this.ContainsDefault(value, comparer);
+        }
 
-        bool Contains(TSource value);
+        public bool Contains(TSource value)
+        {
+            return this.ContainsDefault(value);
+        }
     }
 }

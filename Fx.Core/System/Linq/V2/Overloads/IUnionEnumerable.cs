@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace System.Linq.V2
+﻿namespace System.Linq.V2
 {
+    using System.Collections.Generic;
+
     public interface IUnionEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> Union(IV2Enumerable<TSource> second);
+        public IV2Enumerable<TSource> Union(IV2Enumerable<TSource> second)
+        {
+            return this.UnionDefault(second);
+        }
 
-        IV2Enumerable<TSource> Union(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer);
+        public IV2Enumerable<TSource> Union(IV2Enumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+        {
+            return this.UnionDefault(second, comparer);
+        }
     }
 }

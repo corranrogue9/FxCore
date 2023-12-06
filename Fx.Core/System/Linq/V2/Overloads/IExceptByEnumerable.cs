@@ -1,15 +1,20 @@
 ﻿namespace System.Linq.V2
 {
-    using System;
     using System.Collections.Generic;
 
     public interface IExceptByEnumerable<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TSource> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector);
+        public IV2Enumerable<TSource> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TSource, TKey> keySelector)
+        {
+            return this.ExceptByDefault(second, keySelector);
+        }
 
-        IV2Enumerable<TSource> ExceptBy<TKey>(
+        public IV2Enumerable<TSource> ExceptBy<TKey>(
             IV2Enumerable<TKey> second,
             Func<TSource, TKey> keySelector,
-            IEqualityComparer<TKey>? comparer);
+            IEqualityComparer<TKey>? comparer)
+        {
+            return this.ExceptByDefault(second, keySelector, comparer);
+        }
     }
 }
