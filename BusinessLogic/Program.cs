@@ -99,17 +99,16 @@
             }
         }
 
-        public static double Distance<T>(
-            this Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint> point1, 
-            Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint> point2) where T : INumber<T>
+        public static double Distance<TDimension>(
+            this Point<TDimension>.MultidimensionalPoint<Point<TDimension>.SingleDimensionalPoint> point1, 
+            Point<TDimension>.MultidimensionalPoint<Point<TDimension>.SingleDimensionalPoint> point2) where TDimension : INumber<TDimension>
         {
-            ////return point1.Generalize().Distance(point2);
-            return point1.Generalize().Distance(point2.Generalize());
+            return point1.Generalize().Distance(point2); //// note that the implicit conversion works here
         }
 
-        public static double Distance<T>(
-            this Point<T>.MultidimensionalPoint<Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint>> point1,
-            Point<T>.MultidimensionalPoint<Point<T>.MultidimensionalPoint<Point<T>.SingleDimensionalPoint>> point2) where T : INumber<T>
+        public static double Distance<TDimension>(
+            this Point<TDimension>.MultidimensionalPoint<Point<TDimension>.MultidimensionalPoint<Point<TDimension>.SingleDimensionalPoint>> point1,
+            Point<TDimension>.MultidimensionalPoint<Point<TDimension>.MultidimensionalPoint<Point<TDimension>.SingleDimensionalPoint>> point2) where TDimension : INumber<TDimension>
         {
             var xes = point2.Dimension.Value - point1.Dimension.Value;
             var yes = point2.Point.Dimension.Value - point1.Point.Dimension.Value;
@@ -117,7 +116,8 @@
 
             var summedSquares = xes * xes + yes * yes + zes * zes;
 
-            //// TODO cast to something suqare rootable
+            //// TODO can you do something to let T dictate whether you use double or not? you really just need "something square rootable", it doesn't have to be double (in other words, any IRootFunctions implementation will do: https://learn.microsoft.com/en-us/dotnet/api/system.numerics.irootfunctions-1?view=net-8.0)
+            //// TODO something like adding TDistance where TDistance : IRootFunctions<TDistance> and returning TDistance.Sqrt(TDistance.CreateChecked(summedSquares))
             var @double = double.CreateChecked(summedSquares);
             return Math.Sqrt(@double);
         }
